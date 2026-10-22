@@ -1,0 +1,24 @@
+[
+ {
+  "id": "l-20261020",
+  "n": 1,
+  "date": "2026-10-20T14:02:38.413Z",
+  "endAt": "2026-10-20T14:46:56.656Z",
+  "title": "Reading characters: 你叫什么名字？",
+  "title_zh": "认读汉字：你叫什么名字？",
+  "topics": [
+   "Reading characters 汉字",
+   "Radicals: 亻 person · 口 mouth",
+   "Countries: 中国 · 美国 · 韩国",
+   "Dialogues: names, jobs, nationality"
+  ],
+  "topics_zh": [
+   "认读汉字",
+   "偏旁：亻（人）· 口（嘴）",
+   "国家：中国 · 美国 · 韩国",
+   "对话：名字、职业、国籍"
+  ],
+  "next": "Monday, 3:00 pm your time (to confirm after the clocks change)",
+  "next_zh": "下周一，Tal时间下午3点（换时后再确认）"
+ }
+]

@@ -1,0 +1,1025 @@
+[
+ {
+  "id": "i-20261020-01",
+  "english": "you",
+  "hanzi": "你",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "他"
+  ],
+  "notes": "亻 person radical + a smiling face: you.",
+  "order": 1,
+  "pinyin": "nǐ",
+  "step": 1,
+  "syl": [
+   "ni3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-02",
+  "english": "he, him",
+  "hanzi": "他",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "你"
+  ],
+  "notes": "Same 亻 person radical as 你.",
+  "order": 2,
+  "pinyin": "tā",
+  "step": 1,
+  "syl": [
+   "ta1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-03",
+  "english": "I, me",
+  "hanzi": "我",
+  "lessonId": "l-20261020",
+  "notes": "Your own trick: “L and L”.",
+  "order": 3,
+  "pinyin": "wǒ",
+  "step": 1,
+  "syl": [
+   "wo3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-04",
+  "english": "person",
+  "hanzi": "人",
+  "lessonId": "l-20261020",
+  "notes": "A person walking. 中国人 = a Chinese person.",
+  "order": 4,
+  "pinyin": "rén",
+  "step": 1,
+  "syl": [
+   "ren2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-05",
+  "english": "they, them",
+  "hanzi": "他们",
+  "lessonId": "l-20261020",
+  "notes": "他 + 们, the plural ending for people.",
+  "order": 5,
+  "pinyin": "tāmen",
+  "step": 1,
+  "syl": [
+   "ta1",
+   "men5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-06",
+  "english": "to be called",
+  "focus": true,
+  "hanzi": "叫",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "吗",
+   "什么",
+   "名字"
+  ],
+  "notes": "口 mouth + a shape like a 4. 叫 is also a dog barking, wāng wāng, so it needs a mouth.",
+  "order": 6,
+  "pinyin": "jiào",
+  "step": 2,
+  "syl": [
+   "jiao4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-07",
+  "english": "(yes/no question word)",
+  "focus": true,
+  "hanzi": "吗",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "叫",
+   "妈",
+   "什么"
+  ],
+  "notes": "口 mouth: you ask with your mouth. Put it at the end of a sentence to make a yes/no question.",
+  "order": 7,
+  "pinyin": "ma",
+  "step": 2,
+  "syl": [
+   "ma5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-08",
+  "english": "mom",
+  "hanzi": "妈",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "吗"
+  ],
+  "notes": "Same right side as 吗, but 女 (woman) on the left instead of 口 (mouth). 妈妈 = mom.",
+  "order": 8,
+  "pinyin": "mā",
+  "step": 2,
+  "syl": [
+   "ma1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-09",
+  "english": "what",
+  "hanzi": "什么",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "吗",
+   "叫"
+  ],
+  "notes": "Two characters. 什 has 亻 and 十 (ten), but it isn't about a person.",
+  "order": 9,
+  "pinyin": "shénme",
+  "step": 2,
+  "syl": [
+   "shen2",
+   "me5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-10",
+  "english": "name",
+  "focus": true,
+  "hanzi": "名字",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "学生",
+   "叫"
+  ],
+  "notes": "Two characters. 字 looks like 学 (study).",
+  "order": 10,
+  "pinyin": "míngzi",
+  "step": 2,
+  "syl": [
+   "ming2",
+   "zi5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-11",
+  "english": "to be (am, is, are)",
+  "hanzi": "是",
+  "lessonId": "l-20261020",
+  "notes": "老师's picture: the bottom looks like legs taking a step.",
+  "order": 11,
+  "pinyin": "shì",
+  "step": 3,
+  "syl": [
+   "shi4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-12",
+  "english": "not, no",
+  "hanzi": "不",
+  "lessonId": "l-20261020",
+  "notes": "Like shaking your head: no. Before a 4th tone it's said bú: 不是 bú shì.",
+  "order": 12,
+  "pinyin": "bù",
+  "step": 3,
+  "syl": [
+   "bu4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-13",
+  "english": "teacher",
+  "hanzi": "老师",
+  "lessonId": "l-20261020",
+  "notes": "老师's picture: 师 holds the stick for students who don't listen.",
+  "order": 13,
+  "pinyin": "lǎoshī",
+  "step": 3,
+  "syl": [
+   "lao3",
+   "shi1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-14",
+  "english": "to study, to learn",
+  "hanzi": "学",
+  "lessonId": "l-20261020",
+  "notes": "Three dots on top: when you learn, you write.",
+  "order": 14,
+  "pinyin": "xué",
+  "step": 3,
+  "syl": [
+   "xue2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-15",
+  "english": "student",
+  "hanzi": "学生",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "名字",
+   "学校"
+  ],
+  "notes": "学 (study) + 生: a person who studies.",
+  "order": 15,
+  "pinyin": "xuésheng",
+  "step": 3,
+  "syl": [
+   "xue2",
+   "sheng5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-16",
+  "english": "middle",
+  "hanzi": "中",
+  "lessonId": "l-20261020",
+  "notes": "A box with a line straight through the middle.",
+  "order": 16,
+  "pinyin": "zhōng",
+  "step": 4,
+  "syl": [
+   "zhong1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-17",
+  "english": "country",
+  "hanzi": "国",
+  "lessonId": "l-20261020",
+  "notes": "A big box, like a country's border.",
+  "order": 17,
+  "pinyin": "guó",
+  "step": 4,
+  "syl": [
+   "guo2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-18",
+  "english": "China",
+  "hanzi": "中国",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "美国",
+   "韩国"
+  ],
+  "notes": "The “middle country”: 中 (middle) + 国 (country).",
+  "order": 18,
+  "pinyin": "Zhōngguó",
+  "step": 4,
+  "syl": [
+   "zhong1",
+   "guo2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-19",
+  "english": "beautiful",
+  "hanzi": "美",
+  "lessonId": "l-20261020",
+  "notes": "A person (大) wearing jewelry on top: beautiful.",
+  "order": 19,
+  "pinyin": "měi",
+  "step": 4,
+  "syl": [
+   "mei3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-20",
+  "english": "the United States",
+  "hanzi": "美国",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "中国",
+   "韩国"
+  ],
+  "notes": "The “beautiful country”: 美 + 国.",
+  "order": 20,
+  "pinyin": "Měiguó",
+  "step": 4,
+  "syl": [
+   "mei3",
+   "guo2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-21",
+  "english": "South Korea",
+  "hanzi": "韩国",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "中国",
+   "美国"
+  ],
+  "notes": "Every country ends in the big box 国.",
+  "order": 21,
+  "pinyin": "Hánguó",
+  "step": 4,
+  "syl": [
+   "han2",
+   "guo2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-22",
+  "english": "this",
+  "hanzi": "这",
+  "lessonId": "l-20261020",
+  "order": 22,
+  "pinyin": "zhè",
+  "step": 5,
+  "syl": [
+   "zhe4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-23",
+  "english": "book",
+  "hanzi": "书",
+  "lessonId": "l-20261020",
+  "order": 23,
+  "pinyin": "shū",
+  "step": 5,
+  "syl": [
+   "shu1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-24",
+  "english": "month; moon",
+  "hanzi": "月",
+  "lessonId": "l-20261020",
+  "notes": "Means both moon and month. It started as a picture of the moon.",
+  "order": 24,
+  "pinyin": "yuè",
+  "step": 5,
+  "syl": [
+   "yue4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-25",
+  "english": "school",
+  "focus": true,
+  "hanzi": "学校",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "学生",
+   "书"
+  ],
+  "notes": "学 (study) + 校. In class you said 书店 (bookstore) instead.",
+  "order": 25,
+  "pinyin": "xuéxiào",
+  "step": 5,
+  "syl": [
+   "xue2",
+   "xiao4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-26",
+  "english": "to be at, in",
+  "hanzi": "在",
+  "lessonId": "l-20261020",
+  "notes": "他们在学校: they are at school.",
+  "order": 26,
+  "pinyin": "zài",
+  "step": 5,
+  "syl": [
+   "zai4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-27",
+  "english": "where",
+  "hanzi": "哪里",
+  "lessonId": "l-20261020",
+  "notes": "Two 3rd tones in a row: say it ná lǐ.",
+  "order": 27,
+  "pinyin": "nǎlǐ",
+  "step": 5,
+  "syl": [
+   "na3",
+   "li3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-28",
+  "english": "Chinese (language)",
+  "focus": true,
+  "hanzi": "中文",
+  "lessonId": "l-20261020",
+  "lookalikes": [
+   "中国"
+  ],
+  "notes": "In class you said 中午 (zhōngwǔ, noon) by mistake.",
+  "order": 28,
+  "pinyin": "Zhōngwén",
+  "step": 6,
+  "syl": [
+   "zhong1",
+   "wen2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-29",
+  "english": "to think, to feel (an opinion)",
+  "hanzi": "觉得",
+  "lessonId": "l-20261020",
+  "notes": "你觉得…吗？ Do you think…?",
+  "order": 29,
+  "pinyin": "juéde",
+  "step": 6,
+  "syl": [
+   "jue2",
+   "de5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-30",
+  "english": "Israel",
+  "hanzi": "以色列",
+  "lessonId": "l-20261020",
+  "notes": "老师 asked: 你觉得以色列美吗？",
+  "order": 30,
+  "pinyin": "Yǐsèliè",
+  "step": 6,
+  "syl": [
+   "yi3",
+   "se4",
+   "lie4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261020-31",
+  "english": "What's your name?",
+  "hanzi": "你叫什么名字？",
+  "lessonId": "l-20261020",
+  "order": 31,
+  "pinyin": "Nǐ jiào shénme míngzi?",
+  "step": 7,
+  "syl": [
+   "ni3",
+   "jiao4",
+   "shen2",
+   "me5",
+   "ming2",
+   "zi5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "叫",
+    "p": "jiào"
+   },
+   {
+    "h": "什么",
+    "p": "shénme"
+   },
+   {
+    "h": "名字",
+    "p": "míngzi"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-32",
+  "english": "My name is Li Yue.",
+  "hanzi": "我叫李月。",
+  "lessonId": "l-20261020",
+  "notes": "李月 is the name from the textbook dialogue.",
+  "order": 32,
+  "pinyin": "Wǒ jiào Lǐ Yuè.",
+  "step": 7,
+  "syl": [
+   "wo3",
+   "jiao4",
+   "li3",
+   "yue4"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "叫",
+    "p": "jiào"
+   },
+   {
+    "h": "李月",
+    "p": "Lǐ Yuè"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-33",
+  "english": "Are you a teacher?",
+  "hanzi": "你是老师吗？",
+  "lessonId": "l-20261020",
+  "order": 33,
+  "pinyin": "Nǐ shì lǎoshī ma?",
+  "step": 7,
+  "syl": [
+   "ni3",
+   "shi4",
+   "lao3",
+   "shi1",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-34",
+  "english": "I'm not a teacher, I'm a student.",
+  "hanzi": "我不是老师，我是学生。",
+  "lessonId": "l-20261020",
+  "order": 34,
+  "pinyin": "Wǒ bú shì lǎoshī, wǒ shì xuésheng.",
+  "step": 7,
+  "syl": [
+   "wo3",
+   "bu4",
+   "shi4",
+   "lao3",
+   "shi1",
+   "wo3",
+   "shi4",
+   "xue2",
+   "sheng5"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "不是",
+    "p": "bú shì"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "学生",
+    "p": "xuésheng"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-35",
+  "english": "Li Yue is a teacher.",
+  "explain": "是 links two nouns: A is B. Put 不 in front for “is not”; before 是 it's said bú.",
+  "hanzi": "李月是老师。",
+  "lessonId": "l-20261020",
+  "order": 35,
+  "pattern": "A 是 B · A 不是 B",
+  "pinyin": "Lǐ Yuè shì lǎoshī.",
+  "step": 7,
+  "syl": [
+   "li3",
+   "yue4",
+   "shi4",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "李月",
+    "p": "Lǐ Yuè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261020-36",
+  "english": "Are you a student?",
+  "explain": "Add 吗 to the end of a statement to turn it into a yes/no question.",
+  "hanzi": "你是学生吗？",
+  "lessonId": "l-20261020",
+  "order": 36,
+  "pattern": "……吗？",
+  "pinyin": "Nǐ shì xuésheng ma?",
+  "step": 7,
+  "syl": [
+   "ni3",
+   "shi4",
+   "xue2",
+   "sheng5",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "学生",
+    "p": "xuésheng"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261020-37",
+  "english": "Are you Chinese?",
+  "hanzi": "你是中国人吗？",
+  "lessonId": "l-20261020",
+  "order": 37,
+  "pinyin": "Nǐ shì Zhōngguó rén ma?",
+  "step": 8,
+  "syl": [
+   "ni3",
+   "shi4",
+   "zhong1",
+   "guo2",
+   "ren2",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "中国",
+    "p": "Zhōngguó"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-38",
+  "english": "I'm not Chinese, I'm American.",
+  "hanzi": "我不是中国人，我是美国人。",
+  "lessonId": "l-20261020",
+  "order": 38,
+  "pinyin": "Wǒ bú shì Zhōngguó rén, wǒ shì Měiguó rén.",
+  "step": 8,
+  "syl": [
+   "wo3",
+   "bu4",
+   "shi4",
+   "zhong1",
+   "guo2",
+   "ren2",
+   "wo3",
+   "shi4",
+   "mei3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "不是",
+    "p": "bú shì"
+   },
+   {
+    "h": "中国人",
+    "p": "Zhōngguó rén"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "美国人",
+    "p": "Měiguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-39",
+  "english": "What is this?",
+  "hanzi": "这是什么？",
+  "lessonId": "l-20261020",
+  "order": 39,
+  "pinyin": "Zhè shì shénme?",
+  "step": 8,
+  "syl": [
+   "zhe4",
+   "shi4",
+   "shen2",
+   "me5"
+  ],
+  "tokens": [
+   {
+    "h": "这",
+    "p": "zhè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "什么",
+    "p": "shénme"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-40",
+  "english": "This is a book.",
+  "hanzi": "这是书。",
+  "lessonId": "l-20261020",
+  "order": 40,
+  "pinyin": "Zhè shì shū.",
+  "step": 8,
+  "syl": [
+   "zhe4",
+   "shi4",
+   "shu1"
+  ],
+  "tokens": [
+   {
+    "h": "这",
+    "p": "zhè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "书",
+    "p": "shū"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-41",
+  "english": "Where are they?",
+  "explain": "在 means “is at”. Ask with 哪里 (where), answer with the place.",
+  "hanzi": "他们在哪里？",
+  "lessonId": "l-20261020",
+  "order": 41,
+  "pattern": "A 在哪里？ · A 在 + place",
+  "pinyin": "Tāmen zài nǎlǐ?",
+  "step": 8,
+  "syl": [
+   "ta1",
+   "men5",
+   "zai4",
+   "na3",
+   "li3"
+  ],
+  "tokens": [
+   {
+    "h": "他们",
+    "p": "tāmen"
+   },
+   {
+    "h": "在",
+    "p": "zài"
+   },
+   {
+    "h": "哪里",
+    "p": "nǎlǐ"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261020-42",
+  "english": "They're at school.",
+  "hanzi": "他们在学校。",
+  "lessonId": "l-20261020",
+  "order": 42,
+  "pinyin": "Tāmen zài xuéxiào.",
+  "step": 8,
+  "syl": [
+   "ta1",
+   "men5",
+   "zai4",
+   "xue2",
+   "xiao4"
+  ],
+  "tokens": [
+   {
+    "h": "他们",
+    "p": "tāmen"
+   },
+   {
+    "h": "在",
+    "p": "zài"
+   },
+   {
+    "h": "学校",
+    "p": "xuéxiào"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-43",
+  "english": "I study Chinese.",
+  "hanzi": "我学中文。",
+  "lessonId": "l-20261020",
+  "order": 43,
+  "pinyin": "Wǒ xué Zhōngwén.",
+  "step": 9,
+  "syl": [
+   "wo3",
+   "xue2",
+   "zhong1",
+   "wen2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "学",
+    "p": "xué"
+   },
+   {
+    "h": "中文",
+    "p": "Zhōngwén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-44",
+  "english": "Do you think Israel is beautiful?",
+  "hanzi": "你觉得以色列美吗？",
+  "lessonId": "l-20261020",
+  "order": 44,
+  "pinyin": "Nǐ juéde Yǐsèliè měi ma?",
+  "step": 9,
+  "syl": [
+   "ni3",
+   "jue2",
+   "de5",
+   "yi3",
+   "se4",
+   "lie4",
+   "mei3",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "觉得",
+    "p": "juéde"
+   },
+   {
+    "h": "以色列",
+    "p": "Yǐsèliè"
+   },
+   {
+    "h": "美",
+    "p": "měi"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261020-45",
+  "english": "This is good.",
+  "explain": "Adjectives take 很, not 是: 这个很好. Before a noun you need 是: 我是好学生. In class you said 这是很好 and 我很好学生 (Claude's note from the recording).",
+  "focus": true,
+  "hanzi": "这个很好。",
+  "lessonId": "l-20261020",
+  "order": 45,
+  "pattern": "很 + adjective",
+  "pinyin": "Zhège hěn hǎo.",
+  "step": 9,
+  "syl": [
+   "zhe4",
+   "ge5",
+   "hen3",
+   "hao3"
+  ],
+  "tokens": [
+   {
+    "h": "这个",
+    "p": "zhège"
+   },
+   {
+    "h": "很",
+    "p": "hěn"
+   },
+   {
+    "h": "好",
+    "p": "hǎo"
+   }
+  ],
+  "type": "grammar"
+ }
+]

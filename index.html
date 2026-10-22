@@ -1,0 +1,2029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tal's Mandarin</title>
+<meta name="description" content="Tal's weekly Mandarin classes turned into short daily lessons, with a progress page for the tutor.">
+<meta name="theme-color" content="#f3f5fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1120" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tal's Mandarin">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/favicon-64.png">
+<link rel="preload" href="fonts/noto-serif-sc-500.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Fredoka";src:url(fonts/fredoka.woff2) format("woff2");font-weight:500 700;font-display:swap}
+@font-face{font-family:"Nunito";src:url(fonts/nunito.woff2) format("woff2");font-weight:500 800;font-display:swap}
+@font-face{font-family:"Noto Serif SC";src:url(fonts/noto-serif-sc-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Noto Serif SC";src:url(fonts/noto-serif-sc-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+
+/* Layout: a winding lesson path in the main column with a side rail of goals and notes; lessons open as a full-screen sheet with hearts, a progress bar and a check bar along the bottom. */
+:root{
+  --paper:#f3f5fa; --card:#ffffff; --sunk:#e8ecf5;
+  --ink:#121a2e; --ink-2:#4a5574; --ink-3:#6f7995;
+  --line:#d6dcea; --grid:#a7b7e2;
+  --cobalt:#2443b8; --cobalt-edge:#152a7a; --cobalt-soft:#e3e8fb; --on-cobalt:#ffffff;
+  --hero:#2443b8; --on-hero:#ffffff;
+  --good:#16794a; --good-soft:#dcf1e5; --on-good:#ffffff;
+  --bad:#bb3125; --bad-soft:#f9e2de; --on-bad:#ffffff;
+  --gold:#c27a0e; --gold-edge:#8a5508; --gold-soft:#f8ecd0; --on-gold:#ffffff;
+  --jade:#16a46c; --jade-edge:#0f7f53; --jade-soft:#dbf3e8; --on-jade:#ffffff; --seal:#e0453a; --panda:#26283d; --panda-line:#26283d; --blush:#ff9fb4; --flame:#ff8a00; --umix:100%;
+  --font-display:"Fredoka","Nunito",system-ui,sans-serif;
+  --font-ui:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-zh:"Noto Serif SC","Songti SC","STSong","SimSun","Source Han Serif SC",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0c1120; --card:#141b2f; --sunk:#1b2440;
+    --ink:#e6eaf6; --ink-2:#a3aecb; --ink-3:#8590ae;
+    --line:#28325a; --grid:#3f4f8f;
+    --cobalt:#93a9ff; --cobalt-edge:#5a70cf; --cobalt-soft:#1d2752; --on-cobalt:#0c1120;
+    --hero:#1f2f72; --on-hero:#eef1ff;
+    --good:#56cb91; --good-soft:#0f2b20; --on-good:#0c1120;
+    --bad:#ff8e7e; --bad-soft:#361815; --on-bad:#0c1120;
+    --gold:#eab55a; --gold-edge:#a87a2c; --gold-soft:#2e2512; --on-gold:#0c1120;
+    --jade:#2fc489; --jade-edge:#1c9466; --jade-soft:#10291f; --on-jade:#0c1120; --seal:#ff6b5e; --panda:#26283d; --panda-line:#b3bddf; --blush:#ff9fb4; --flame:#ffa53a; --umix:72%;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0c1120; --card:#141b2f; --sunk:#1b2440;
+  --ink:#e6eaf6; --ink-2:#a3aecb; --ink-3:#8590ae;
+  --line:#28325a; --grid:#3f4f8f;
+  --cobalt:#93a9ff; --cobalt-edge:#5a70cf; --cobalt-soft:#1d2752; --on-cobalt:#0c1120;
+  --hero:#1f2f72; --on-hero:#eef1ff;
+  --good:#56cb91; --good-soft:#0f2b20; --on-good:#0c1120;
+  --bad:#ff8e7e; --bad-soft:#361815; --on-bad:#0c1120;
+  --gold:#eab55a; --gold-edge:#a87a2c; --gold-soft:#2e2512; --on-gold:#0c1120;
+  --jade:#2fc489; --jade-edge:#1c9466; --jade-soft:#10291f; --on-jade:#0c1120; --seal:#ff6b5e; --panda:#26283d; --panda-line:#b3bddf; --blush:#ff9fb4; --flame:#ffa53a; --umix:72%;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15px/1.5 var(--font-ui);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{cursor:default}
+input,textarea,select{font:inherit;color:var(--ink)}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--cobalt) 55%,transparent);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:400}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.muted{color:var(--ink-2)}
+.zh{font-family:var(--font-zh)}
+
+/* 田字格: the dashed practice grid from Chinese exercise books */
+.tz{position:relative;display:inline-grid;place-items:center;border:1.5px solid var(--cobalt);background:var(--card);font-family:var(--font-zh);color:var(--ink);line-height:1}
+.tz::before,.tz::after{content:"";position:absolute;pointer-events:none}
+.tz::before{left:50%;top:0;bottom:0;border-left:1px dashed var(--grid)}
+.tz::after{top:50%;left:0;right:0;border-top:1px dashed var(--grid)}
+.tz>span{position:relative;z-index:1}
+.tz-logo{width:34px;height:34px;font-size:22px;font-weight:700;color:var(--cobalt);border-radius:3px}
+.tz-xl{width:min(23vw,96px);height:min(23vw,96px);font-size:min(16vw,64px);font-weight:500}
+.tz-md{width:58px;height:58px;font-size:38px;font-weight:500}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px 18px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand-name{font:600 20px/1 var(--font-display);white-space:nowrap}
+.tabs{display:flex;gap:4px;justify-self:center;background:var(--sunk);border-radius:12px;padding:4px}
+.tabs button{border:0;background:none;padding:7px 14px;border-radius:9px;font-weight:650;color:var(--ink-2)}
+.tabs button[aria-current="page"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgb(0 0 0 / .12)}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);display:grid;place-items:center;color:var(--ink-2);padding:0}
+.icon-btn .zhi{font:700 17px var(--font-zh)}
+.display-panel{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-block:0 12px}
+.display-panel label{display:flex;gap:8px;align-items:center;font-weight:600}
+.display-panel input{width:18px;height:18px;accent-color:var(--cobalt)}
+.display-panel select{border:1.5px solid var(--line);border-radius:8px;padding:4px 8px;background:var(--card)}
+.voice-note{color:var(--ink-2);font-size:13px;flex-basis:100%}
+@media (max-width:640px){
+  .bar{grid-template-columns:1fr auto}
+  .tabs{grid-column:1 / -1;grid-row:2;justify-self:stretch}
+  .tabs button{flex:1;padding-inline:4px}
+}
+
+main{padding-block:22px 72px}
+.page-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:18px}
+.page-h h1{font:600 30px/1.15 var(--font-display)}
+.page-h p{color:var(--ink-2);margin-top:4px}
+.cols{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:880px){.cols{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}.cols.learn{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}}
+.stack-v{display:grid;gap:20px;align-content:start;min-width:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}
+.panel-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px 12px;margin-bottom:12px;flex-wrap:wrap}
+.panel-h h2{font:600 20px/1.2 var(--font-display)}
+.panel-h .muted{font-size:13px}
+.empty-line{color:var(--ink-2);font-size:14px}
+.notice{border:1px dashed var(--grid);border-radius:14px;padding:12px 14px;color:var(--ink-2);margin-bottom:18px;background:var(--card)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;border-radius:12px;padding:10px 16px;border:1.5px solid var(--line);border-bottom-width:4px;background:var(--card);color:var(--ink);text-decoration:none;white-space:nowrap}
+.btn:active:not(:disabled){transform:translateY(2px);border-bottom-width:2px;margin-bottom:2px}
+.btn:disabled{opacity:.45}
+.btn.primary{background:var(--cobalt);color:var(--on-cobalt);border-color:var(--cobalt-edge)}
+.btn.good{background:var(--jade);color:var(--on-jade);border-color:var(--jade-edge)}
+.btn.bad{background:var(--bad);color:var(--on-bad);border-color:color-mix(in srgb,var(--bad) 65%,#000)}
+.btn.gold{background:var(--gold);color:var(--on-gold);border-color:var(--gold-edge)}
+.btn.big{padding:13px 26px;font-size:16px;min-width:150px;text-transform:uppercase;letter-spacing:.05em}
+.btn.small{padding:6px 11px;font-size:13px;border-bottom-width:3px;border-radius:10px}
+.btn.block{width:100%}
+.link{background:none;border:0;padding:2px 0;color:var(--cobalt);font-weight:650;font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;background:var(--card);color:var(--ink-2);font-weight:650}
+button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;white-space:nowrap;background:var(--sunk);color:var(--ink-2)}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.cobalt{background:var(--cobalt-soft);color:var(--cobalt)}
+.pill.warn{background:var(--gold-soft);color:var(--gold)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+
+/* hanzi + pinyin */
+.ruby{display:inline-flex;flex-wrap:wrap;align-items:flex-end;column-gap:.06em;font-family:var(--font-zh);line-height:1.1}
+.rb{display:inline-flex;flex-direction:column;align-items:center}
+.rb .py,.stk .py{font-size:.42em;color:var(--ink-2);font-weight:500;white-space:nowrap;margin-bottom:.18em;line-height:1.2}
+.stk{display:inline-flex;flex-direction:column;font-family:var(--font-zh);line-height:1.15}
+.ruby.xl{font-size:56px}.ruby.lg{font-size:38px}.ruby.md{font-size:24px}.ruby.sm{font-size:19px}
+.ruby.md .py{font-size:.52em}.ruby.sm .py{font-size:.62em}
+.no-hz .hz{display:none!important}
+.no-py .py{display:none!important}
+.no-hz .rb .py,.no-hz .stk .py,.no-hz .tzcell .py{font-size:.62em;color:var(--ink);margin:0}
+.no-hz .tzcell .py{font-size:30px}
+.say{flex:none;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);border-bottom-width:3.5px;background:var(--card);color:var(--cobalt);display:grid;place-items:center;padding:0}
+.say svg{width:20px;height:20px}
+.say.big{width:72px;height:72px;border-radius:18px;background:var(--cobalt);color:var(--on-cobalt);border-color:var(--cobalt-edge)}
+.say.big svg{width:34px;height:34px}
+.say.slow{font-size:12px;font-weight:800;width:46px;height:46px;border-radius:14px}
+.say:active{transform:translateY(1px)}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--sunk);border:1px solid var(--line)}
+.dots i.on{background:var(--cobalt);border-color:var(--cobalt)}
+.dots.mastered i.on{background:var(--good);border-color:var(--good)}
+
+/* learn: stats, unit banner, path */
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat svg{width:22px;height:22px;flex:none}
+.stat.fire{color:var(--gold)}.stat.cold{color:var(--ink-3)}
+.unit{margin-bottom:26px}
+.unit-banner{background:var(--hero);color:var(--on-hero);border-radius:16px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:4px solid var(--cobalt-edge)}
+.unit-banner .eyebrow{color:inherit;opacity:.8}
+.unit-banner h2{font:600 21px/1.25 var(--font-display);margin-top:2px}
+.unit-banner .btn{background:transparent;color:var(--on-hero);border-color:color-mix(in srgb,var(--on-hero) 45%,transparent)}
+.path{display:flex;flex-direction:column;align-items:center;gap:18px;padding:64px 0 6px}
+.pnode{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;transform:translateX(var(--x,0px))}
+.pbtn{position:relative;width:76px;height:70px;border-radius:50%;border:0;display:grid;place-items:center;font:700 30px var(--font-zh);background:var(--cobalt);color:var(--on-cobalt);box-shadow:0 7px 0 var(--cobalt-edge);padding:0}
+.pbtn:active{transform:translateY(5px);box-shadow:0 2px 0 var(--cobalt-edge)}
+.pbtn svg{width:34px;height:34px}
+.pnode.done .pbtn::after{content:"";position:absolute;right:-2px;bottom:-4px;width:24px;height:24px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4L18 8' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;border:2px solid var(--paper)}
+.pnode.locked .pbtn{background:var(--sunk);color:var(--ink-3);box-shadow:0 7px 0 var(--line)}
+.pnode.current .pbtn{outline:7px solid color-mix(in srgb,var(--cobalt) 22%,transparent);outline-offset:5px}
+.pnode.current{margin-top:40px}
+.pnode.chest .pbtn,.pnode.trophy .pbtn{background:var(--gold);color:var(--on-gold);box-shadow:0 7px 0 var(--gold-edge)}
+.pnode.chest.locked .pbtn,.pnode.trophy.locked .pbtn{background:var(--sunk);color:var(--ink-3);box-shadow:0 7px 0 var(--line)}
+.pnode.chest.opened .pbtn{opacity:.55}
+.plabel{font-size:12.5px;color:var(--ink-2);font-weight:650;max-width:150px;text-align:center;line-height:1.3;margin-top:4px}
+.start-tip{position:absolute;bottom:calc(100% + 12px);background:var(--card);border:2px solid var(--line);color:var(--cobalt);font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:12px;white-space:nowrap;animation:bob 1.6s ease-in-out infinite;font-size:13px}
+.start-tip::after{content:"";position:absolute;left:50%;top:100%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--line)}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.goal{display:grid;gap:8px}
+.goal-row{display:flex;align-items:center;gap:12px}
+.goal-row svg{width:30px;height:30px;color:var(--gold);flex:none}
+.bar-track{flex:1;height:14px;border-radius:8px;background:var(--sunk);overflow:hidden}
+.bar-track span{display:block;height:100%;background:var(--gold);border-radius:8px}
+.practice-btns{display:grid;gap:10px}
+.practice-btns .btn{justify-content:flex-start;text-transform:none;letter-spacing:0}
+.practice-btns small{font-weight:500;color:var(--ink-2);margin-left:auto}
+.note-card{border-left:3px solid var(--bad);padding:2px 0 2px 14px;display:grid;gap:6px}
+.note-card+.note-card{margin-top:14px}
+.note-card p{white-space:pre-wrap}
+.note-meta{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--ink-3)}
+.hw{display:grid;gap:12px}
+.hw-row{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start}
+.check{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--card);display:grid;place-items:center;padding:0;color:var(--on-good)}
+.check[aria-pressed="true"],.check.on{background:var(--good);border-color:var(--good)}
+.check svg{width:16px;height:16px}
+.hw-text{white-space:pre-wrap}
+.hw-row.done .hw-text{color:var(--ink-2)}
+.hw-sub{display:grid;gap:6px;margin-top:6px}
+.hw-quote{font-size:14px;border-left:2px solid var(--line);padding-left:10px;color:var(--ink-2);white-space:pre-wrap}
+.hw-quote b{color:var(--ink);font-weight:700}
+.field{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:9px 11px;background:var(--paper);resize:vertical;min-height:40px}
+.field:focus{border-color:var(--cobalt);outline:none}
+.row-form{display:flex;gap:8px;align-items:flex-start}
+.row-form .field{flex:1;min-width:0}
+.q-list{display:grid;gap:8px;margin-top:12px}
+.q{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--paper);border:1px solid var(--line)}
+.q p{white-space:pre-wrap}
+.q.done p{text-decoration:line-through;color:var(--ink-3)}
+.q-actions{display:flex;gap:10px}
+.how{display:grid;gap:14px;counter-reset:how;margin-top:14px}
+.how li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.how li::before{counter-increment:how;content:counter(how);width:30px;height:30px;border-radius:50%;background:var(--cobalt-soft);color:var(--cobalt);display:grid;place-items:center;font-weight:700}
+.how b{display:block}
+.days{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(40px,1fr);gap:6px;overflow-x:auto;padding:8px 0 4px}
+.day{position:relative;border:1px solid var(--line);border-radius:10px;padding:6px 4px 8px;text-align:center;background:var(--card);min-height:70px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.day .dw{font-size:11px;color:var(--ink-3);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.day .dd{font:600 17px/1.2 var(--font-display);font-variant-numeric:tabular-nums}
+.day .dx{font-size:11px;font-weight:800;color:var(--on-cobalt)}
+.day.on{background:var(--cobalt);border-color:var(--cobalt);color:var(--on-cobalt)}
+.day.on .dw{color:inherit;opacity:.8}
+.day.future{border-style:dashed;background:transparent;color:var(--ink-3)}
+.day.today{box-shadow:0 0 0 2px var(--ink) inset}
+.day.on.today{box-shadow:0 0 0 2px var(--card) inset,0 0 0 2px var(--cobalt)}
+.day .ke{position:absolute;top:-8px;right:-4px;font:700 11px/1 var(--font-zh);background:var(--bad);color:var(--on-bad);border-radius:5px;padding:3px 4px}
+.days-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink-3);margin-top:8px}
+
+/* guidebook */
+.lesson-list{display:grid;gap:12px}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:16px}
+.lesson summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:64px minmax(0,1fr) 20px;gap:14px;align-items:center;padding:14px 16px}
+.lesson summary::-webkit-details-marker{display:none}
+.lesson summary h2{font:600 21px/1.2 var(--font-display)}
+.lesson summary p{color:var(--ink-2);font-size:13px;margin-top:2px}
+.chev{width:12px;height:12px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);justify-self:center;margin-top:-6px;transition:transform .15s}
+.lesson[open] .chev{transform:rotate(225deg);margin-top:6px}
+.ls-body{padding:16px 16px 18px;display:grid;gap:16px;border-top:1px solid var(--line)}
+.lead{font-size:16px;max-width:65ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.obs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.obs>div{border-radius:12px;padding:12px 14px;background:var(--paper);border:1px solid var(--line)}
+.obs ul{display:grid;gap:4px;margin-top:6px;padding-left:18px;list-style:disc}
+.obs .good-t{color:var(--good)}.obs .bad-t{color:var(--bad)}
+.sub{font:600 17px var(--font-display)}
+.gram{display:grid;gap:10px}
+.gram li{border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:6px;background:var(--paper)}
+.gram .pat{font:700 18px var(--font-zh);color:var(--cobalt)}
+.ls-actions{display:flex;flex-wrap:wrap;gap:10px}
+.ring{position:relative;width:64px;height:64px}
+.ring svg{width:64px;height:64px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}
+.ring .bg{stroke:var(--sunk)}.ring .fg{stroke:var(--cobalt);stroke-linecap:round}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;font:700 13px var(--font-zh);color:var(--ink)}
+
+/* words */
+.wlist{display:grid}
+.wrow{display:grid;grid-template-columns:42px minmax(110px,auto) minmax(0,1fr) auto;gap:6px 14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.wrow:first-child{border-top:0}
+.w-en{min-width:0}
+.w-en small{display:block;color:var(--ink-3);font-size:12.5px}
+.w-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.w-meta .lsn{font-size:11px;color:var(--ink-3);font-family:var(--font-zh)}
+@media (max-width:560px){.wrow{grid-template-columns:42px minmax(0,1fr) auto;grid-template-areas:"say zh meta" "say en meta"}.wrow .say{grid-area:say}.w-zh{grid-area:zh}.w-en{grid-area:en}.w-meta{grid-area:meta}}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.tools .field{max-width:280px;background:var(--card)}
+.add-word{margin-bottom:16px}
+.add-word summary{cursor:pointer;font-weight:700;color:var(--cobalt)}
+.aw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px;margin-top:12px}
+.aw-grid label{display:grid;gap:4px;font-size:13px;font-weight:650;color:var(--ink-2)}
+
+/* teacher */
+.seg{display:flex;background:var(--sunk);border-radius:11px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:none;border-radius:8px;padding:6px 11px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgb(0 0 0 / .12)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;margin-bottom:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:2px;align-content:start}
+.tile b{font:600 30px/1.1 var(--font-display);font-variant-numeric:tabular-nums}
+.tile .s{font-size:12.5px;color:var(--ink-2)}
+.profile{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px 18px}
+.profile div{display:grid;gap:2px}
+.profile dt{font-size:12px;color:var(--ink-3);font-weight:700}
+.profile dd{margin:0;font-weight:600}
+.between{margin-bottom:20px}
+.nw{display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.nw:first-child{border-top:0}
+.nw small{display:block;color:var(--ink-3);font-size:12.5px}
+.nw .n{font:600 20px var(--font-display);color:var(--bad);font-variant-numeric:tabular-nums}
+.skill{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr) 92px;gap:12px;align-items:center;padding:6px 0}
+.skill .barw{height:10px;border-radius:6px;background:var(--sunk);overflow:hidden}
+.skill .barw span{display:block;height:100%;border-radius:6px}
+.skill .v{font-size:13px;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.skill{grid-template-columns:minmax(0,1fr) 84px}.skill .barw{grid-column:1 / -1;grid-row:2}}
+.steps-row{display:flex;flex-wrap:wrap;gap:8px}
+.steps-row span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:13px;background:var(--paper)}
+.steps-row span.done{background:var(--good-soft);border-color:transparent;color:var(--good);font-weight:700}
+.tm-wrap{overflow-x:auto}
+.tm{border-collapse:separate;border-spacing:4px;font-variant-numeric:tabular-nums}
+.tm th{font-size:12px;color:var(--ink-2);font-weight:650;text-align:left;white-space:nowrap}
+.tm thead th{text-align:center}
+.tm th svg{width:22px;height:16px;vertical-align:middle;color:var(--ink-2)}
+.tm td{width:44px;height:36px;text-align:center;border-radius:8px;background:var(--paper);border:1px solid var(--line);font-weight:700}
+.tm td.diag{color:var(--good)}
+.tm td.off{color:var(--bad)}
+.tm-note{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+.callout{margin-bottom:12px;padding:10px 12px;border-radius:10px;background:var(--bad-soft);color:var(--bad);font-weight:650;font-size:14px}
+.strong-list{display:flex;flex-wrap:wrap;gap:8px}
+.strong-list li{border:1px solid var(--line);border-radius:10px;padding:6px 10px;display:flex;gap:8px;align-items:baseline;background:var(--paper)}
+.strong-list .zh{font-size:17px}
+.strong-list span{font-size:13px;color:var(--ink-2)}
+.log li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+.log li:first-child{border-top:0}
+.log .r{color:var(--ink-2);font-variant-numeric:tabular-nums;text-align:right}
+
+/* lesson sheet */
+#practice{position:fixed;inset:0;z-index:30;background:var(--paper);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.p-head-in,.p-in,.p-foot-in{max-width:720px;margin:0 auto;width:100%;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.p-head-in{display:flex;align-items:center;gap:14px;padding-block:12px}
+.p-bar{flex:1;height:16px;border-radius:9px;background:var(--sunk);overflow:hidden}
+.p-bar span{display:block;height:100%;background:var(--jade);border-radius:9px;transition:width .3s ease;box-shadow:inset 0 -4px 0 rgb(0 0 0 / .12)}
+.hearts{display:flex;align-items:center;gap:5px;color:var(--bad);font-weight:800;font-variant-numeric:tabular-nums;min-width:48px;justify-content:flex-end}
+.hearts svg{width:24px;height:24px}
+.p-body{flex:1;overflow-y:auto;overscroll-behavior:contain}
+.p-in{padding-block:14px 28px;display:grid;gap:20px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;min-height:20px}
+.tag{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.tag.new{color:var(--cobalt)}.tag.mistake{color:var(--gold)}
+.p-kicker{font:600 25px/1.2 var(--font-display)}
+.zh-q{display:block;font:500 16px var(--font-zh);color:var(--ink-2);margin-top:4px}
+.prompt{display:flex;align-items:center;gap:16px;flex-wrap:wrap;min-height:64px}
+.en-prompt{font:600 22px/1.35 var(--font-display);max-width:60ch}
+.read-zh{font:500 76px/1.1 var(--font-zh);text-align:center;padding:6px 0}
+.bubble{position:relative;border:2px solid var(--line);border-radius:16px;padding:12px 16px;background:var(--card);max-width:100%}
+.hintw{border-bottom:2px dashed var(--grid);cursor:pointer;position:relative;display:inline-block;padding:0 1px;background:none;border-top:0;border-left:0;border-right:0;font:inherit;color:inherit}
+.hintpop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);border-radius:10px;padding:6px 10px;font:600 13px/1.3 var(--font-ui);white-space:nowrap;z-index:6;text-align:center}
+.hintpop .py{display:block!important;font:500 12px var(--font-zh);opacity:.8;color:inherit;margin:0}
+.opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:12px 14px;min-height:64px}
+.opt:hover:not(:disabled){background:var(--sunk)}
+.opt .key{flex:none;width:26px;height:26px;border:2px solid var(--line);border-radius:8px;display:grid;place-items:center;font-size:12px;color:var(--ink-3);font-weight:800}
+.opt .opt-t{min-width:0;font-size:17px}
+.opt-py{font:500 21px var(--font-zh)}
+.opt[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft)}
+.opt[aria-pressed="true"] .key{border-color:var(--cobalt);color:var(--cobalt)}
+.opt.is-right{border-color:var(--good);background:var(--good-soft)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
+.copt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:12px}
+.copt .big{font:500 52px/1 var(--font-zh)}
+.copt .key{font-size:12px;color:var(--ink-3);font-weight:800}
+.copt[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft)}
+.copt.is-right{border-color:var(--good);background:var(--good-soft)}
+.copt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.intro{display:grid;justify-items:center;gap:16px;text-align:center;padding-top:4px}
+.intro-meaning{font:600 25px/1.3 var(--font-display)}
+.intro .note{max-width:52ch;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.pattern{border:1px dashed var(--grid);border-radius:12px;padding:10px 16px;display:grid;gap:4px}
+.pattern .zh{font-size:20px;font-weight:700;color:var(--cobalt)}
+.audio{display:flex;gap:12px;align-items:center}
+.tzrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tzcell{display:flex;flex-direction:column;align-items:center;gap:6px}
+.tzcell .py{font:500 18px var(--font-zh);color:var(--ink-2)}
+.big-ruby{text-align:center}
+.tone-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tone-col{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.tone-col .hz{font:500 30px/1 var(--font-zh)}
+.tone-col .syl{font:600 22px/1.1 var(--font-zh);min-height:26px}
+.tone-col .syl.ok{color:var(--good)}.tone-col .syl.no{color:var(--bad)}
+.tone-btns{display:flex;gap:4px}
+.tb{width:34px;height:46px;border:1.5px solid var(--line);border-bottom-width:3px;border-radius:9px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px;color:var(--ink-2)}
+.tb svg{width:24px;height:18px}
+.tb span{font-size:11px;font-weight:800;line-height:1}
+.tb[aria-pressed="true"]{border-color:var(--cobalt);background:var(--cobalt-soft);color:var(--cobalt)}
+.tb.is-right{border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.tb.is-wrong{border-color:var(--bad);background:var(--bad-soft);color:var(--bad)}
+.tone-legend{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;font-size:12.5px;color:var(--ink-3)}
+.answer-line{min-height:120px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;padding:10px 0;background-image:linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line));background-size:100% 2px;background-position:0 58px,0 116px;background-repeat:no-repeat}
+.answer-line .ph{color:var(--ink-3);font-size:14px;padding-top:12px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tile-b{font-family:var(--font-zh);font-size:22px;line-height:1.1;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:12px;padding:6px 12px;display:inline-flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink);min-height:48px;justify-content:center}
+.tile-b .py{font-size:12px;color:var(--ink-2)}
+.tile-b.en{font:600 17px var(--font-ui);padding:10px 14px}
+.no-hz .tile-b .py{font-size:18px;color:var(--ink)}
+.tile-b.ghost{background:var(--sunk);border-color:transparent;color:transparent}
+.tile-b.ghost .py{color:transparent}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mcol{display:grid;gap:10px;align-content:start}
+.mb{min-height:58px;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:8px 12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px}
+.mb.sel{border-color:var(--cobalt);background:var(--cobalt-soft)}
+.mb.flash{border-color:var(--bad);background:var(--bad-soft)}
+.mb:disabled{opacity:.35}
+.hint{color:var(--ink-2);font-size:14px}
+.reveal{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:16px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.p-foot{border-top:2px solid var(--line);background:var(--paper)}
+.p-foot.ok{background:var(--good-soft);border-color:transparent}
+.p-foot.no{background:var(--bad-soft);border-color:transparent}
+.p-foot-in{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;padding-block:16px}
+.verdict{display:flex;gap:14px;align-items:center;min-width:0;flex:1 1 260px}
+.verdict .vicon{flex:none;width:52px;height:52px;border-radius:50%;background:var(--card);display:grid;place-items:center}
+.verdict .vicon svg{width:30px;height:30px}
+.p-foot.ok .vicon{color:var(--good)}.p-foot.no .vicon{color:var(--bad)}
+.verdict h3{font:600 22px/1.2 var(--font-display)}
+.p-foot.ok .verdict h3{color:var(--good)}
+.p-foot.no .verdict h3{color:var(--bad)}
+.verdict .ans{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-top:2px}
+.verdict .why{font-size:14px;color:var(--ink-2)}
+.combo{color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.self{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;flex:1}
+.self span{font-weight:700;margin-right:auto}
+.end{display:grid;justify-items:center;text-align:center;gap:18px;padding-top:20px}
+.end h2{font:600 32px/1.15 var(--font-display);color:var(--gold)}
+.end .big-icon{width:120px;height:120px;color:var(--gold)}
+.end .big-icon.flame{color:var(--gold)}
+.sboxes{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.sbox{border:2px solid var(--gold);border-radius:14px;overflow:hidden;min-width:108px;background:var(--card)}
+.sbox .h{background:var(--gold);color:var(--on-gold);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px}
+.sbox b{display:block;padding:10px 12px;font:600 26px var(--font-display);font-variant-numeric:tabular-nums}
+.sbox.green{border-color:var(--good)}.sbox.green .h{background:var(--good);color:var(--on-good)}
+.sbox.blue{border-color:var(--cobalt)}.sbox.blue .h{background:var(--cobalt);color:var(--on-cobalt)}
+.streak-num{font:600 72px/1 var(--font-display);color:var(--gold)}
+.week{display:flex;gap:8px;justify-content:center}
+.week span{display:grid;justify-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--ink-3)}
+.week i{width:26px;height:26px;border-radius:50%;background:var(--sunk);display:grid;place-items:center}
+.week i.on{background:var(--gold);color:var(--on-gold)}
+.week i svg{width:14px;height:14px}
+.miss-list{width:100%;max-width:520px;text-align:left}
+.save-state{font-size:13px;color:var(--ink-3)}
+.modal-back{position:fixed;inset:0;z-index:35;background:color-mix(in srgb,var(--ink) 40%,transparent);display:grid;place-items:center;padding:16px}
+.modal{background:var(--card);border-radius:18px;padding:22px;max-width:380px;width:100%;display:grid;gap:14px;border:1px solid var(--line)}
+.modal h2{font:600 22px var(--font-display)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-weight:650;z-index:40;max-width:calc(100% - 32px);opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.show{opacity:1}
+.loading{display:grid;justify-items:center;gap:12px;padding:60px 0;color:var(--ink-2)}
+.empty{max-width:640px}
+.empty h1{font:600 30px/1.2 var(--font-display);margin-bottom:8px}
+@keyframes rise{from{transform:translateY(10px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:none;opacity:1}}
+.p-foot.ok,.p-foot.no{animation:rise .16s ease-out}
+.end .big-icon,.streak-num{animation:pop .45s ease-out}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* brand, mascot and decoration */
+.brand .mark{width:42px;height:42px;flex:none;display:block}
+.brand-name{font:700 21px/1 var(--font-display);letter-spacing:-.01em}
+.seal{display:inline-grid;place-items:center;background:var(--seal);color:#fff;font:700 11px/1 var(--font-zh);border-radius:5px;padding:4px 4px 3px;letter-spacing:.06em;transform:rotate(-5deg);margin-left:2px}
+.panda{display:block;overflow:visible}
+.mascot-row{display:flex;align-items:flex-end;gap:12px;justify-content:center}
+.speech{position:relative;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 16px;font:600 18px var(--font-display);margin-bottom:38px}
+.speech::before{content:"";position:absolute;left:-9px;bottom:16px;width:14px;height:14px;background:var(--card);border-left:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg)}
+.topstats{display:flex;gap:6px 20px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 16px;margin-bottom:16px}
+.topstats .st{display:flex;align-items:center;gap:6px;font:700 18px var(--font-display);font-variant-numeric:tabular-nums}
+.topstats .st svg{width:26px;height:26px}
+.topstats .st.fire{color:var(--flame)}.topstats .st.cold{color:var(--ink-3)}.topstats .st.xp{color:var(--gold)}.topstats .st.words{color:var(--cobalt)}
+.topstats .st small{font:600 12px var(--font-ui);color:var(--ink-3)}
+.unit{--u:var(--jade);--ue:var(--jade-edge)}
+.unit .unit-banner{background:color-mix(in srgb,var(--u) var(--umix),#000);border-bottom-color:var(--ue);position:relative;overflow:hidden;color:#fff}
+.unit .unit-banner::after{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgb(255 255 255 / .1) 1px,transparent 1px),linear-gradient(rgb(255 255 255 / .1) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.unit .unit-banner>*{position:relative;z-index:1}
+.unit .unit-banner .btn{color:#fff;border-color:rgb(255 255 255 / .55)}
+.unit .path{position:relative}
+.unit .pbtn{background:color-mix(in srgb,var(--u) var(--umix),#000);box-shadow:0 7px 0 var(--ue);color:#fff;overflow:visible}
+.unit .pbtn::before{content:"";position:absolute;left:17%;top:11%;width:38%;height:20%;border-radius:50%;background:rgb(255 255 255 / .3);transform:rotate(-22deg);pointer-events:none}
+.unit .pbtn:active{box-shadow:0 2px 0 var(--ue)}
+.unit .pnode.current .pbtn{outline-color:color-mix(in srgb,var(--u) 28%,transparent)}
+.unit .pnode.locked .pbtn{background:var(--sunk);color:var(--ink-3);box-shadow:0 7px 0 var(--line)}
+.unit .pnode.locked .pbtn::before{display:none}
+.unit .pnode.chest .pbtn,.unit .pnode.trophy .pbtn{background:var(--gold);color:var(--on-gold);box-shadow:0 7px 0 var(--gold-edge)}
+.unit .pnode.chest.locked .pbtn,.unit .pnode.trophy.locked .pbtn{background:var(--sunk);color:var(--ink-3);box-shadow:0 7px 0 var(--line)}
+.unit .start-tip{color:var(--u)}
+.pdeco{position:absolute;top:-14px;width:112px;pointer-events:none}
+.pdeco.l{right:calc(100% + 40px)}.pdeco.r{left:calc(100% + 40px)}
+@media (max-width:420px){.pdeco{width:86px}.pdeco.l{right:calc(100% + 18px)}.pdeco.r{left:calc(100% + 18px)}}
+.end .panda{width:150px;height:150px}
+.confetti{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:31}
+.confetti i{position:absolute;top:-24px;width:9px;height:15px;border-radius:2px;animation:fall 1.8s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes fall{to{transform:translate(var(--dx),105vh) rotate(var(--r))}}
+@media (prefers-reduced-motion:reduce){.confetti{display:none}}
+.who{display:flex;align-items:center;gap:14px}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--jade);color:var(--on-jade);display:grid;place-items:center;font:700 24px var(--font-display);flex:none;box-shadow:0 4px 0 var(--jade-edge)}
+.loading .panda{width:96px;height:96px}
+.mascot-row .panda{width:84px;height:92px;flex:none}
+.empty .panda{width:110px;height:120px;margin-bottom:8px}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-9px)}40%,60%{transform:translateX(9px)}}
+.shake{animation:shake .42s ease-in-out}
+@keyframes bump{0%{transform:translateY(14px)}60%{transform:translateY(-3px)}100%{transform:none}}
+.bump{animation:bump .28s ease-out}
+
+.install{position:fixed;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;gap:12px;align-items:center;background:var(--ink);color:var(--paper);border-radius:16px;padding:12px 14px;box-shadow:0 10px 30px rgb(0 0 0 / .25);max-width:560px;margin:0 auto}
+.install img{width:44px;height:44px;border-radius:10px;flex:none}
+.install p{flex:1;font-size:14px;line-height:1.35}
+.install b{display:block;font:600 16px var(--font-display)}
+.install button{border:0;background:none;color:inherit;font-size:24px;line-height:1;padding:4px 8px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#learn" data-act="tab" data-tab="learn">
+      <span id="logo-mark" aria-hidden="true"></span>
+      <span class="brand-name">Tal's Mandarin</span><span class="seal" aria-hidden="true">中文</span>
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <button type="button" data-act="tab" data-tab="learn">Learn</button>
+      <button type="button" data-act="tab" data-tab="guide">Guidebook</button>
+      <button type="button" data-act="tab" data-tab="words">Words</button>
+      <button type="button" data-act="tab" data-tab="teacher">老师</button>
+    </nav>
+    <button type="button" class="icon-btn" id="display-btn" data-act="display" aria-expanded="false" aria-controls="display-panel" title="Display options"><span class="zhi" aria-hidden="true">拼</span><span class="sr">Display options</span></button>
+  </div>
+  <div class="wrap display-panel" id="display-panel" hidden>
+    <label><input type="checkbox" id="pref-hz" checked> <span id="lbl-hz">Characters 汉字</span></label>
+    <label><input type="checkbox" id="pref-py" checked> <span id="lbl-py">Pinyin</span></label>
+    <label><input type="checkbox" id="pref-snd" checked> <span id="lbl-snd">Sound effects</span></label>
+    <label><span id="lbl-lang">Language</span> <select id="pref-lang"><option value="en">English</option><option value="zh">中文</option></select></label>
+    <span class="voice-note" id="voice-note"></span>
+  </div>
+</header>
+<main id="main" class="wrap"></main>
+<div id="practice" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<label id="haptic" aria-hidden="true" style="position:fixed;left:-99px;top:0;width:1px;height:1px;overflow:hidden;opacity:0"><input type="checkbox" switch tabindex="-1"></label>
+
+<script>
+(function(){
+'use strict';
+
+const TEACHER = '老师';
+const GOAL_XP = 20;
+const HEARTS = 5;
+const INTERVALS = [0, 1, 2, 4, 7, 15, 30];
+const KEYS = ['lessons', 'items', 'progress', 'sessions', 'homework', 'messages', 'profile'];
+const SKILLS = [
+  ['meaning', 'Understanding meaning', '理解词义'],
+  ['select', 'Recognizing characters', '认字（选汉字）'],
+  ['read', 'Reading aloud (pinyin)', '读音（拼音）'],
+  ['listen', 'Listening', '听力'],
+  ['tones', 'Tones', '声调'],
+  ['build', 'Building sentences', '组句'],
+  ['speak', 'Speaking (self-check)', '口语（自评）'],
+];
+const TONE_EN = {1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: 'neutral'};
+const TONE_ZH = {1: '一声', 2: '二声', 3: '三声', 4: '四声', 5: '轻声'};
+const KIND_EN = {word: 'word', phrase: 'phrase', sentence: 'sentence', grammar: 'grammar tip'};
+
+const ICON = {
+  x: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>',
+  speaker: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.6 6a8.6 8.6 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  cross: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
+  flame: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.6 2.2c.5 3-1.3 4.6-2.6 6.2-1 1.2-1.6 2.3-1.3 3.8.2 1.1 1.1 1.9 2.2 1.9 1.6 0 2.5-1.3 2.2-3.1 2.4 1.6 3.9 4 3.9 6.4A5.9 5.9 0 0 1 11.1 23C7.6 23 5 20.4 5 16.9c0-3.4 2-5.4 3.9-7.5 1.7-1.9 3.4-3.9 3.7-7.2z"/></svg>',
+  heart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.4C.9 8.1 3 4.5 6.6 4.5c2.1 0 3.6 1.2 4.4 2.6.8-1.4 2.3-2.6 4.4-2.6 3.6 0 5.7 3.6 4.2 7.1C19.5 16.4 12 21 12 21z"/></svg>',
+  bolt: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.6z"/></svg>',
+  chest: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5C4 6.5 6.5 4 9.5 4h5C17.5 4 20 6.5 20 9.5V11H4zM3 12.5h18V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><rect x="10" y="10" width="4" height="5" rx="1" fill="var(--paper)"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.4A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.4 12H8a4 4 0 0 1-4-4V5h3zm-1 4v1a2 2 0 0 0 1.4 1.9A6 6 0 0 1 7 7.5zm12 0v.5a6 6 0 0 1-.4 2.4A2 2 0 0 0 19 8V7z"/></svg>',
+  target: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/></svg>',
+  book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 3h11a3 3 0 0 1 3 3v15H7a2 2 0 0 1-2-2zm2 14v2h10v-2z"/></svg>',
+};
+const TONE_PATH = {1: 'M3 4.5H25', 2: 'M3 12L25 4', 3: 'M3 10C9 22 15 21 25 6', 4: 'M3 4L25 18'};
+function toneIcon(t){
+  if(t === 5) return '<svg viewBox="0 0 28 22" aria-hidden="true"><circle cx="14" cy="12" r="3.2" fill="currentColor"/></svg>';
+  return '<svg viewBox="0 0 28 22" aria-hidden="true"><path d="' + TONE_PATH[t] + '" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
+}
+
+const S = {
+  tab: null, lang: null, period: 'last', wordFilter: 'all', wordQuery: '',
+  isOwner: false, canWrite: null, readOnly: false, dbState: 'connecting',
+  lessons: [], items: [], itemById: {}, progress: {}, sessions: [], homework: [], messages: [], profile: {},
+  loaded: {}, openLessons: new Set(), lessonsTouched: false, scrolledPath: false,
+  prefs: {hanzi: true, pinyin: true, sound: true},
+};
+let db = null, user = null, P = null;
+
+/* ---------- helpers ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const pad = n => String(n).padStart(2, '0');
+const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const addDays = (key, n) => { const [y, m, d] = key.split('-').map(Number); return ymd(new Date(y, m - 1, d + n)); };
+const dayDiff = (a, b) => Math.round((new Date(b + 'T12:00') - new Date(a + 'T12:00')) / 864e5);
+const shuffle = a => { a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const nowISO = () => new Date().toISOString();
+const isHan = c => /\p{Script=Han}/u.test(c);
+const hanCount = s => Array.from(s || '').filter(isHan).length;
+const pct = (c, t) => t ? Math.round(c / t * 100) : 0;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const T = (en, zh) => S.lang === 'zh' ? zh : en;
+const Lz = (o, f) => (S.lang === 'zh' && o && o[f + '_zh'] != null) ? o[f + '_zh'] : (o ? o[f] : undefined);
+const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+const locale = () => S.lang === 'zh' ? 'zh-CN' : undefined;
+function fmtDate(iso){
+  const d = new Date(iso);
+  return isNaN(d) ? '' : d.toLocaleDateString(locale(), {weekday: 'short', month: 'short', day: 'numeric'});
+}
+function fmtTime(iso){ const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString(locale(), {hour: 'numeric', minute: '2-digit'}); }
+function relDay(iso){
+  const n = dayDiff(ymd(new Date(iso)), ymd(new Date()));
+  if(n <= 0) return T('today', '今天');
+  if(n === 1) return T('yesterday', '昨天');
+  return T(n + ' days ago', n + '天前');
+}
+function studentName(){ return (S.profile && S.profile.name) || 'Tal'; }
+function firstName(){ return studentName().split(' ')[0]; }
+function role(){ return S.isOwner ? 'student' : 'tutor'; }
+function canWriteShared(){ return !!db && S.canWrite !== false && !S.readOnly; }
+function allLoaded(){ return S.dbState === 'ok' && KEYS.every(k => S.loaded[k]); }
+
+/* ---------- pinyin ---------- */
+const MARKS = {a: 'āáǎà', e: 'ēéěè', i: 'īíǐì', o: 'ōóǒò', u: 'ūúǔù', 'ü': 'ǖǘǚǜ'};
+const COMBINING = {'̄': 1, '́': 2, '̌': 3, '̀': 4};
+function sylBase(s){ return String(s).replace(/[0-5]$/, '').replace(/u:|v/g, 'ü').replace(/U:|V/g, 'Ü'); }
+function sylTone(s){ const m = /([0-5])$/.exec(String(s)); return m && m[1] !== '0' ? +m[1] : 5; }
+function markSyl(s){
+  const base = sylBase(s), t = sylTone(s);
+  if(t === 5) return base;
+  const low = base.toLowerCase();
+  let idx = low.search(/[ae]/);
+  if(idx < 0) idx = low.indexOf('ou');
+  if(idx < 0){ for(let k = low.length - 1; k >= 0; k--){ if('iouü'.includes(low[k])){ idx = k; break; } } }
+  if(idx < 0) return base;
+  const c = low[idx], m = MARKS[c][t - 1];
+  return base.slice(0, idx) + (base[idx] === c ? m : m.toUpperCase()) + base.slice(idx + 1);
+}
+function toNumbered(syl){
+  const d = syl.normalize('NFD');
+  const m = d.match(/[̄́̌̀]/);
+  let base = d.replace(/[̄́̌̀]/g, '').normalize('NFC');
+  let tone = m ? COMBINING[m[0]] : 5;
+  const dm = base.match(/([0-5])$/);
+  if(dm){ tone = dm[1] === '0' ? 5 : +dm[1]; base = base.slice(0, -1); }
+  return base.replace(/v/g, 'ü').replace(/V/g, 'Ü') + tone;
+}
+function parsePinyin(input, hanzi){
+  const raw = input.trim();
+  const parts = raw.split(/[\s'’]+/).filter(Boolean)
+    .flatMap(p => p.match(/[^0-5]+[0-5]?/g) || [])
+    .map(p => p.replace(/[^A-Za-züÜÀ-ɏ̀-ͯ0-5]/g, ''))
+    .filter(Boolean);
+  const syl = parts.map(toNumbered);
+  const ok = syl.length > 0 && syl.length === hanCount(hanzi) && syl.every(s => /^[a-zü]+[1-5]$/i.test(s));
+  return {syl: ok ? syl : null, pinyin: ok ? syl.map(markSyl).join(' ') : raw};
+}
+function letters(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/v/g, 'u').replace(/[^a-z]/g, ''); }
+
+/* ---------- audio ---------- */
+const TTS = {ok: typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined', voice: null, checked: false};
+function loadVoices(){
+  if(!TTS.ok) return;
+  let vs = [];
+  try { vs = speechSynthesis.getVoices() || []; } catch(e){ vs = []; }
+  if(!vs.length) return;
+  TTS.checked = true;
+  TTS.voice = vs.find(v => /^zh[-_]CN/i.test(v.lang)) || vs.find(v => /^(zh|cmn)/i.test(v.lang) && !/HK|yue/i.test(v.lang + v.name)) || null;
+  updateVoiceNote();
+}
+/* Recorded clips (uploaded with the page) play through a media element, which iPhones
+   allow even in silent mode; the phone's own voice is only a backup. */
+const AUD = {map: {}, el: null, unlocked: false};
+const clipFor = text => AUD.map[text] || AUD.map[String(text || '').replace(/[。？！，,.?!]+$/, '')] || null;
+function canSpeak(text){ return !!(text && (clipFor(text) || TTS.ok)); }
+function hasVoice(){ return Object.keys(AUD.map).length > 0 || (TTS.ok && (!TTS.checked || !!TTS.voice)); }
+function mediaEl(){
+  if(!AUD.el){ AUD.el = new Audio(); AUD.el.preload = 'auto'; AUD.el.setAttribute('playsinline', ''); }
+  return AUD.el;
+}
+function silentWav(){
+  const n = 800, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+  const w = (o, str) => { for(let i = 0; i < str.length; i++) v.setUint8(o + i, str.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, 8000, true); v.setUint32(28, 16000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([buf], {type: 'audio/wav'}));
+}
+function unlockAudio(){
+  if(AUD.unlocked) return;
+  AUD.unlocked = true;
+  try { if(navigator.audioSession) navigator.audioSession.type = 'playback'; } catch(e){ /* older browsers */ }
+  try { const c = audioCtx(); if(c && c.state === 'suspended') c.resume(); } catch(e){ /* no web audio */ }
+  try { const el = mediaEl(); if(!el.src){ el.src = silentWav(); const p = el.play(); if(p && p.catch) p.catch(() => {}); } } catch(e){ /* no media */ }
+  try { if(TTS.ok){ const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } } catch(e){ /* no speech */ }
+}
+function say(text, slow){
+  if(!text) return;
+  const url = clipFor(text);
+  if(url){
+    try {
+      const el = mediaEl();
+      el.pause();
+      el.src = url;
+      el.playbackRate = slow ? 0.7 : 1;
+      el.preservesPitch = true; el.webkitPreservesPitch = true;
+      const p = el.play();
+      if(p && p.catch) p.catch(() => ttsSay(text, slow));
+      return;
+    } catch(e){ /* fall back to the phone voice */ }
+  }
+  ttsSay(text, slow);
+}
+function ttsSay(text, slow){
+  if(!TTS.ok) return;
+  try {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = TTS.voice ? TTS.voice.lang : 'zh-CN';
+    if(TTS.voice) u.voice = TTS.voice;
+    u.rate = slow ? 0.55 : 0.85;
+    TTS.current = u;
+    if(speechSynthesis.speaking || speechSynthesis.pending){ speechSynthesis.cancel(); setTimeout(() => speechSynthesis.speak(u), 60); }
+    else speechSynthesis.speak(u);
+  } catch(e){ /* no audio on this device */ }
+}
+function updateVoiceNote(){
+  const el = $('#voice-note');
+  if(!el) return;
+  if(Object.keys(AUD.map).length) el.textContent = T('Audio: recorded Mandarin clips. Words without a clip use your phone’s voice.', '语音：录制的普通话音频；没有音频的词使用手机语音。');
+  else if(!TTS.ok) el.textContent = T('This browser can’t play audio.', '此浏览器无法播放语音。');
+  else if(TTS.checked && !TTS.voice) el.textContent = T('No Mandarin voice on this device.', '此设备没有中文语音。');
+  else el.textContent = '';
+}
+let actx = null;
+function audioCtx(){
+  try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ actx = null; }
+  return actx;
+}
+function sfx(kind){
+  if(!S.prefs.sound) return;
+  const c = audioCtx();
+  if(!c) return;
+  try {
+    if(c.state === 'suspended') c.resume();
+    const t = c.currentTime + 0.01;
+    const out = c.createGain(); out.gain.value = 0.9; out.connect(c.destination);
+    const bell = (at, f, dur, g) => [[1, 1], [2, 0.32], [3, 0.12], [4.16, 0.05]].forEach(([m, a]) => {
+      const o = c.createOscillator(), e = c.createGain();
+      o.type = 'sine'; o.frequency.value = f * m;
+      e.gain.setValueAtTime(0.0001, t + at);
+      e.gain.exponentialRampToValueAtTime(g * a, t + at + 0.006);
+      e.gain.exponentialRampToValueAtTime(0.0001, t + at + dur / Math.sqrt(m));
+      o.connect(e).connect(out); o.start(t + at); o.stop(t + at + dur + 0.05);
+    });
+    const thud = (at, f, dur, g) => {
+      const o = c.createOscillator(), e = c.createGain(), lp = c.createBiquadFilter();
+      o.type = 'square'; o.frequency.setValueAtTime(f, t + at); o.frequency.exponentialRampToValueAtTime(f * 0.82, t + at + dur);
+      lp.type = 'lowpass'; lp.frequency.value = 650;
+      e.gain.setValueAtTime(0.0001, t + at); e.gain.exponentialRampToValueAtTime(g, t + at + 0.012); e.gain.exponentialRampToValueAtTime(0.0001, t + at + dur);
+      o.connect(lp).connect(e).connect(out); o.start(t + at); o.stop(t + at + dur + 0.05);
+    };
+    if(kind === 'good'){ bell(0, 1046.5, 0.35, 0.26); bell(0.09, 1568, 0.7, 0.3); }
+    else if(kind === 'bad'){ thud(0, 233, 0.16, 0.16); thud(0.13, 174.6, 0.3, 0.16); }
+    else if(kind === 'tap') bell(0, 1975.5, 0.07, 0.05);
+    else [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => bell(i * 0.085, f, 0.8, 0.2));
+  } catch(e){ /* no audio */ }
+}
+function haptic(kind){
+  try { if(navigator.vibrate && navigator.vibrate(kind === 'bad' ? [35, 50, 35] : 12)) return; } catch(e){ /* not supported */ }
+  try { const l = $('#haptic'); if(l){ l.click(); if(kind === 'bad') setTimeout(() => l.click(), 110); } } catch(e){ /* no haptics */ }
+}
+
+/* ---------- data ---------- */
+function item(id){ return S.itemById[id]; }
+function lessonIndex(){ const m = {}; S.lessons.forEach((l, k) => { m[l.id] = k; }); return m; }
+function lessonNo(l){ return l.n || (S.lessons.indexOf(l) + 1); }
+function latestLesson(){ return S.lessons[S.lessons.length - 1] || null; }
+function itemsInOrder(){
+  const li = lessonIndex();
+  const pos = x => (li[x.lessonId] == null ? 1e6 : li[x.lessonId]);
+  return S.items.slice().sort((a, b) => (pos(a) - pos(b)) || ((a.order == null ? 1e15 : a.order) - (b.order == null ? 1e15 : b.order)) || String(a.id).localeCompare(String(b.id)));
+}
+function accOf(p){ const n = (p.correct || 0) + (p.wrong || 0); return n ? (p.correct || 0) / n : 1; }
+function level(p){
+  if(!p) return 'new';
+  const b = p.box || 0;
+  return b >= 6 ? 'mastered' : b >= 4 ? 'strong' : b >= 2 ? 'familiar' : 'learning';
+}
+function lessonMastery(its){ return its.length ? its.reduce((s, i) => s + Math.min((S.progress[i.id] || {}).box || 0, 5) / 5, 0) / its.length : 0; }
+const lessonSessions = () => S.sessions.filter(s => (s.total || 0) > 0);
+function nodeDone(key){ return S.sessions.some(s => s.node === key && s.passed); }
+function unitNodes(l){
+  const its = itemsInOrder().filter(i => i.lessonId === l.id);
+  const maxStep = Math.max(0, ...its.map(i => i.step || 0));
+  const groups = {};
+  for(const it of its){ const s = it.step || maxStep + 1; (groups[s] || (groups[s] = [])).push(it); }
+  const nums = Object.keys(groups).map(Number).sort((a, b) => a - b);
+  const nodes = [], usedIcons = new Set();
+  nums.forEach((n, k) => {
+    const list = groups[n];
+    const chars = list.flatMap(i => Array.from(i.hanzi || '').filter(isHan));
+    const icon = chars.find(c => !usedIcons.has(c)) || chars[0] || '学';
+    usedIcons.add(icon);
+    const words = list.filter(i => i.type === 'word');
+    const label = words.length >= list.length / 2
+      ? words.slice(0, 4).map(i => i.hanzi).join(' · ')
+      : T('Sentences: ', '句子：') + String(list[0].hanzi || '').replace(/[。？！，,.?!]/g, '');
+    nodes.push({kind: 'lesson', key: l.id + ':' + n, step: n, items: list, icon, label});
+    if((k + 1) % 3 === 0 && k < nums.length - 1) nodes.push({kind: 'chest', key: l.id + ':chest' + (k + 1)});
+  });
+  if(its.length) nodes.push({kind: 'review', key: l.id + ':review', items: its, label: T('Unit review', '单元复习')});
+  let open = true;
+  for(const nd of nodes){
+    nd.unlocked = open;
+    nd.done = nodeDone(nd.key) || (nd.kind === 'chest' && S.sessions.some(s => s.node === nd.key));
+    if(nd.kind !== 'chest') open = nd.done;
+  }
+  const cur = nodes.find(n => n.kind !== 'chest' && n.unlocked && !n.done);
+  if(cur) cur.current = true;
+  return nodes;
+}
+function studentStats(){
+  const today = ymd(new Date());
+  const days = new Set(lessonSessions().map(s => s.date));
+  let streak = 0, d = days.has(today) ? today : addDays(today, -1);
+  while(days.has(d)){ streak++; d = addDays(d, -1); }
+  const xpToday = S.sessions.filter(s => s.date === today).reduce((a, s) => a + (s.xp || 0), 0);
+  const seen = S.items.filter(i => S.progress[i.id]);
+  const due = seen.filter(i => (S.progress[i.id].due || '') <= today).length;
+  const weak = seen.filter(i => (S.progress[i.id].wrong || 0) > 0 && accOf(S.progress[i.id]) < 0.8).length;
+  const known = S.items.filter(i => ((S.progress[i.id] || {}).box || 0) >= 2).length;
+  return {today, streak, practicedToday: days.has(today), xpToday, practiced: seen.length, total: S.items.length, due, weak, known, days};
+}
+
+
+/* ---------- mascot: a panda drawn from simple shapes ---------- */
+function pandaParts(pose){
+  const P = 'var(--panda)', L = 'var(--panda-line)', st = ' stroke="' + L + '" stroke-width="3"';
+  const glad = pose === 'cheer' || pose === 'wave';
+  const ears = '<circle cx="33" cy="21" r="12" fill="' + P + '"' + st + '/><circle cx="87" cy="21" r="12" fill="' + P + '"' + st + '/>';
+  const head = '<ellipse cx="60" cy="48" rx="36" ry="32" fill="#fff"' + st + '/>';
+  const patches = '<ellipse cx="45" cy="50" rx="9" ry="12" transform="rotate(-25 45 50)" fill="' + P + '"/><ellipse cx="75" cy="50" rx="9" ry="12" transform="rotate(25 75 50)" fill="' + P + '"/>';
+  const eyes = glad
+    ? '<path d="M41 53q5-7 10 0M69 53q5-7 10 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>'
+    : '<circle cx="46" cy="50" r="4.4" fill="#fff"/><circle cx="74" cy="50" r="4.4" fill="#fff"/><circle cx="46.6" cy="50.8" r="2.5" fill="' + P + '"/><circle cx="74.6" cy="50.8" r="2.5" fill="' + P + '"/><circle cx="45.3" cy="49.2" r="1" fill="#fff"/><circle cx="73.3" cy="49.2" r="1" fill="#fff"/>';
+  const nose = '<ellipse cx="60" cy="61" rx="5" ry="3.4" fill="' + P + '"/>';
+  const mouth = glad ? '<path d="M53 65q7 11 14 0z" fill="#e8566c" stroke="' + P + '" stroke-width="2" stroke-linejoin="round"/>'
+    : pose === 'sad' ? '<path d="M54 71q6-6 12 0" stroke="' + P + '" stroke-width="2.6" fill="none" stroke-linecap="round"/>'
+    : '<path d="M54 65q6 6 12 0" stroke="' + P + '" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+  const blush = '<circle cx="35" cy="63" r="5" fill="var(--blush)" opacity=".6"/><circle cx="85" cy="63" r="5" fill="var(--blush)" opacity=".6"/>';
+  const tear = pose === 'sad' ? '<path d="M82 58c0 0-4.5 6.5-4.5 9a4.5 4.5 0 0 0 9 0c0-2.5-4.5-9-4.5-9z" fill="#6ec1ff"/>' : '';
+  return {ears, face: head + patches + eyes + nose + mouth + blush + tear};
+}
+function pandaHead(cls){ const p = pandaParts('normal'); return '<svg class="' + (cls || '') + '" viewBox="17 5 86 80">' + p.ears + p.face + '</svg>'; }
+function panda(pose, cls){
+  const P = 'var(--panda)', L = 'var(--panda-line)', st = ' stroke="' + L + '" stroke-width="3"';
+  const parts = pandaParts(pose);
+  const arm = (cx, cy, rot) => '<ellipse cx="' + cx + '" cy="' + cy + '" rx="9" ry="16" transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')" fill="' + P + '"' + st + '/>';
+  const body = '<ellipse cx="60" cy="98" rx="31" ry="26" fill="#fff"' + st + '/><ellipse cx="60" cy="104" rx="17" ry="13" fill="#eceff7"/>';
+  const legs = '<ellipse cx="44" cy="121" rx="12" ry="8" fill="' + P + '"' + st + '/><ellipse cx="76" cy="121" rx="12" ry="8" fill="' + P + '"' + st + '/>';
+  let back = '', front = '';
+  if(pose === 'cheer') back = arm(24, 66, 38) + arm(96, 66, -38);
+  else if(pose === 'wave'){ back = arm(97, 64, -28); front = arm(31, 98, 25); }
+  else if(pose === 'read') front = '<rect x="37" y="83" width="46" height="31" rx="4" fill="var(--cobalt)" stroke="' + L + '" stroke-width="2.5"/><path d="M60 85v27" stroke="#fff" stroke-width="2"/><path d="M43 91h12M43 97h12M65 91h12M65 97h12" stroke="#fff" stroke-width="2" opacity=".7"/>' + arm(35, 101, 38) + arm(85, 101, -38);
+  else front = arm(31, 98, 25) + arm(89, 98, -25);
+  return '<svg class="panda ' + (cls || '') + '" viewBox="0 0 120 132" aria-hidden="true">' + back + legs + body + front + parts.ears + parts.face + '</svg>';
+}
+const UNIT_COLORS = [null, ['#2f80ed', '#1f5fb8'], ['#9b51e0', '#7434b3'], ['#f2994a', '#c56f22'], ['#e5484d', '#b3302f']];
+function unitStyle(k){ const c = UNIT_COLORS[k % UNIT_COLORS.length]; return c ? ' style="--u:' + c[0] + ';--ue:' + c[1] + '"' : ''; }
+
+/* ---------- small renderers ---------- */
+function ruby(it, size){
+  const cs = Array.from(it.hanzi || '');
+  const han = cs.filter(isHan).length;
+  const syl = Array.isArray(it.syl) ? it.syl : [];
+  if(syl.length && syl.length === han && han <= 4){
+    let k = 0;
+    return '<span class="ruby ' + size + '" lang="zh-CN">' + cs.map(c => isHan(c)
+      ? '<span class="rb"><span class="py">' + esc(markSyl(syl[k++])) + '</span><span class="hz">' + esc(c) + '</span></span>'
+      : '<span class="rb"><span class="py">&nbsp;</span><span class="hz">' + esc(c) + '</span></span>').join('') + '</span>';
+  }
+  const py = it.pinyin || syl.map(markSyl).join(' ');
+  return '<span class="ruby ' + size + '" lang="zh-CN"><span class="stk"><span class="py">' + esc(py) + '</span><span class="hz">' + esc(it.hanzi || '') + '</span></span></span>';
+}
+function bigZh(it){
+  const cs = Array.from(it.hanzi || '');
+  const syl = Array.isArray(it.syl) ? it.syl : [];
+  if(cs.length && cs.length <= 4 && cs.every(isHan) && syl.length === cs.length){
+    return '<div class="tzrow" lang="zh-CN">' + cs.map((c, k) => '<div class="tzcell"><span class="py">' + esc(markSyl(syl[k])) + '</span><span class="tz tz-xl hz"><span>' + esc(c) + '</span></span></div>').join('') + '</div>';
+  }
+  return '<div class="big-ruby">' + ruby(it, 'lg') + '</div>';
+}
+function sayBtn(text, cls, slow){
+  if(!canSpeak(text)) return '';
+  return '<button type="button" class="say ' + (cls || '') + '" data-act="say" data-text="' + esc(text) + '"' + (slow ? ' data-slow="1"' : '') + ' aria-label="' + (slow ? T('Play slowly', '慢速播放') : T('Play audio', '播放')) + '">' + (slow ? '½×' : ICON.speaker) + '</button>';
+}
+function audioPair(it){ return canSpeak(it.hanzi) ? '<div class="audio">' + sayBtn(it.hanzi, 'big') + sayBtn(it.hanzi, 'slow', true) + '</div>' : ''; }
+function dots(p){
+  const n = p ? Math.min(p.box || 0, 5) : 0;
+  const lv = level(p);
+  const label = {new: T('Not practiced yet', '还没练习'), learning: T('Learning', '学习中'), familiar: T('Familiar', '较熟悉'), strong: T('Strong', '熟练'), mastered: T('Mastered', '已掌握')}[lv];
+  let h = '';
+  for(let k = 0; k < 5; k++) h += '<i class="' + (k < n ? 'on' : '') + '"></i>';
+  return '<span class="dots' + (lv === 'mastered' ? ' mastered' : '') + '" role="img" aria-label="' + label + '" title="' + label + '">' + h + '</span>';
+}
+function ringHTML(frac, label){
+  const r = 26, c = 2 * Math.PI * r;
+  return '<div class="ring" role="img" aria-label="' + Math.round(frac * 100) + '%"><svg viewBox="0 0 64 64" aria-hidden="true"><circle class="bg" cx="32" cy="32" r="' + r + '"/>' +
+    (frac > 0 ? '<circle class="fg" cx="32" cy="32" r="' + r + '" stroke-dasharray="' + (frac * c).toFixed(1) + ' ' + c.toFixed(1) + '"/>' : '') +
+    '</svg><span class="lbl" lang="zh-CN">' + esc(label) + '</span></div>';
+}
+function wordRow(it){
+  const p = S.progress[it.id];
+  const l = S.lessons.find(x => x.id === it.lessonId);
+  return '<li class="wrow">' + (sayBtn(it.hanzi) || '<span></span>') +
+    '<div class="w-zh">' + ruby(it, 'md') + '</div>' +
+    '<div class="w-en"><span>' + esc(it.english) + '</span>' + (it.notes && S.lang !== 'zh' ? '<small>' + esc(it.notes) + '</small>' : '') + '</div>' +
+    '<div class="w-meta">' + (it.focus ? '<span class="pill warn">' + T('Tricky in class', '课上易错') + '</span>' : '') + dots(p) +
+    (l ? '<span class="lsn">第' + lessonNo(l) + '课</span>' : '') + '</div></li>';
+}
+function itemCounts(its){
+  const w = its.filter(i => i.type === 'word').length;
+  const s = its.filter(i => i.type === 'phrase' || i.type === 'sentence').length;
+  const g = its.filter(i => i.type === 'grammar').length;
+  if(S.lang === 'zh') return [w && w + '个词', s && s + '个句子', g && g + '个语法点'].filter(Boolean).join(' · ') || '暂无内容';
+  return [w && plural(w, 'word'), s && plural(s, 'sentence'), g && g + ' grammar'].filter(Boolean).join(' · ') || 'Nothing yet';
+}
+function daysStrip(){
+  const today = ymd(new Date());
+  const l = latestLesson();
+  let start = l ? ymd(new Date(l.endAt || l.date)) : addDays(today, -6);
+  if(dayDiff(start, today) > 13) start = addDays(today, -13);
+  const n = Math.max(dayDiff(start, today) + 1, 8);
+  const byDay = {};
+  for(const s of S.sessions){ const e = byDay[s.date] || (byDay[s.date] = {xp: 0}); e.xp += s.xp || 0; }
+  const classDays = new Set(S.lessons.map(x => ymd(new Date(x.date))));
+  let h = '';
+  for(let i = 0; i < n; i++){
+    const day = addDays(start, i);
+    const dt = new Date(day + 'T12:00');
+    const st = day > today ? 'future' : byDay[day] ? 'on' : 'off';
+    const label = dt.toLocaleDateString(locale(), {weekday: 'long', month: 'short', day: 'numeric'}) + (classDays.has(day) ? T(', class day', '，上课日') : '') + (byDay[day] ? ', ' + byDay[day].xp + ' XP' : st === 'future' ? '' : T(', no practice', '，没有练习'));
+    h += '<div class="day ' + st + (day === today ? ' today' : '') + '" title="' + esc(label) + '"><span class="sr">' + esc(label) + '</span><span class="dw" aria-hidden="true">' + esc(dt.toLocaleDateString(locale(), {weekday: 'short'})) + '</span><span class="dd" aria-hidden="true">' + dt.getDate() + '</span>' +
+      (classDays.has(day) ? '<span class="ke" aria-hidden="true">课</span>' : '') + (byDay[day] ? '<span class="dx" aria-hidden="true">' + byDay[day].xp + '</span>' : '') + '</div>';
+  }
+  return '<div class="days">' + h + '</div><div class="days-legend"><span>' + T('Blue: practiced (number = XP)', '蓝色：当天有练习（数字为经验值）') + '</span><span>' + T('课: class day', '课：上课日') + '</span><span>' + T('Dashed: still ahead', '虚线：未到的日子') + '</span></div>';
+}
+
+/* ---------- views ---------- */
+function loadingView(){
+  if(S.dbState === 'none') return '<div class="empty">' + panda('sad') + '<h1>' + T('Couldn’t load the lessons', '无法加载课程') + '</h1><p class="muted">' + T('Check your internet connection and open the app again. After the first load it also works offline.', '请检查网络后重新打开。第一次加载后可以离线使用。') + '</p></div>';
+  return '<div class="loading">' + panda('read') + '<p>' + T('Loading lessons…', '正在加载…') + '</p></div>';
+}
+function readOnlyNotice(){
+  if(S.isOwner || canWriteShared() || S.dbState !== 'ok') return '';
+  return '<p class="notice">' + T('You can read everything here. To leave notes and homework feedback, ask ' + firstName() + ' to share this page with you as an Editor.', '您现在只能查看。如需留言或批改作业，请让' + firstName() + '把您设为“编辑者”（Editor）。') + '</p>';
+}
+const PATH_X = [0, 52, 78, 52, 0, -52, -78, -52];
+function nodeHTML(nd, k){
+  const cls = ['pnode', nd.kind === 'chest' ? 'chest' : nd.kind === 'review' ? 'trophy' : '', nd.done ? (nd.kind === 'chest' ? 'opened' : 'done') : '', nd.unlocked ? '' : 'locked', nd.current ? 'current' : ''].filter(Boolean).join(' ');
+  const inner = nd.kind === 'chest' ? ICON.chest : nd.kind === 'review' ? ICON.trophy : '<span lang="zh-CN">' + esc(nd.icon) + '</span>';
+  const label = nd.kind === 'chest' ? (nd.done ? T('Opened', '已打开') : T('Treasure chest', '宝箱')) : nd.label;
+  const state = nd.done ? T('completed', '已完成') : nd.unlocked ? T('ready', '可以开始') : T('locked', '未解锁');
+  const deco = k % 8 === 2 ? '<span class="pdeco l">' + panda('read') + '</span>' : k % 8 === 6 ? '<span class="pdeco r">' + panda('wave') + '</span>' : '';
+  return '<div class="' + cls + '" style="--x:' + PATH_X[k % PATH_X.length] + 'px">' + deco +
+    (nd.current ? '<span class="start-tip">' + (nd.kind === 'review' ? T('Review', '复习') : T('Start', '开始')) + '</span>' : '') +
+    '<button type="button" class="pbtn" data-act="node" data-key="' + esc(nd.key) + '" aria-label="' + esc(label + ', ' + state) + '">' + inner + '</button>' +
+    '<span class="plabel" lang="zh-CN">' + esc(label) + '</span></div>';
+}
+function viewLearn(){
+  if(!allLoaded()) return loadingView();
+  if(!S.items.length){
+    return readOnlyNotice() + '<div class="empty">' + panda('wave') + '<h1>你好, ' + esc(firstName()) + '</h1><p class="muted">' + T('No lessons yet. After each class, Claude reads the Wispr Flow recording and turns it into a unit of lessons here.', '还没有课程。每次上课后，Claude 会根据录音生成这里的练习。') + '</p></div>';
+  }
+  const st = studentStats();
+  const stats = '<div class="topstats">' +
+    '<span class="st ' + (st.streak ? 'fire' : 'cold') + '" title="' + T('Day streak', '连续天数') + '">' + ICON.flame + st.streak + '<small>' + T('day streak', '天连续') + '</small></span>' +
+    '<span class="st xp" title="' + T('XP today', '今日经验值') + '">' + ICON.bolt + st.xpToday + '<small>' + T('XP today', '今日经验') + '</small></span>' +
+    '<span class="st words" title="' + T('Words known', '已会的词') + '">' + ICON.book + st.known + '<small>/ ' + st.total + T(' words known', ' 个词已会') + '</small></span></div>';
+  const units = S.lessons.map((l, ui) => {
+    const nodes = unitNodes(l);
+    if(!nodes.length) return '';
+    return '<section class="unit"' + unitStyle(ui) + ' aria-label="' + esc(T('Unit ', '第') + lessonNo(l) + T('', '单元')) + '"><div class="unit-banner"><div><span class="eyebrow">' + T('Unit ' + lessonNo(l), '第' + lessonNo(l) + '单元') + ' · ' + esc(fmtDate(l.date)) + '</span><h2>' + esc(Lz(l, 'title') || '') + '</h2></div>' +
+      '<button type="button" class="btn small" data-act="open-lesson" data-id="' + esc(l.id) + '">' + ICON.book.replace('<svg ', '<svg width="16" height="16" ') + T('Guidebook', '课程笔记') + '</button></div>' +
+      '<div class="path">' + nodes.map(nodeHTML).join('') + '</div></section>';
+  }).join('');
+  const goalF = Math.min(st.xpToday / GOAL_XP, 1);
+  const goal = '<section class="panel" aria-labelledby="h-goal"><div class="panel-h"><h2 id="h-goal">' + T('Daily goal', '每日目标') + '</h2><span class="muted">' + st.xpToday + ' / ' + GOAL_XP + ' XP</span></div>' +
+    '<div class="goal"><div class="goal-row">' + ICON.target + '<div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="' + GOAL_XP + '" aria-valuenow="' + st.xpToday + '"><span style="width:' + Math.round(goalF * 100) + '%"></span></div></div>' +
+    '<p class="muted" style="font-size:14px">' + (goalF >= 1 ? T('Goal reached. Nice work.', '今日目标已完成。') : T('About two lessons a day. ', '大约每天两节小课。') + (st.streak && !st.practicedToday ? T('Practice today to keep your ' + st.streak + '-day streak.', '今天练习就能保持连续' + st.streak + '天。') : '')) + '</p></div></section>';
+  const practice = '<section class="panel" aria-labelledby="h-prac"><div class="panel-h"><h2 id="h-prac">' + T('Practice', '练习') + '</h2></div><div class="practice-btns">' +
+    '<button type="button" class="btn" data-act="start" data-mode="mistakes"' + (st.weak ? '' : ' disabled') + '>' + ICON.target.replace('<svg ', '<svg width="20" height="20" ') + T('Your mistakes', '错题练习') + '<small>' + st.weak + '</small></button>' +
+    '<button type="button" class="btn" data-act="start" data-mode="due"' + (st.practiced ? '' : ' disabled') + '>' + ICON.bolt.replace('<svg ', '<svg width="20" height="20" ') + T('Review words', '复习单词') + '<small>' + T(st.due + ' due', st.due + '个待复习') + '</small></button></div>' +
+    (S.isOwner ? '' : '<p class="muted" style="font-size:13px;margin-top:10px">' + T('Preview only: practice here isn’t saved to ' + firstName() + '’s progress.', '预览模式：在这里练习不会计入' + firstName() + '的进度。') + '</p>') + '</section>';
+  return readOnlyNotice() + '<div class="cols learn"><div class="stack-v"><div>' + stats + units + '</div></div><div class="stack-v">' + goal + practice + tutorNotesPanel() + homeworkPanel('student') + questionsPanel('student') + '</div></div>';
+}
+
+function tutorNotesPanel(){
+  const notes = S.messages.filter(m => m.kind === 'note' && m.from === 'tutor' && !m.resolved);
+  if(!notes.length) return '';
+  return '<section class="panel" aria-labelledby="h-notes"><div class="panel-h"><h2 id="h-notes">' + T('From ', '来自') + TEACHER + '</h2></div>' +
+    notes.map(m => '<div class="note-card"><p>' + esc(m.text) + '</p><div class="note-meta"><span>' + esc(fmtDate(m.createdAt)) + '</span>' +
+      (S.isOwner ? '<button type="button" class="link" data-act="msg-resolve" data-id="' + esc(m.id) + '" data-v="1">' + T('Got it', '知道了') + '</button>' : '') + '</div></div>').join('') + '</section>';
+}
+function hwStatus(st){
+  return st === 'reviewed' ? '<span class="pill cobalt">' + T('Reviewed', '已批改') + '</span>' : st === 'done' ? '<span class="pill good">' + T('Done', '已完成') + '</span>' : '<span class="pill">' + T('To do', '未完成') + '</span>';
+}
+function homeworkPanel(who){
+  const li = lessonIndex();
+  const latest = latestLesson();
+  const all = S.homework.slice().sort((a, b) => ((li[b.lessonId] == null ? -1 : li[b.lessonId]) - (li[a.lessonId] == null ? -1 : li[a.lessonId])) || ((a.order || 0) - (b.order || 0)));
+  const tutor = who === 'tutor';
+  const shown = all.filter(h => (latest && h.lessonId === latest.id) || (h.status || 'todo') === 'todo' || (tutor && h.status === 'done'));
+  const writable = S.isOwner || canWriteShared();
+  const name = firstName();
+  const rows = shown.map(h => {
+    const st = h.status || 'todo';
+    let sub = '';
+    if(h.studentNote && (tutor || st === 'reviewed')) sub += '<p class="hw-quote"><b>' + esc(name) + ':</b> ' + esc(h.studentNote) + '</p>';
+    if(h.tutorFeedback) sub += '<p class="hw-quote"><b>' + TEACHER + ':</b> ' + esc(h.tutorFeedback) + '</p>';
+    if(!tutor && S.isOwner && st !== 'reviewed') sub += '<div class="row-form"><textarea class="field" id="hwn-' + esc(h.id) + '" rows="1" placeholder="' + T('Note for ' + TEACHER + ' (optional)', '给老师的备注（可选）') + '">' + esc(h.studentNote || '') + '</textarea><button type="button" class="btn small" data-act="hw-note" data-id="' + esc(h.id) + '">' + T('Save', '保存') + '</button></div>';
+    if(tutor && writable && st !== 'todo') sub += '<div class="row-form"><textarea class="field" id="hwf-' + esc(h.id) + '" rows="1" placeholder="' + T('Feedback for ' + name, '给' + name + '的反馈') + '">' + esc(h.tutorFeedback || '') + '</textarea><button type="button" class="btn small" data-act="hw-feedback" data-id="' + esc(h.id) + '">' + T('Send', '发送') + '</button></div>';
+    const box = writable
+      ? '<button type="button" class="check" data-act="hw-toggle" data-id="' + esc(h.id) + '" aria-pressed="' + (st !== 'todo') + '" aria-label="' + (st === 'todo' ? T('Mark done', '标记为完成') : T('Mark not done', '标记为未完成')) + '">' + (st !== 'todo' ? ICON.check : '') + '</button>'
+      : '<span class="check' + (st !== 'todo' ? ' on' : '') + '" aria-hidden="true">' + (st !== 'todo' ? ICON.check : '') + '</span>';
+    return '<div class="hw-row' + (st !== 'todo' ? ' done' : '') + '">' + box + '<div><div class="hw-text">' + esc(h.text) + ' ' + hwStatus(st) + '</div>' + (sub ? '<div class="hw-sub">' + sub + '</div>' : '') + '</div></div>';
+  }).join('');
+  const add = tutor && writable && latest ? '<form class="row-form" id="hw-form" style="margin-top:14px"><input class="field" id="hw-new" placeholder="' + T('Add homework for unit ' + lessonNo(latest), '为第' + lessonNo(latest) + '课布置作业') + '" autocomplete="off"><button class="btn small" type="submit">' + T('Add', '添加') + '</button></form>' : '';
+  return '<section class="panel" aria-labelledby="h-hw"><div class="panel-h"><h2 id="h-hw">' + T('Homework', '作业') + '</h2></div>' +
+    (rows ? '<div class="hw">' + rows + '</div>' : '<p class="empty-line">' + T('No homework right now. Homework from ' + TEACHER + ' shows up here.', '目前没有作业。' + (tutor ? '可以在下面添加。' : '')) + '</p>') + add + '</section>';
+}
+function questionsPanel(who){
+  const qs = S.messages.filter(m => m.kind === 'question');
+  const open = qs.filter(m => !m.resolved), done = qs.filter(m => m.resolved).slice(0, 3);
+  const student = who === 'student';
+  const writable = S.isOwner || canWriteShared();
+  const title = student ? T('Ask in next class', '下节课要问的问题') : T(firstName() + '’s questions for class', firstName() + '想在课上问的问题');
+  const form = student && S.isOwner ? '<form class="row-form" id="q-form"><input class="field" id="q-text" placeholder="' + T('How do I say…? Why is it…?', '怎么说……？为什么……？') + '" autocomplete="off"><button class="btn small" type="submit">' + T('Add', '添加') + '</button></form>' : '';
+  const row = m => '<div class="q' + (m.resolved ? ' done' : '') + '"><p>' + esc(m.text) + '</p><div class="q-actions">' +
+    (writable ? '<button type="button" class="link" data-act="msg-resolve" data-id="' + esc(m.id) + '" data-v="' + (m.resolved ? '0' : '1') + '">' + (m.resolved ? T('Reopen', '重新打开') : T('Answered', '已回答')) + '</button>' : '') +
+    (writable && m.from === role() ? '<button type="button" class="link" data-act="msg-del" data-id="' + esc(m.id) + '">' + T('Delete', '删除') + '</button>' : '') + '</div></div>';
+  return '<section class="panel" aria-labelledby="h-q"><div class="panel-h"><h2 id="h-q">' + title + '</h2>' + (open.length ? '<span class="muted">' + T(open.length + ' open', open.length + '个待回答') + '</span>' : '') + '</div>' + form +
+    (open.length || done.length ? '<div class="q-list">' + open.map(row).join('') + done.map(row).join('') + '</div>' : '<p class="empty-line" style="margin-top:' + (form ? '10px' : '0') + '">' + (student ? T('Jot down anything you want to ask ' + TEACHER + '.', '记下想问老师的问题。') : T('No questions yet.', '暂时没有问题。')) + '</p>') + '</section>';
+}
+
+function viewGuide(){
+  if(!allLoaded()) return loadingView();
+  if(!S.lessons.length) return '<div class="empty"><h1>' + T('Guidebook', '课程笔记') + '</h1><p class="muted">' + T('Notes from each class appear here after Claude imports the recording.', '每次上课后，这里会出现课程笔记。') + '</p></div>';
+  const ls = S.lessons.slice().reverse();
+  if(!S.lessonsTouched && !S.openLessons.size) S.openLessons.add(ls[0].id);
+  const ordered = itemsInOrder();
+  const list = arr => '<ul style="display:grid;gap:4px;margin-top:6px;padding-left:18px;list-style:disc">' + arr.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
+  return '<div class="page-h"><div><h1>' + T('Guidebook', '课程笔记') + '</h1><p>' + T('Key words, memory tricks and notes from every class with ' + TEACHER + '.', '每节课的重点词、记忆方法和课堂记录。') + '</p></div></div><div class="lesson-list">' + ls.map(l => {
+    const its = ordered.filter(i => i.lessonId === l.id);
+    const gram = its.filter(i => i.type === 'grammar');
+    const words = its.filter(i => i.type === 'word' || i.type === 'phrase');
+    const sents = its.filter(i => i.type === 'sentence');
+    const hw = S.homework.filter(h => h.lessonId === l.id);
+    const strengths = Lz(l, 'strengths') || [], struggles = Lz(l, 'struggles') || [], topics = Lz(l, 'topics') || [];
+    const link = typeof l.shareLink === 'string' && /^https:\/\//.test(l.shareLink) ? l.shareLink : '';
+    return '<details class="lesson" id="lesson-' + esc(l.id) + '" data-lesson="' + esc(l.id) + '"' + (S.openLessons.has(l.id) ? ' open' : '') + '>' +
+      '<summary>' + ringHTML(lessonMastery(its), '第' + lessonNo(l) + '课') + '<div><h2>' + esc(Lz(l, 'title') || '') + '</h2><p>' + esc(fmtDate(l.date)) + ' · ' + esc(itemCounts(its)) + '</p></div><span class="chev" aria-hidden="true"></span></summary>' +
+      '<div class="ls-body">' +
+        (Lz(l, 'summary') ? '<p class="lead">' + esc(Lz(l, 'summary')) + '</p>' : '') +
+        (Lz(l, 'next') ? '<p><span class="pill cobalt">' + T('Next class', '下节课') + '</span> ' + esc(Lz(l, 'next')) + '</p>' : '') +
+        (topics.length ? '<div class="chips">' + topics.map(t => '<span class="chip">' + esc(t) + '</span>').join('') + '</div>' : '') +
+        (strengths.length || struggles.length ? '<div class="obs">' + (strengths.length ? '<div><h3 class="eyebrow good-t">' + T('Went well in class', '课上表现好的地方') + '</h3>' + list(strengths) + '</div>' : '') + (struggles.length ? '<div><h3 class="eyebrow bad-t">' + T('To work on', '需要加强') + '</h3>' + list(struggles) + '</div>' : '') + '</div>' : '') +
+        (words.length ? '<div><h3 class="sub">' + T('Words and characters', '生词和汉字') + '</h3><ul class="wlist" style="margin-top:4px">' + words.map(wordRow).join('') + '</ul></div>' : '') +
+        (gram.length ? '<div><h3 class="sub">' + T('Grammar tips', '语法') + '</h3><ul class="gram" style="margin-top:8px">' + gram.map(g => '<li><span class="pat" lang="zh-CN">' + esc(g.pattern || '') + '</span>' + (g.explain && S.lang !== 'zh' ? '<span>' + esc(g.explain) + '</span>' : '') +
+          '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">' + sayBtn(g.hanzi) + ruby(g, 'sm') + '<span class="muted">' + esc(g.english) + '</span></div></li>').join('') + '</ul></div>' : '') +
+        (sents.length ? '<div><h3 class="sub">' + T('Key sentences', '重点句子') + '</h3><ul class="wlist" style="margin-top:4px">' + sents.map(wordRow).join('') + '</ul></div>' : '') +
+        (hw.length ? '<div><h3 class="sub">' + T('Homework', '作业') + '</h3><ul style="margin-top:6px;display:grid;gap:6px">' + hw.map(h => '<li>' + esc(h.text) + ' ' + hwStatus(h.status || 'todo') + '</li>').join('') + '</ul></div>' : '') +
+        '<div class="ls-actions">' + (its.length ? '<button type="button" class="btn primary" data-act="start" data-mode="unit" data-id="' + esc(l.id) + '">' + T('Practice this unit', '练习本课') + '</button>' : '') +
+        (link ? '<a class="btn" href="' + esc(link) + '" target="_blank" rel="noopener">' + T('Class notes in Wispr Flow', 'Wispr Flow 课堂记录') + '</a>' : '') + '</div>' +
+      '</div></details>';
+  }).join('') + '</div>';
+}
+
+function viewWords(){
+  if(!allLoaded()) return loadingView();
+  const all = itemsInOrder().filter(i => i.type !== 'grammar');
+  const q = S.wordQuery.trim().toLowerCase();
+  const tests = {
+    all: () => true,
+    new: i => !S.progress[i.id],
+    learning: i => ['learning', 'familiar'].includes(level(S.progress[i.id])),
+    known: i => ['strong', 'mastered'].includes(level(S.progress[i.id])),
+    weak: i => { const p = S.progress[i.id]; return !!p && (p.wrong || 0) > 0 && accOf(p) < 0.8; },
+  };
+  const labels = [['all', T('All', '全部')], ['new', T('New', '未练习')], ['learning', T('Learning', '学习中')], ['known', T('Known', '已掌握')], ['weak', T('Needs work', '需加强')]];
+  const list = all.filter(tests[S.wordFilter] || tests.all).filter(i => !q || [i.hanzi, i.pinyin, i.english, letters(i.pinyin)].some(v => String(v || '').toLowerCase().includes(q)));
+  const writable = S.isOwner || canWriteShared();
+  const opts = S.lessons.slice().reverse().map(l => '<option value="' + esc(l.id) + '">第' + lessonNo(l) + '课 · ' + esc(Lz(l, 'title') || '') + '</option>').join('');
+  const addForm = writable && S.lessons.length ? '<details class="add-word panel"><summary>' + T('Add a word', '添加生词') + '</summary><form id="aw-form"><div class="aw-grid">' +
+    '<label for="aw-h">' + T('Characters', '汉字') + '<input class="field" id="aw-h" required autocomplete="off" placeholder="谢谢" lang="zh-CN"></label>' +
+    '<label for="aw-p">' + T('Pinyin', '拼音') + '<input class="field" id="aw-p" required autocomplete="off" placeholder="xie4 xie5 / xiè xie"></label>' +
+    '<label for="aw-e">' + T('English', '英文意思') + '<input class="field" id="aw-e" required autocomplete="off" placeholder="thank you"></label>' +
+    '<label for="aw-l">' + T('Unit', '课') + '<select class="field" id="aw-l">' + opts + '</select></label></div>' +
+    '<p class="hint" style="margin:8px 0 10px">' + T('Separate syllables with spaces or tone numbers so tone drills work.', '拼音音节之间请用空格或声调数字隔开。') + '</p><button class="btn primary small" type="submit">' + T('Add word', '添加') + '</button></form></details>' : '';
+  return '<div class="page-h"><div><h1>' + T('Words', '词汇') + '</h1><p>' + T(all.length + ' words and sentences from your classes.', '课上学过的' + all.length + '个词和句子。') + '</p></div></div>' + addForm +
+    '<div class="tools"><div class="chips" role="group" aria-label="' + T('Filter', '筛选') + '">' + labels.map(([v, t]) => '<button type="button" class="chip" data-act="wfilter" data-v="' + v + '" aria-pressed="' + (S.wordFilter === v) + '">' + t + ' <span>' + all.filter(tests[v]).length + '</span></button>').join('') + '</div>' +
+    '<label class="sr" for="w-q">' + T('Search words', '搜索') + '</label><input class="field" id="w-q" type="search" placeholder="' + T('Search 字, pinyin or English', '搜索汉字、拼音或英文') + '" autocomplete="off" value="' + esc(S.wordQuery) + '"></div>' +
+    '<section class="panel">' + (list.length ? '<ul class="wlist">' + list.map(wordRow).join('') + '</ul>' : '<p class="empty-line">' + T('Nothing matches.', '没有找到。') + '</p>') + '</section>';
+}
+
+/* teacher: in Chinese for 老师 by default */
+function periodStart(){
+  if(S.period === 'all') return '';
+  if(S.period === '30') return new Date(Date.now() - 30 * 864e5).toISOString();
+  const l = latestLesson();
+  return l ? String(l.endAt || l.date) : '';
+}
+function teacherData(){
+  const start = periodStart();
+  const ss = lessonSessions().filter(s => !start || String(s.endedAt || '') >= start);
+  const d = {ss, days: new Set(ss.map(s => s.date)).size, total: 0, correct: 0, secs: 0, lessons: 0, skills: {}, tones: {}, toneErr: {}, miss: {}};
+  for(const s of ss){
+    d.total += s.total || 0; d.correct += s.correct || 0; d.secs += s.durationSec || 0;
+    if(s.passed) d.lessons++;
+    for(const [k, v] of Object.entries(s.skills || {})){ const t = d.skills[k] || (d.skills[k] = {c: 0, w: 0}); t.c += v.c || 0; t.w += v.w || 0; }
+    for(const [k, v] of Object.entries(s.tones || {})){ const t = d.tones[k] || (d.tones[k] = {c: 0, w: 0}); t.c += v.c || 0; t.w += v.w || 0; }
+    for(const [k, v] of Object.entries(s.toneErrors || {})) d.toneErr[k] = (d.toneErr[k] || 0) + (v || 0);
+    for(const m of (s.misses || [])){
+      const e = d.miss[m.itemId] || (d.miss[m.itemId] = {n: 0, answers: [], skills: []});
+      e.n++;
+      if(m.answer && !e.answers.includes(m.answer)) e.answers.push(m.answer);
+      if(m.skill && !e.skills.includes(m.skill)) e.skills.push(m.skill);
+    }
+  }
+  return d;
+}
+function tile(k, v, s){ return '<div class="tile"><span class="eyebrow">' + k + '</span><b>' + v + '</b>' + (s ? '<span class="s">' + s + '</span>' : '') + '</div>'; }
+function skillName(k){ const s = SKILLS.find(x => x[0] === k); return s ? T(s[1], s[2]) : k; }
+function viewTeacher(){
+  if(!allLoaded()) return loadingView();
+  const d = teacherData();
+  const last = latestLesson();
+  const name = studentName(), fn = firstName();
+  const pf = S.profile || {};
+  const lastS = lessonSessions()[0];
+  const today = ymd(new Date());
+  const nd = S.period === 'last' && last ? dayDiff(ymd(new Date(last.endAt || last.date)), today) : null;
+  const known = S.items.filter(i => ((S.progress[i.id] || {}).box || 0) >= 2).length;
+  const head = '<div class="page-h"><div class="who"><span class="avatar" aria-hidden="true">' + esc(name.charAt(0).toUpperCase()) + '</span><div><h1>' + esc(T(name + '’s progress', name + ' 的学习情况')) + '</h1><p>' + (lastS ? T('Last practiced ' + relDay(lastS.endedAt) + '.', '最近一次练习：' + relDay(lastS.endedAt) + '。') : T(fn + ' hasn’t practiced here yet.', fn + '还没有在这里练习过。')) + (last ? T(' Last class: ', ' 上次上课：') + esc(fmtDate(last.date)) + T('.', '。') : '') + '</p></div></div>' +
+    '<div class="seg" role="group" aria-label="' + T('Time period', '时间范围') + '">' + [['last', T('Since last class', '上次课以后')], ['30', T('30 days', '最近30天')], ['all', T('All time', '全部')]].map(([v, t]) => '<button type="button" data-act="period" data-v="' + v + '" aria-pressed="' + (S.period === v) + '">' + t + '</button>').join('') + '</div></div>';
+  const prof = '<section class="panel" aria-labelledby="h-prof" style="margin-bottom:14px"><div class="panel-h"><h2 id="h-prof">' + T('Student profile', '学生档案') + '</h2></div><dl class="profile" style="margin:0">' +
+    '<div><dt>' + T('Name', '姓名') + '</dt><dd>' + esc(name) + '</dd></div>' +
+    (Lz(pf, 'goal') ? '<div><dt>' + T('Goal', '学习目标') + '</dt><dd>' + esc(Lz(pf, 'goal')) + '</dd></div>' : '') +
+    (Lz(pf, 'cadence') ? '<div><dt>' + T('Classes', '上课安排') + '</dt><dd>' + esc(Lz(pf, 'cadence')) + '</dd></div>' : '') +
+    (Lz(pf, 'focus') ? '<div><dt>' + T('Current focus', '目前重点') + '</dt><dd>' + esc(Lz(pf, 'focus')) + '</dd></div>' : '') +
+    (last && Lz(last, 'next') ? '<div><dt>' + T('Next class', '下节课') + '</dt><dd>' + esc(Lz(last, 'next')) + '</dd></div>' : '') +
+    (pf.wants_zh && S.lang === 'zh' ? '<div><dt>学生的希望</dt><dd>' + esc(pf.wants_zh) + '</dd></div>' : '') + '</dl></section>';
+  const daysSub = S.period === 'last' ? (nd == null ? T('no class yet', '还没上过课') : nd === 0 ? T('class was today', '今天刚上课') : T('of ' + nd + ' days since class', '共' + nd + '天')) : S.period === '30' ? T('of the last 30 days', '最近30天中') : T('in total', '累计');
+  const tiles = '<div class="tiles">' +
+    tile(T('Days practiced', '练习天数'), d.days, daysSub) +
+    tile(T('Lessons done', '完成小节'), d.lessons, T(d.ss.length + ' sessions', '共练习' + d.ss.length + '次')) +
+    tile(T('Accuracy', '正确率'), d.total ? pct(d.correct, d.total) + '%' : '–', d.total ? T(d.correct + ' of ' + d.total + ' right', d.total + '题中答对' + d.correct + '题') : T('nothing yet', '暂无')) +
+    tile(T('Practice time', '练习时间'), Math.round(d.secs / 60) + T(' min', '分钟'), '') +
+    tile(T('Words known', '已会的词'), known, T('of ' + S.items.length + ' taught', '共学过' + S.items.length + '个')) + '</div>';
+  return syncNotice() + readOnlyNotice() + head + prof + tiles +
+    '<section class="panel between" aria-labelledby="h-between"><div class="panel-h"><h2 id="h-between">' + T('Between classes', '课后每天的练习') + '</h2></div>' + daysStrip() + '</section>' +
+    '<div class="cols"><div class="stack-v">' + pathPanel() + needsWorkPanel(d) + skillsPanel(d) + tonesPanel(d) + goingWellPanel() + logPanel(d) + '</div>' +
+    '<div class="stack-v">' + questionsPanel('tutor') + notePanel() + homeworkPanel('tutor') + classNotesPanel(last) + '</div></div>';
+}
+function pathPanel(){
+  const l = latestLesson();
+  if(!l) return '';
+  const nodes = unitNodes(l).filter(n => n.kind !== 'chest');
+  const done = nodes.filter(n => n.done).length;
+  return '<section class="panel" aria-labelledby="h-path"><div class="panel-h"><h2 id="h-path">' + T('Lesson path', '学习进度') + '</h2><span class="muted">' + T(done + ' of ' + nodes.length + ' done', '已完成 ' + done + '/' + nodes.length) + '</span></div><div class="steps-row">' +
+    nodes.map((n, k) => '<span class="' + (n.done ? 'done' : '') + '" lang="zh-CN">' + (n.done ? '✓ ' : '') + (n.kind === 'review' ? T('Review', '单元复习') : T('Lesson ', '第') + (k + 1) + T('', '节') + ' · ' + esc(n.label)) + '</span>').join('') + '</div></section>';
+}
+function needsWorkPanel(d){
+  const rows = [], used = new Set();
+  Object.entries(d.miss).map(([id, m]) => ({it: item(id), m})).filter(x => x.it).sort((a, b) => b.m.n - a.m.n).forEach(x => { rows.push(x); used.add(x.it.id); });
+  S.items.filter(i => !used.has(i.id) && S.progress[i.id] && (S.progress[i.id].wrong || 0) > 0 && accOf(S.progress[i.id]) < 0.75)
+    .sort((a, b) => accOf(S.progress[a.id]) - accOf(S.progress[b.id])).forEach(it => rows.push({it, m: null}));
+  const list = rows.slice(0, 10).map(({it, m}) => {
+    const p = S.progress[it.id];
+    let sub = '';
+    if(m){
+      sub = T('Missed in ', '错在：') + m.skills.map(skillName).join(T(', ', '、'));
+      const ans = m.answers.filter(a => a && !a.startsWith('(')).slice(0, 2);
+      if(ans.length) sub += T(' · answered ', ' · 答成了 ') + ans.map(a => '“' + a + '”').join(T(', ', '、'));
+    } else if(p) sub = T(pct(p.correct || 0, (p.correct || 0) + (p.wrong || 0)) + '% right overall', '总正确率 ' + pct(p.correct || 0, (p.correct || 0) + (p.wrong || 0)) + '%');
+    return '<li class="nw"><div>' + ruby(it, 'sm') + '</div><div>' + esc(it.english) + '<small>' + esc(sub) + '</small></div><div class="n" title="' + T('Times missed', '错误次数') + '">' + (m ? m.n : (p ? p.wrong : 0)) + '×</div></li>';
+  }).join('');
+  return '<section class="panel" aria-labelledby="h-nw"><div class="panel-h"><h2 id="h-nw">' + T('Needs work', '需要加强') + '</h2><span class="muted">' + T('Most missed first', '按错误次数排序') + '</span></div>' +
+    (list ? '<ul>' + list + '</ul>' : '<p class="empty-line">' + T('No misses in this period yet.', '这段时间还没有错题。' + firstName() + '练习时答错的词会显示在这里，并附上答错的内容。') + '</p>') + '</section>';
+}
+function skillsPanel(d){
+  const rows = SKILLS.map(([k]) => {
+    const s = d.skills[k];
+    const n = s ? s.c + s.w : 0;
+    const a = n ? pct(s.c, n) : null;
+    const col = a == null ? 'var(--sunk)' : a >= 80 ? 'var(--good)' : a >= 60 ? 'var(--gold)' : 'var(--bad)';
+    return '<div class="skill"><span>' + skillName(k) + '</span><div class="barw" role="img" aria-label="' + (a == null ? T('No data', '暂无数据') : a + '%') + '"><span style="width:' + (a == null ? 0 : Math.max(a, 3)) + '%;background:' + col + '"></span></div><span class="v">' + (a == null ? '–' : a + '% · ' + n) + '</span></div>';
+  }).join('');
+  return '<section class="panel" aria-labelledby="h-sk"><div class="panel-h"><h2 id="h-sk">' + T('Skills', '各项能力') + '</h2><span class="muted">' + T('% right · answers', '正确率 · 题数') + '</span></div>' + rows + '</section>';
+}
+function tonesPanel(d){
+  const TN = S.lang === 'zh' ? TONE_ZH : TONE_EN;
+  const total = Object.values(d.tones).reduce((a, t) => a + t.c + t.w, 0);
+  if(!total) return '<section class="panel" aria-labelledby="h-tn"><div class="panel-h"><h2 id="h-tn">' + T('Tones', '声调') + '</h2></div><p class="empty-line">' + T('No tone drills in this period yet.', '这段时间还没有声调练习。') + '</p></section>';
+  const errs = Object.entries(d.toneErr).sort((a, b) => b[1] - a[1]);
+  let call = '';
+  if(errs.length){ const [k, n] = errs[0]; const [e, c] = k.split('>').map(Number); call = '<p class="callout">' + T('Most common mix-up: ' + TN[e] + ' tone marked as ' + TN[c] + ' (' + n + '×)', '最常见的错误：把' + TN[e] + '标成了' + TN[c] + '（' + n + '次）') + '</p>'; }
+  const max = Math.max(1, ...Object.values(d.toneErr), ...Object.values(d.tones).map(t => t.c));
+  const head = '<tr><th scope="col"><span class="sr">' + T('Correct tone', '正确声调') + '</span></th>' + [1, 2, 3, 4, 5].map(t => '<th scope="col">' + toneIcon(t) + '<div>' + (t === 5 ? '·' : t) + '</div></th>').join('') + '<th scope="col">' + T('Right', '正确率') + '</th></tr>';
+  const body = [1, 2, 3, 4, 5].map(e => {
+    const t = d.tones[e] || {c: 0, w: 0};
+    const cells = [1, 2, 3, 4, 5].map(c => {
+      const n = e === c ? t.c : (d.toneErr[e + '>' + c] || 0);
+      const bg = n ? 'background:color-mix(in srgb,' + (e === c ? 'var(--good)' : 'var(--bad)') + ' ' + Math.round(n / max * 55) + '%,var(--paper))' : '';
+      return '<td class="' + (e === c ? 'diag' : 'off') + '" style="' + bg + '">' + (n || '') + '</td>';
+    }).join('');
+    return '<tr><th scope="row">' + toneIcon(e) + ' ' + TN[e] + '</th>' + cells + '<td>' + (t.c + t.w ? pct(t.c, t.c + t.w) + '%' : '–') + '</td></tr>';
+  }).join('');
+  return '<section class="panel" aria-labelledby="h-tn"><div class="panel-h"><h2 id="h-tn">' + T('Tones', '声调') + '</h2><span class="muted">' + T(total + ' syllables marked', '共标了' + total + '个音节') + '</span></div>' + call +
+    '<div class="tm-wrap"><table class="tm"><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div><p class="tm-note">' + T('Rows: the correct tone. Columns: what ' + firstName() + ' picked.', '行：正确的声调；列：' + firstName() + '选的声调。绿色为正确，红色为混淆。') + '</p></section>';
+}
+function goingWellPanel(){
+  const strong = S.items.filter(i => { const p = S.progress[i.id]; return p && (p.box || 0) >= 3 && accOf(p) >= 0.85; }).sort((a, b) => (S.progress[b.id].box || 0) - (S.progress[a.id].box || 0)).slice(0, 14);
+  return '<section class="panel" aria-labelledby="h-gw"><div class="panel-h"><h2 id="h-gw">' + T('Going well', '掌握得好') + '</h2></div>' +
+    (strong.length ? '<ul class="strong-list">' + strong.map(i => '<li><span class="zh" lang="zh-CN">' + esc(i.hanzi) + '</span><span>' + esc(i.pinyin) + ' · ' + esc(i.english) + '</span></li>').join('') + '</ul>' : '<p class="empty-line">' + T('Words show up here once they’re right across three or more days.', '连续三天以上都答对的词会显示在这里。') + '</p>') + '</section>';
+}
+function logPanel(d){
+  const label = s => s.mode === 'node' ? T('Lesson', '小节') : s.mode === 'review' ? T('Unit review', '单元复习') : s.mode === 'mistakes' ? T('Mistakes', '错题练习') : s.mode === 'due' ? T('Word review', '单词复习') : T('Practice', '练习');
+  const rows = d.ss.slice(0, 8).map(s => '<li><span>' + esc(fmtDate(s.endedAt)) + ' ' + esc(fmtTime(s.endedAt)) + ' · ' + label(s) + (s.passed === false ? T(' (not finished)', '（未完成）') : '') + '</span><span class="r">' + (s.total || 0) + T(' ex · ', '题 · ') + pct(s.correct || 0, s.total || 0) + '% · ' + Math.max(1, Math.round((s.durationSec || 0) / 60)) + T(' min', '分钟') + '</span></li>').join('');
+  return '<section class="panel" aria-labelledby="h-log"><div class="panel-h"><h2 id="h-log">' + T('Practice log', '练习记录') + '</h2></div>' + (rows ? '<ul class="log">' + rows + '</ul>' : '<p class="empty-line">' + T('No practice in this period.', '这段时间没有练习。') + '</p>') + '</section>';
+}
+function notePanel(){
+  const notes = S.messages.filter(m => m.kind === 'note' && m.from === 'tutor').slice(0, 6);
+  const writable = canWriteShared() && !S.isOwner;
+  const fn = firstName();
+  const form = writable ? '<form id="note-form" style="display:grid;gap:8px"><label class="sr" for="note-text">' + T('Note for ' + fn, '给' + fn + '的留言') + '</label><textarea class="field" id="note-text" rows="3" placeholder="' + T('What should ' + fn + ' focus on before next class?', '下节课前，' + fn + '应该重点练习什么？') + '"></textarea><div><button class="btn primary small" type="submit">' + T('Send note', '发送') + '</button></div></form>' : '';
+  const list = notes.map(m => '<div class="note-card"><p>' + esc(m.text) + '</p><div class="note-meta"><span>' + esc(fmtDate(m.createdAt)) + '</span><span>' + (m.resolved ? T('Seen by ' + fn, fn + '已读') : T('Not seen yet', '未读')) + '</span>' +
+    (writable ? '<button type="button" class="link" data-act="msg-del" data-id="' + esc(m.id) + '">' + T('Delete', '删除') + '</button>' : '') + '</div></div>').join('');
+  return '<section class="panel" aria-labelledby="h-nt"><div class="panel-h"><h2 id="h-nt">' + T('Notes for ' + fn, '给' + fn + '的留言') + '</h2></div>' + form +
+    (list ? '<div style="margin-top:' + (form ? '16px' : '0') + '">' + list + '</div>' : (form ? '' : '<p class="empty-line">' + T('Notes from ' + TEACHER + ' show on ' + fn + '’s Learn page.', '老师的留言会显示在' + fn + '的学习页面上。') + '</p>')) + '</section>';
+}
+function classNotesPanel(l){
+  if(!l) return '';
+  const strengths = Lz(l, 'strengths') || [], struggles = Lz(l, 'struggles') || [];
+  const ul = arr => '<ul>' + arr.map(s => '<li>' + esc(s) + '</li>').join('') + '</ul>';
+  return '<section class="panel" aria-labelledby="h-cn"><div class="panel-h"><h2 id="h-cn">' + T('From the last class', '上节课回顾') + '</h2><span class="muted">' + esc(fmtDate(l.date)) + '</span></div>' +
+    '<p style="font-weight:700">' + esc(Lz(l, 'title') || '') + '</p>' + (Lz(l, 'summary') ? '<p class="muted" style="margin-top:6px">' + esc(Lz(l, 'summary')) + '</p>' : '') +
+    (strengths.length || struggles.length ? '<div class="obs" style="margin-top:12px">' + (strengths.length ? '<div><h3 class="eyebrow good-t">' + T('Went well', '表现好的地方') + '</h3>' + ul(strengths) + '</div>' : '') + (struggles.length ? '<div><h3 class="eyebrow bad-t">' + T('To work on', '需要加强') + '</h3>' + ul(struggles) + '</div>' : '') + '</div>' : '') +
+    '<p class="tm-note">' + T('Written by Claude from the class recording.', '以上由 Claude 根据课堂录音整理。') + '</p></section>';
+}
+
+const VIEWS = {learn: viewLearn, guide: viewGuide, words: viewWords, teacher: viewTeacher};
+
+/* ---------- lessons: choosing items and challenges ---------- */
+const isLong = it => it.type === 'sentence' || it.type === 'grammar';
+const enWords = s => String(s || '').split(/\s+/).map(w => w.replace(/^[^\w']+|[^\w']+$/g, '')).filter(Boolean);
+const normEn = s => enWords(s).map(w => w.toLowerCase()).join(' ');
+function distractorPool(it){
+  const en = String(it.english || '').trim().toLowerCase();
+  const others = S.items.filter(o => o.id !== it.id && o.english && o.hanzi && String(o.english).trim().toLowerCase() !== en && o.hanzi !== it.hanzi);
+  const same = others.filter(o => isLong(o) === isLong(it));
+  return same.length >= 3 ? same : others;
+}
+function pickDistractors(it, n, key){
+  const like = (Array.isArray(it.lookalikes) ? it.lookalikes : []).map(h => S.items.find(o => o.hanzi === h && o.id !== it.id)).filter(Boolean);
+  const seen = new Set([key(it)]), out = [];
+  for(const o of shuffle(like).concat(shuffle(distractorPool(it)))){
+    const k = key(o);
+    if(seen.has(k)) continue;
+    seen.add(k); out.push(o);
+    if(out.length === n) break;
+  }
+  return out;
+}
+function typesFor(it, stage){
+  const voice = hasVoice() && !(P && P.noListen);
+  const mc = distractorPool(it).length >= 2;
+  const hz = S.prefs.hanzi;
+  const syl = Array.isArray(it.syl) ? it.syl : [];
+  const toks = Array.isArray(it.tokens) && it.tokens.length >= 2;
+  if(isLong(it)){
+    if(stage === 'first') return [toks ? 'build-en' : 'meaning'];
+    return [toks && 'build-zh', toks && voice && 'hear', 'speak', toks && 'build-en'].filter(Boolean);
+  }
+  const short = hanCount(it.hanzi) <= 4;
+  if(stage === 'first') return [mc && 'meaning', mc && hz && short && 'select', mc && hz && short && 'read'].filter(Boolean);
+  return [mc && hz && short && 'select', mc && voice && 'listen', mc && hz && short && 'read', syl.length && syl.length <= 4 && 'tones', 'speak', mc && 'meaning'].filter(Boolean);
+}
+function chooseType(it, stage, avoid){
+  let opts = typesFor(it, stage);
+  if(!opts.length) opts = ['speak'];
+  const fresh = opts.filter(t => !avoid.includes(t));
+  return pick(fresh.length ? fresh : opts);
+}
+function lessonItems(mode, arg){
+  const today = ymd(new Date());
+  const pr = id => S.progress[id];
+  const ordered = itemsInOrder();
+  if(mode === 'node' || mode === 'review'){
+    const l = S.lessons.find(x => x.id === arg.split(':')[0]);
+    const nd = l && unitNodes(l).find(n => n.key === arg);
+    if(!nd) return {items: [], extra: []};
+    if(mode === 'review') return {items: shuffle(nd.items).slice(0, 10), extra: []};
+    const before = ordered.filter(i => i.lessonId === l.id && (i.step || 99) < nd.step && pr(i.id));
+    const extra = before.slice().sort((a, b) => accOf(pr(a.id)) - accOf(pr(b.id)) || String(pr(a.id).lastSeen || '').localeCompare(String(pr(b.id).lastSeen || ''))).slice(0, 3);
+    return {items: nd.items, extra};
+  }
+  if(mode === 'unit') return {items: shuffle(ordered.filter(i => i.lessonId === arg)).slice(0, 10), extra: []};
+  const seen = ordered.filter(i => pr(i.id));
+  if(mode === 'mistakes') return {items: seen.filter(i => (pr(i.id).wrong || 0) > 0).sort((a, b) => accOf(pr(a.id)) - accOf(pr(b.id))).slice(0, 8), extra: []};
+  const due = seen.filter(i => (pr(i.id).due || '') <= today).sort((a, b) => (pr(a.id).box || 0) - (pr(b.id).box || 0));
+  const rest = seen.filter(i => !due.includes(i)).sort((a, b) => String(pr(a.id).lastSeen || '').localeCompare(String(pr(b.id).lastSeen || '')));
+  return {items: due.concat(rest).slice(0, 8), extra: []};
+}
+function buildQueue(items, extra){
+  const first = [], mixed = [];
+  for(const it of items){
+    const p = S.progress[it.id];
+    if(!p){
+      const a = chooseType(it, 'first', []);
+      first.push({type: 'intro', id: it.id, isNew: true}, {type: a, id: it.id, isNew: true});
+      mixed.push({type: chooseType(it, 'second', [a]), id: it.id});
+    } else {
+      const a = chooseType(it, (p.box || 0) <= 1 ? 'first' : 'second', []);
+      mixed.push({type: a, id: it.id});
+      if((p.box || 0) <= 1) mixed.push({type: chooseType(it, 'second', [a]), id: it.id});
+    }
+  }
+  for(const it of extra) mixed.push({type: chooseType(it, 'second', []), id: it.id});
+  const pairs = items.concat(extra).filter(i => !isLong(i) && String(i.english || '').length <= 30);
+  if(pairs.length >= 4) mixed.push({type: 'match', ids: shuffle(pairs).slice(0, 5).map(i => i.id)});
+  let m = shuffle(mixed);
+  for(let i = 1; i < m.length; i++){
+    if(m[i].id && m[i].id === m[i - 1].id){ const j = m.findIndex((x, k) => k > i && x.id !== m[i].id); if(j > 0) [m[i], m[j]] = [m[j], m[i]]; }
+  }
+  return first.concat(m);
+}
+function startLesson(mode, arg){
+  if(!S.items.length){ toast(T('No lessons yet.', '还没有课程。')); return; }
+  const {items, extra} = lessonItems(mode, arg);
+  if(!items.length){ toast(mode === 'mistakes' ? T('No mistakes to practice. Nice.', '没有错题。') : T('Nothing to practice here yet.', '这里还没有可以练习的内容。')); return; }
+  P = {mode, arg: arg || null, startedAt: new Date(), queue: [], i: 0, hearts: HEARTS, combo: 0, maxCombo: 0, total: 0, correct: 0, intros: 0,
+    res: {}, skills: {}, misses: [], tones: {}, toneErrors: {}, retries: {}, state: 'answer', sel: null, lastOk: null, screen: '', confirmQuit: false, noListen: false, saveState: ''};
+  P.queue = buildQueue(items, extra);
+  $('#practice').hidden = false;
+  document.body.style.overflow = 'hidden';
+  renderEx();
+}
+function closeOverlay(){
+  const ov = $('#practice');
+  ov.hidden = true; ov.innerHTML = '';
+  document.body.style.overflow = '';
+  try { speechSynthesis.cancel(); } catch(e){ /* no audio */ }
+  P = null;
+  render();
+}
+
+/* ---------- lessons: rendering challenges ---------- */
+const cur = () => P.queue[P.i];
+function prepare(ex){
+  if(ex.ready) return;
+  ex.ready = true;
+  if(ex.type === 'listen' && P.noListen) ex.type = 'meaning';
+  if(ex.type === 'hear' && P.noListen) ex.type = 'build-zh';
+  const it = item(ex.id);
+  const byEn = o => String(o.english || '').trim().toLowerCase(), byHz = o => o.hanzi, byPy = o => String(o.pinyin || '').toLowerCase().replace(/\s+/g, '');
+  if(ex.type === 'meaning') ex.opts = shuffle([it].concat(pickDistractors(it, 3, byEn))).map(o => o.id);
+  else if(ex.type === 'select' || ex.type === 'listen') ex.opts = shuffle([it].concat(pickDistractors(it, ex.type === 'select' ? 2 : 3, byHz))).map(o => o.id);
+  else if(ex.type === 'read') ex.opts = shuffle([it].concat(pickDistractors(it, 3, byPy))).map(o => o.id);
+  if(ex.type === 'select') ex.byPinyin = Math.random() < 0.4;
+  if(ex.type === 'build-zh' || ex.type === 'hear'){
+    const own = new Set(it.tokens.map(t => t.h));
+    const extra = [];
+    for(const t of shuffle(S.items.filter(o => o.id !== it.id && Array.isArray(o.tokens)).flatMap(o => o.tokens))){ if(t && t.h && !own.has(t.h) && !extra.some(u => u.h === t.h)) extra.push(t); if(extra.length === 2) break; }
+    ex.tiles = shuffle(it.tokens.concat(extra).map(t => ({h: t.h, p: t.p || ''})));
+    ex.placed = [];
+  }
+  if(ex.type === 'build-en'){
+    const own = enWords(it.english);
+    const ownL = new Set(own.map(w => w.toLowerCase()));
+    const extra = [];
+    for(const w of shuffle(S.items.filter(o => o.id !== it.id && isLong(o)).flatMap(o => enWords(o.english)))){ if(!ownL.has(w.toLowerCase()) && !extra.some(u => u.toLowerCase() === w.toLowerCase())) extra.push(w); if(extra.length === 3) break; }
+    ex.tiles = shuffle(own.concat(extra).map(w => ({e: w})));
+    ex.placed = [];
+  }
+  if(ex.type === 'tones') ex.picks = it.syl.map(() => null);
+  if(ex.type === 'match'){ ex.left = shuffle(ex.ids); ex.right = shuffle(ex.ids); ex.done = []; ex.missed = []; ex.selL = null; ex.selR = null; ex.flash = null; }
+}
+function optBtn(ex, id, k, inner, cls){
+  const checked = P.state === 'checked';
+  const st = checked ? (id === ex.id ? ' is-right' : id === P.sel ? ' is-wrong' : '') : '';
+  return '<button type="button" class="' + (cls || 'opt') + st + '" data-act="p-opt" data-id="' + esc(id) + '" data-key="' + (k + 1) + '" aria-pressed="' + (P.sel === id) + '"' + (checked ? ' disabled' : '') + '>' + (cls ? inner + '<span class="key">' + (k + 1) + '</span>' : '<span class="key" aria-hidden="true">' + (k + 1) + '</span><span class="opt-t">' + inner + '</span>') + '</button>';
+}
+function zhCard(o){ return S.prefs.hanzi ? '<span class="big" lang="zh-CN">' + esc(o.hanzi) + '</span>' : '<span class="opt-py">' + esc(o.pinyin) + '</span>'; }
+function tileBtn(t, k, act, attr){
+  const inner = t.e != null ? esc(t.e) : '<span class="py">' + esc(t.p) + '</span><span class="hz">' + esc(t.h) + '</span>';
+  return '<button type="button" class="tile-b' + (t.e != null ? ' en' : '') + '" data-act="' + act + '" ' + attr + '="' + k + '"' + (P.state === 'checked' ? ' disabled' : '') + (t.e != null ? '' : ' lang="zh-CN"') + '>' + inner + '</button>';
+}
+function hintSentence(it, ex){
+  return '<div class="bubble" lang="zh-CN"><span class="ruby md">' + it.tokens.map((t, k) => {
+    const g = S.items.find(o => o.hanzi === t.h);
+    const pop = ex.hint === k ? '<span class="hintpop" role="tooltip"><span class="py">' + esc(t.p) + '</span>' + esc(g ? g.english : '') + '</span>' : '';
+    return '<button type="button" class="hintw" data-act="p-hint" data-k="' + k + '" aria-label="' + esc(t.h + ' ' + (t.p || '')) + '">' + esc(t.h) + pop + '</button>';
+  }).join('') + '</span></div>';
+}
+function answerLine(ex){
+  const placed = ex.placed.map((k, pos) => tileBtn(ex.tiles[k], pos, 'p-untile', 'data-pos')).join('');
+  const bank = ex.tiles.map((t, k) => ex.placed.includes(k) ? '<span class="tile-b ghost' + (t.e != null ? ' en' : '') + '" aria-hidden="true">' + (t.e != null ? esc(t.e) : '<span class="py">' + esc(t.p) + '</span><span class="hz">' + esc(t.h) + '</span>') + '</span>' : tileBtn(t, k, 'p-tile', 'data-k')).join('');
+  return '<div class="answer-line" aria-label="Your answer">' + (placed || '<span class="ph">' + T('Tap the words below', '点击下面的词') + '</span>') + '</div><div class="bank">' + bank + '</div>';
+}
+const BODY = {
+  intro(ex, it){
+    return '<div class="mascot-row">' + panda('wave') + '<p class="speech">' + (it.type === 'grammar' ? T('New grammar tip!', '新语法！') : T('New ' + (KIND_EN[it.type] || 'word') + '!', '新词！')) + '</p></div><div class="intro">' + bigZh(it) +
+      '<div class="intro-meaning">' + esc(it.english) + '</div>' +
+      (it.pattern ? '<div class="pattern"><span class="eyebrow">' + T('Pattern', '句型') + '</span><span class="zh" lang="zh-CN">' + esc(it.pattern) + '</span>' + (it.explain ? '<span class="hint">' + esc(it.explain) + '</span>' : '') + '</div>' : '') +
+      (it.notes ? '<p class="note"><b>' + T('Memory trick: ', '记忆方法：') + '</b>' + esc(it.notes) + '</p>' : '') + audioPair(it) + '</div>';
+  },
+  meaning(ex, it){ return '<p class="p-kicker">' + T('What does this mean?', '这是什么意思？') + '</p><div class="prompt">' + sayBtn(it.hanzi) + ruby(it, 'lg') + '</div><div class="opts">' + ex.opts.map((id, k) => optBtn(ex, id, k, esc(item(id).english))).join('') + '</div>'; },
+  select(ex, it){
+    const prompt = ex.byPinyin ? '<span class="zh">' + esc(it.pinyin) + '</span>' : '“' + esc(it.english) + '”';
+    return '<p class="p-kicker">' + T('Select the correct character' + (hanCount(it.hanzi) > 1 ? 's' : '') + ' for ', '选出正确的汉字：') + '<span class="en-prompt" style="display:inline">' + prompt + '</span></p><div class="cards">' + ex.opts.map((id, k) => optBtn(ex, id, k, zhCard(item(id)), 'copt')).join('') + '</div>';
+  },
+  read(ex, it){ return '<p class="p-kicker">' + T('How do you read this?', '怎么读？') + '<span class="zh-q" lang="zh-CN">这个' + (hanCount(it.hanzi) > 1 ? '词' : '字') + '怎么读？</span></p><div class="read-zh" lang="zh-CN">' + esc(it.hanzi) + '</div><div class="opts">' + ex.opts.map((id, k) => optBtn(ex, id, k, '<span class="opt-py">' + esc(item(id).pinyin) + '</span>')).join('') + '</div>'; },
+  listen(ex, it){ return '<p class="p-kicker">' + T('Select what you hear', '选出你听到的') + '</p><div class="prompt" style="justify-content:center">' + audioPair(it) + '</div><div class="cards">' + ex.opts.map((id, k) => optBtn(ex, id, k, zhCard(item(id)), 'copt')).join('') + '</div>'; },
+  tones(ex, it){
+    const cs = Array.from(it.hanzi || '').filter(isHan);
+    const checked = P.state === 'checked';
+    const cols = it.syl.map((s, k) => {
+      const right = sylTone(s), got = ex.picks[k];
+      const btns = [1, 2, 3, 4, 5].map(t => '<button type="button" class="tb' + (checked ? (t === right ? ' is-right' : t === got ? ' is-wrong' : '') : '') + '" data-act="p-tone" data-k="' + k + '" data-t="' + t + '" aria-pressed="' + (got === t) + '" aria-label="' + TONE_EN[t] + ' tone"' + (checked ? ' disabled' : '') + '>' + toneIcon(t) + '<span>' + (t === 5 ? '·' : t) + '</span></button>').join('');
+      const label = checked ? markSyl(s) : got ? markSyl(sylBase(s) + got) : sylBase(s);
+      return '<div class="tone-col">' + (cs.length === it.syl.length ? '<span class="hz" lang="zh-CN">' + esc(cs[k]) + '</span>' : '') + '<span class="syl' + (checked ? (got === right ? ' ok' : ' no') : '') + '">' + esc(label) + '</span><div class="tone-btns" role="group" aria-label="Tone for ' + esc(sylBase(s)) + '">' + btns + '</div></div>';
+    }).join('');
+    return '<p class="p-kicker">' + T('Mark the tones', '标出声调') + '</p><div class="prompt">' + sayBtn(it.hanzi, 'big') + sayBtn(it.hanzi, 'slow', true) + '<div class="en-prompt">“' + esc(it.english) + '”</div></div><div class="tone-row">' + cols + '</div><p class="tone-legend"><span>1 high, flat</span><span>2 rising</span><span>3 dips, rises</span><span>4 falling</span><span>· neutral</span></p>';
+  },
+  'build-en'(ex, it){ return '<p class="p-kicker">' + T('Write this in English', '翻译成英文') + '</p><div class="prompt">' + sayBtn(it.hanzi) + hintSentence(it, ex) + '</div><p class="hint">' + T('Tap a word to see what it means.', '点击汉字查看意思。') + '</p>' + answerLine(ex); },
+  'build-zh'(ex, it){ return '<p class="p-kicker">' + T('Write this in Chinese', '翻译成中文') + '</p><div class="prompt"><div class="bubble en-prompt">' + esc(it.english) + '</div></div>' + answerLine(ex); },
+  hear(ex, it){ return '<p class="p-kicker">' + T('Tap what you hear', '听写') + '</p><div class="prompt" style="justify-content:center">' + audioPair(it) + '</div>' + answerLine(ex); },
+  match(ex){
+    const btn = (side, id, inner) => {
+      const done = ex.done.includes(id), sel = (side === 'l' ? ex.selL : ex.selR) === id, flash = ex.flash && ex.flash[side === 'l' ? 0 : 1] === id;
+      return '<button type="button" class="mb' + (sel ? ' sel' : '') + (flash ? ' flash' : '') + '" data-act="p-m" data-side="' + side + '" data-id="' + esc(id) + '"' + (done ? ' disabled' : '') + '>' + inner + '</button>';
+    };
+    return '<p class="p-kicker">' + T('Tap the matching pairs', '配对') + '</p><div class="match"><div class="mcol">' + ex.left.map(id => btn('l', id, ruby(item(id), 'sm'))).join('') + '</div><div class="mcol">' + ex.right.map(id => btn('r', id, esc(item(id).english))).join('') + '</div></div>';
+  },
+  speak(ex, it){
+    return '<p class="p-kicker">' + T('Say this in Chinese', '用中文说') + '</p><div class="prompt"><div class="bubble en-prompt">' + esc(it.english) + '</div></div>' +
+      (ex.revealed ? '<div class="reveal">' + audioPair(it) + ruby(it, 'lg') + '</div>' : '<p class="hint">' + T('Say it out loud, then check yourself against the answer.', '先大声说出来，再对照答案。') + '</p>');
+  },
+};
+function isReady(ex){
+  if(['meaning', 'select', 'read', 'listen'].includes(ex.type)) return P.sel != null;
+  if(ex.type === 'tones') return ex.picks.every(t => t != null);
+  if(ex.type === 'build-en' || ex.type === 'build-zh' || ex.type === 'hear') return ex.placed.length > 0;
+  return true;
+}
+function foot(cls, inner){ return '<div class="p-foot' + (cls ? ' ' + cls : '') + '"><div class="p-foot-in">' + inner + '</div></div>'; }
+function verdictHTML(ex){
+  const it = item(ex.id);
+  const ok = P.lastOk;
+  const combo = ok && P.combo >= 5 && P.combo % 5 === 0 ? '<div class="combo">' + T(P.combo + ' in a row!', '连对' + P.combo + '题！') + '</div>' : '';
+  let why = '';
+  if(ex.type === 'tones' && !ok) why = T('You marked ', '你标的是 ') + it.syl.map((s, k) => markSyl(sylBase(s) + (ex.picks[k] || 5))).join(' ');
+  const answer = ex.type === 'build-en' ? '<span>' + esc(it.english) + '</span>' : ruby(it, 'sm') + '<span>' + esc(it.english) + '</span>';
+  return '<div class="verdict"><span class="vicon">' + (ok ? ICON.check : ICON.cross) + '</span><div>' + combo + '<h3>' + (ok ? pick([T('Excellent!', '太棒了！'), T('Nice!', '很好！'), T('Correct!', '正确！'), T('Great job!', '真不错！')]) : T('Correct solution:', '正确答案：')) + '</h3><div class="ans">' + answer + '</div>' + (why ? '<p class="why">' + esc(why) + '</p>' : '') + '</div></div>';
+}
+function footFor(ex){
+  if(ex.type === 'intro') return foot('', '<span></span><button type="button" class="btn primary big" data-act="p-next" data-primary>' + T('Continue', '继续') + '</button>');
+  if(ex.type === 'speak'){
+    if(!ex.revealed) return foot('', '<span></span><button type="button" class="btn primary big" data-act="p-reveal" data-primary>' + T('Check', '查看答案') + '</button>');
+    return foot('', '<div class="self"><span>' + T('Did you say it right?', '说对了吗？') + '</span><button type="button" class="btn" data-act="p-self" data-v="0">' + T('Not quite', '没说对') + '</button><button type="button" class="btn good" data-act="p-self" data-v="1" data-primary>' + T('I said it', '说对了') + '</button></div>');
+  }
+  if(ex.type === 'match'){
+    if(P.state !== 'checked') return foot('', '<span class="hint">' + T('Match every pair to continue', '全部配对后继续') + '</span>');
+    return foot('ok', '<div class="verdict"><span class="vicon">' + ICON.check + '</span><div><h3>' + T('All matched!', '全部配对成功！') + '</h3></div></div><button type="button" class="btn good big" data-act="p-next" data-primary>' + T('Continue', '继续') + '</button>');
+  }
+  if(P.state === 'answer') return foot('', (['listen', 'hear'].includes(ex.type) ? '<button type="button" class="btn" data-act="p-skip">' + T('Can’t listen now', '现在不方便听') + '</button>' : '<button type="button" class="btn" data-act="p-skipq">' + T('Skip', '跳过') + '</button>') +
+    '<button type="button" class="btn good big" data-act="p-check" data-primary' + (isReady(ex) ? '' : ' disabled') + '>' + T('Check', '检查') + '</button>');
+  return foot(P.lastOk ? 'ok' : 'no', verdictHTML(ex) + '<button type="button" class="btn ' + (P.lastOk ? 'good' : 'bad') + ' big" data-act="p-next" data-primary>' + (P.lastOk ? T('Continue', '继续') : T('Got it', '知道了')) + '</button>');
+}
+function headHTML(){
+  const progress = P.queue.length ? Math.round(P.i / P.queue.length * 100) : 0;
+  return '<div class="p-head"><div class="p-head-in"><button type="button" class="icon-btn" data-act="p-quit" aria-label="' + T('Quit lesson', '退出') + '">' + ICON.x + '</button>' +
+    '<div class="p-bar" role="progressbar" aria-label="' + T('Lesson progress', '进度') + '" aria-valuemin="0" aria-valuemax="' + P.queue.length + '" aria-valuenow="' + P.i + '"><span style="width:' + progress + '%"></span></div>' +
+    '<span class="hearts" title="' + T('Hearts', '生命值') + '">' + ICON.heart + P.hearts + '</span></div></div>';
+}
+function renderEx(){
+  const ov = $('#practice');
+  if(!P) return;
+  if(P.screen){ ov.innerHTML = SCREENS[P.screen](); return; }
+  const ex = cur();
+  prepare(ex);
+  const it = ex.id ? item(ex.id) : null;
+  const tags = (ex.isNew && ex.type !== 'intro' ? '<span class="tag new">' + (it && isLong(it) ? T('New sentence', '新句子') : T('New word', '新词')) + '</span>' : '') + (ex.mistake ? '<span class="tag mistake">' + T('Previous mistake', '之前的错题') + '</span>' : '');
+  const modal = P.confirmQuit ? '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="quit-h"><h2 id="quit-h">' + T('Wait, don’t go!', '确定要退出吗？') + '</h2><p class="muted">' + T('You’ll lose your progress in this lesson if you quit now. Answers so far still count for review.', '现在退出，本小节不算完成；已经答过的题仍会记录。') + '</p><div class="modal-actions"><button type="button" class="btn primary" data-act="p-quit-no">' + T('Keep learning', '继续学习') + '</button><button type="button" class="btn" data-act="p-quit-yes">' + T('End session', '退出') + '</button></div></div></div>' : '';
+  ov.innerHTML = headHTML() + '<div class="p-body"><div class="p-in" data-ex="' + esc(ex.id || '') + '" data-type="' + ex.type + '"><div class="tags">' + tags + '</div>' + BODY[ex.type](ex, it) + '</div></div>' + footFor(ex) + modal;
+  if(!ex.spoken && (ex.type === 'intro' || ex.type === 'listen' || ex.type === 'hear')){
+    ex.spoken = true;
+    setTimeout(() => { if(P && !P.screen && cur() === ex) say(it.hanzi); }, 300);
+  }
+  if(P.flash){ const f = $('#practice ' + (P.flash === 'bad' ? '.p-in' : '.p-foot')); if(f) f.classList.add(P.flash === 'bad' ? 'shake' : 'bump'); P.flash = null; }
+  if(P.confirmQuit){ const b = $('#practice [data-act="p-quit-no"]'); if(b) b.focus(); }
+}
+
+/* ---------- lessons: answering ---------- */
+function record(it, type, ok, answer){
+  const skill = type === 'match' ? 'meaning' : type === 'hear' ? 'listen' : (type === 'build-en' || type === 'build-zh') ? 'build' : type;
+  const r = P.res[it.id] || (P.res[it.id] = {c: 0, w: 0});
+  const s = P.skills[skill] || (P.skills[skill] = {c: 0, w: 0});
+  if(ok){ r.c++; s.c++; P.correct++; } else { r.w++; s.w++; P.misses.push({itemId: it.id, skill, answer: String(answer || '').slice(0, 60)}); }
+  P.total++;
+}
+function afterAnswer(ex, ok, costsHeart){
+  P.lastOk = ok;
+  P.flash = ok ? 'good' : 'bad';
+  haptic(ok ? 'good' : 'bad');
+  if(ok){ P.combo++; P.maxCombo = Math.max(P.maxCombo, P.combo); sfx('good'); }
+  else {
+    P.combo = 0; sfx('bad');
+    if(costsHeart) P.hearts = Math.max(0, P.hearts - 1);
+    const n = P.retries[ex.id] || 0;
+    if(ex.type !== 'match' && n < 2){ P.retries[ex.id] = n + 1; P.queue.push({type: ex.type, id: ex.id, mistake: true}); }
+  }
+}
+function pCheck(){
+  const ex = cur();
+  if(P.state !== 'answer' || !isReady(ex)) return;
+  const it = item(ex.id);
+  let ok = false, ans = '';
+  if(ex.type === 'meaning'){ ok = P.sel === it.id; ans = (item(P.sel) || {}).english; }
+  else if(ex.type === 'select' || ex.type === 'listen'){ ok = P.sel === it.id; ans = (item(P.sel) || {}).hanzi; }
+  else if(ex.type === 'read'){ ok = P.sel === it.id; ans = (item(P.sel) || {}).pinyin; }
+  else if(ex.type === 'tones'){
+    ok = true;
+    it.syl.forEach((s, k) => {
+      const want = sylTone(s), got = ex.picks[k];
+      const t = P.tones[want] || (P.tones[want] = {c: 0, w: 0});
+      if(want === got) t.c++; else { t.w++; ok = false; const key = want + '>' + got; P.toneErrors[key] = (P.toneErrors[key] || 0) + 1; }
+    });
+    ans = it.syl.map((s, k) => markSyl(sylBase(s) + ex.picks[k])).join(' ');
+  }
+  else if(ex.type === 'build-en'){ const got = ex.placed.map(k => ex.tiles[k].e).join(' '); ok = normEn(got) === normEn(it.english); ans = got; }
+  else { const got = ex.placed.map(k => ex.tiles[k].h).join(''); ok = got === it.tokens.map(t => t.h).join(''); ans = ex.placed.map(k => ex.tiles[k].h).join(' '); }
+  P.state = 'checked';
+  record(it, ex.type, ok, ans);
+  afterAnswer(ex, ok, true);
+  say(it.hanzi);
+  renderEx();
+}
+function pNext(){
+  const ex = cur();
+  if(ex.type === 'intro') P.intros++;
+  if(P.state === 'checked' && P.lastOk === false && P.hearts <= 0){ P.screen = 'out'; renderEx(); finishRun(false); return; }
+  P.i++;
+  P.state = 'answer'; P.sel = null; P.lastOk = null;
+  if(P.i >= P.queue.length){ P.screen = 'done'; sfx('done'); renderEx(); showConfetti(); finishRun(true); return; }
+  renderEx();
+  const body = $('#practice .p-body');
+  if(body) body.scrollTop = 0;
+}
+function pSelf(v){
+  const ex = cur();
+  record(item(ex.id), 'speak', v, v ? '' : '(self-check)');
+  afterAnswer(ex, v, false);
+  P.state = 'checked';
+  pNext();
+}
+function pMatch(side, id){
+  const ex = cur();
+  if(P.state === 'checked' || ex.done.includes(id)) return;
+  if(side === 'l'){ ex.selL = id; say(item(id).hanzi); } else ex.selR = id;
+  if(ex.selL && ex.selR){
+    if(ex.selL === ex.selR){ ex.done.push(ex.selL); sfx('good'); haptic('good'); }
+    else {
+      if(!ex.missed.includes(ex.selL)) ex.missed.push(ex.selL);
+      ex.flash = [ex.selL, ex.selR]; sfx('bad'); haptic('bad');
+      setTimeout(() => { if(P && !P.screen && cur() === ex){ ex.flash = null; renderEx(); } }, 500);
+    }
+    ex.selL = null; ex.selR = null;
+    if(ex.done.length === ex.ids.length){
+      for(const mid of ex.ids) record(item(mid), 'match', !ex.missed.includes(mid), '');
+      P.state = 'checked'; P.lastOk = true;
+    }
+  }
+  renderEx();
+}
+
+/* ---------- lessons: finishing and saving ---------- */
+function lessonXP(passed){
+  if(!passed) return 0;
+  const perfect = P.total > 0 && P.correct === P.total;
+  return 10 + (perfect ? 5 : 0) + Math.min(5, Math.floor(P.maxCombo / 5));
+}
+function finishRun(passed){
+  const run = P;
+  run.endedAt = new Date();
+  run.passed = passed;
+  run.xp = lessonXP(passed);
+  run.streakBefore = studentStats();
+  saveRun(run).then(st => { run.saveState = st; if(P === run) renderEx(); });
+}
+function nextProgress(prev, r, nowS, today){
+  const right = r.w === 0;
+  let box, due;
+  if(!prev){ box = right ? 1 : 0; due = addDays(today, INTERVALS[box]); }
+  else if(right){
+    const early = (prev.due || '') > today;
+    box = early ? (prev.box || 0) : Math.min((prev.box || 0) + 1, INTERVALS.length - 1);
+    due = early ? prev.due : addDays(today, INTERVALS[box]);
+  } else { box = Math.floor((prev.box || 0) / 2); due = addDays(today, INTERVALS[box]); }
+  return {box, due, seen: ((prev && prev.seen) || 0) + 1, correct: ((prev && prev.correct) || 0) + r.c, wrong: ((prev && prev.wrong) || 0) + r.w, lastSeen: nowS, lastResult: right ? 'right' : 'wrong', firstSeen: (prev && prev.firstSeen) || nowS};
+}
+async function writeRetry(fn){ try { await fn(); } catch(e){ if(e && e.code === 'unavailable'){ await sleep(600); await fn(); } else throw e; } }
+async function saveRun(run){
+  const ids = Object.keys(run.res);
+  if(!ids.length && !run.passed) return 'empty';
+  if(!S.isOwner || !db) return 'preview';
+  run.saveState = 'saving';
+  const end = run.endedAt || new Date();
+  const nowS = end.toISOString(), today = ymd(end);
+  const secs = Math.min(Math.round((end - run.startedAt) / 1000), Math.max(60, (run.total + run.intros) * 60));
+  try {
+    for(const id of ids) await writeRetry(() => db.doc('progress/' + id).set(nextProgress(S.progress[id], run.res[id], nowS, today)));
+    await writeRetry(() => db.collection('sessions').add({startedAt: run.startedAt.toISOString(), endedAt: nowS, date: today, mode: run.mode === 'node' ? 'node' : run.mode, node: run.mode === 'node' || run.mode === 'review' ? run.arg : null,
+      lessonId: run.arg ? String(run.arg).split(':')[0] : null, passed: !!run.passed, hearts: run.hearts, maxCombo: run.maxCombo,
+      total: run.total, correct: run.correct, xp: run.xp, durationSec: secs, skills: run.skills, misses: run.misses.slice(0, 40), tones: run.tones, toneErrors: run.toneErrors, items: ids.slice(0, 60)}));
+    return 'saved';
+  } catch(e){ return 'error'; }
+}
+function weekRow(){
+  const today = ymd(new Date());
+  const dow = (new Date().getDay() + 6) % 7;
+  const days = studentStats().days;
+  let h = '';
+  for(let i = 0; i < 7; i++){
+    const key = addDays(today, i - dow);
+    const on = days.has(key) || key === today;
+    h += '<span>' + esc(new Date(key + 'T12:00').toLocaleDateString(locale(), {weekday: 'narrow'})) + '<i class="' + (on && key <= today ? 'on' : '') + '">' + (on && key <= today ? ICON.check : '') + '</i></span>';
+  }
+  return '<div class="week">' + h + '</div>';
+}
+function showConfetti(){
+  const cols = ['var(--jade)', 'var(--gold)', 'var(--cobalt)', 'var(--seal)', '#9b51e0'];
+  let h = '';
+  for(let i = 0; i < 40; i++) h += '<i style="left:' + (Math.random() * 100).toFixed(1) + '%;background:' + cols[i % cols.length] + ';--dx:' + Math.round(Math.random() * 160 - 80) + 'px;--r:' + Math.round(Math.random() * 720 - 360) + 'deg;animation-delay:' + (Math.random() * 0.5).toFixed(2) + 's"></i>';
+  const el = document.createElement('div');
+  el.className = 'confetti';
+  el.setAttribute('aria-hidden', 'true');
+  el.innerHTML = h;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2800);
+}
+const SCREENS = {
+  done(){
+    const acc = pct(P.correct, P.total);
+    const secs = Math.round(((P.endedAt || new Date()) - P.startedAt) / 1000);
+    const perfect = P.total > 0 && P.correct === P.total;
+    const missed = Array.from(new Set(P.misses.map(m => m.itemId))).filter(id => item(id));
+    const save = {saving: T('Saving…', '保存中…'), saved: T('Saved.', '已保存。'), preview: T('Preview only: not saved to ' + firstName() + '’s progress.', '预览模式：不计入进度。'), error: T('Couldn’t save. Check your connection.', '保存失败，请检查网络。')}[P.saveState || 'saving'] || '';
+    return '<div class="p-body"><div class="p-in end">' + panda('cheer') +
+      '<h2>' + (perfect ? T('Perfect lesson!', '满分！') : T('Lesson complete!', '完成！')) + '</h2>' +
+      '<div class="sboxes"><div class="sbox"><div class="h">' + T('Total XP', '经验值') + '</div><b>' + P.xp + '</b></div>' +
+      '<div class="sbox blue"><div class="h">' + (secs < 240 ? T('Speedy', '速度') : T('Committed', '用时')) + '</div><b>' + Math.floor(secs / 60) + ':' + pad(secs % 60) + '</b></div>' +
+      '<div class="sbox green"><div class="h">' + (acc >= 90 ? T('Amazing', '优秀') : acc >= 70 ? T('Good', '良好') : T('Accuracy', '正确率')) + '</div><b>' + acc + '%</b></div></div>' +
+      (missed.length ? '<div class="miss-list panel"><div class="panel-h"><h2>' + T('Review these', '再看看这些') + '</h2></div><ul class="wlist">' + missed.map(id => wordRow(item(id))).join('') + '</ul></div>' : '') +
+      '<p class="save-state" role="status">' + esc(save) + '</p></div></div>' + foot('', '<span></span><button type="button" class="btn good big" data-act="p-done" data-primary>' + T('Continue', '继续') + '</button>');
+  },
+  streak(){
+    const st = studentStats();
+    return '<div class="p-body"><div class="p-in end"><svg class="big-icon flame" viewBox="0 0 24 24" aria-hidden="true">' + ICON.flame.replace(/^<svg[^>]*>|<\/svg>$/g, '') + '</svg><div class="streak-num">' + st.streak + '</div><h2>' + T('day streak!', '天连续学习！') + '</h2>' + weekRow() +
+      '<p class="muted">' + T('Practice every day to keep it going.', '每天练习，保持下去。') + '</p></div></div>' + foot('', '<span></span><button type="button" class="btn good big" data-act="p-close" data-primary>' + T('Continue', '继续') + '</button>');
+  },
+  out(){
+    return '<div class="p-body"><div class="p-in end">' + panda('sad') + '<h2 style="color:var(--bad)">' + T('You ran out of hearts', '生命值用完了') + '</h2>' +
+      '<p class="muted" style="max-width:44ch">' + T('Your answers are saved for review. Try the lesson again to finish it and unlock the next one.', '已答的题会记录下来。重新开始本小节，完成后解锁下一节。') + '</p></div></div>' +
+      foot('', '<button type="button" class="btn" data-act="p-close">' + T('Quit', '退出') + '</button><button type="button" class="btn primary big" data-act="p-retry" data-primary>' + T('Try again', '再试一次') + '</button>');
+  },
+};
+
+/* ---------- render ---------- */
+const dirty = new Set();
+let raf = 0;
+function schedule(){ if(raf) return; raf = requestAnimationFrame(() => { raf = 0; render(); }); }
+function preserve(root, fn){
+  const a = document.activeElement;
+  const aid = a && a !== document.body && root.contains(a) ? a.id : '';
+  let s0 = null, s1 = null;
+  if(aid && typeof a.selectionStart === 'number'){ s0 = a.selectionStart; s1 = a.selectionEnd; }
+  const vals = {};
+  for(const id of dirty){ const el = document.getElementById(id); if(el && root.contains(el)) vals[id] = el.value; }
+  fn();
+  for(const id in vals){ const el = document.getElementById(id); if(el) el.value = vals[id]; }
+  if(aid){
+    const el = document.getElementById(aid);
+    if(el){ el.focus({preventScroll: true}); if(s0 != null && el.setSelectionRange){ try { el.setSelectionRange(s0, s1); } catch(e){ /* not a text field */ } } }
+  }
+}
+function render(){
+  document.documentElement.lang = S.lang === 'zh' ? 'zh-CN' : 'en';
+  document.body.classList.toggle('no-hz', !S.prefs.hanzi);
+  document.body.classList.toggle('no-py', !S.prefs.pinyin);
+  const names = {learn: T('Learn', '学习'), guide: T('Guidebook', '课程笔记'), words: T('Words', '词汇'), teacher: '老师'};
+  for(const b of document.querySelectorAll('.tabs [data-tab]')){ b.textContent = names[b.dataset.tab]; b.setAttribute('aria-current', b.dataset.tab === S.tab ? 'page' : 'false'); }
+  $('#lbl-hz').textContent = T('Characters 汉字', '汉字');
+  $('#lbl-py').textContent = T('Pinyin', '拼音');
+  $('#lbl-snd').textContent = T('Sound effects', '音效');
+  $('#lbl-lang').textContent = T('Language', '语言');
+  $('#pref-lang').value = S.lang || 'en';
+  const main = $('#main');
+  const html = (VIEWS[S.tab] || VIEWS.learn)();
+  preserve(main, () => { main.innerHTML = html; });
+  if(S.tab === 'learn' && !S.scrolledPath && allLoaded()){
+    const c = $('.pnode.current');
+    if(c){ S.scrolledPath = true; const r = c.getBoundingClientRect(); if(r.top > window.innerHeight - 120) c.scrollIntoView({block: 'center'}); }
+  }
+}
+function setTab(t){
+  if(!VIEWS[t]) t = 'learn';
+  S.tab = t;
+  try { history.replaceState(null, '', '#' + t); } catch(e){ /* sandboxed */ }
+  render();
+  window.scrollTo(0, 0);
+}
+let toastTimer = 0;
+function toast(msg){
+  if(!msg) return;
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+/* ---------- writes ---------- */
+async function save(fn, okMsg){
+  if(!db){ toast(T('Couldn’t save.', '无法保存。')); return false; }
+  for(let attempt = 0; attempt < 2; attempt++){
+    try { await fn(); if(okMsg) toast(okMsg); return true; }
+    catch(e){
+      const code = e && e.code;
+      if(code === 'unavailable' && attempt === 0){ await sleep(500 + Math.random() * 700); continue; }
+      if(code === 'invalid_argument' && !S.isOwner){ S.readOnly = true; render(); toast(T('This page is read-only for you. Ask ' + firstName() + ' to share it as an Editor.', '您没有编辑权限。请让' + firstName() + '把您设为“编辑者”。')); }
+      else if(code === 'quota_exceeded') toast(T('Storage for this page is full.', '存储空间已满。'));
+      else toast(T('Couldn’t save. Check your connection and try again.', '保存失败，请检查网络后重试。'));
+      return false;
+    }
+  }
+  return false;
+}
+async function hwToggle(id){
+  const h = S.homework.find(x => x.id === id);
+  if(!h) return;
+  const done = (h.status || 'todo') === 'todo';
+  await save(() => db.doc('homework/' + id).update(done ? {status: 'done', doneAt: nowISO()} : {status: 'todo', doneAt: null}), done ? T('Marked done', '已标记为完成') : T('Marked as to do', '已标记为未完成'));
+}
+async function hwNote(id){
+  const el = document.getElementById('hwn-' + id);
+  if(el && await save(() => db.doc('homework/' + id).update({studentNote: el.value.trim()}), T('Note saved', '已保存'))) dirty.delete(el.id);
+}
+async function hwFeedback(id){
+  const el = document.getElementById('hwf-' + id);
+  if(el && el.value.trim() && await save(() => db.doc('homework/' + id).update({tutorFeedback: el.value.trim(), status: 'reviewed', reviewedAt: nowISO()}), T('Feedback sent', '反馈已发送'))) dirty.delete(el.id);
+}
+async function msgResolve(id, v){ await save(() => db.doc('messages/' + id).update({resolved: v, resolvedAt: v ? nowISO() : null})); }
+async function msgDelete(id){ await save(() => db.doc('messages/' + id).delete(), T('Deleted', '已删除')); }
+async function addMessage(kind, inputId){
+  const el = document.getElementById(inputId);
+  const text = el ? el.value.trim() : '';
+  if(!text) return;
+  el.value = ''; dirty.delete(inputId);
+  if(!await save(() => db.collection('messages').add({from: role(), kind, text, createdAt: nowISO(), resolved: false}), kind === 'note' ? T('Note sent', '留言已发送') : T('Added', '已添加'))) el.value = text;
+}
+async function addHomework(){
+  const el = document.getElementById('hw-new');
+  const l = latestLesson();
+  const text = el ? el.value.trim() : '';
+  if(!text || !l) return;
+  el.value = ''; dirty.delete('hw-new');
+  const order = 100 + S.homework.filter(h => h.lessonId === l.id).length;
+  if(!await save(() => db.collection('homework').add({lessonId: l.id, text, order, status: 'todo', createdAt: nowISO(), by: role()}), T('Homework added', '作业已添加'))) el.value = text;
+}
+async function addWord(){
+  const h = $('#aw-h').value.trim(), p = $('#aw-p').value.trim(), e = $('#aw-e').value.trim(), lessonId = $('#aw-l').value;
+  if(!h || !p || !e) return;
+  const parsed = parsePinyin(p, h);
+  const doc = {lessonId, type: hanCount(h) > 3 ? 'phrase' : 'word', hanzi: h, pinyin: parsed.pinyin, english: e, order: 1e12 + Date.now() % 1e9, createdAt: nowISO(), addedBy: role()};
+  if(parsed.syl) doc.syl = parsed.syl;
+  if(await save(() => db.collection('items').add(doc), T('Added ', '已添加 ') + h)){
+    for(const id of ['aw-h', 'aw-p', 'aw-e']){ $('#' + id).value = ''; dirty.delete(id); }
+  }
+}
+async function openNode(key){
+  const l = S.lessons.find(x => x.id === key.split(':')[0]);
+  const nd = l && unitNodes(l).find(n => n.key === key);
+  if(!nd) return;
+  if(!nd.unlocked){ toast(T('Finish the lessons above to unlock this one.', '先完成上面的小节才能解锁。')); return; }
+  if(nd.kind !== 'chest'){ startLesson(nd.kind === 'review' ? 'review' : 'node', key); return; }
+  if(nd.done){ toast(T('You already opened this chest.', '这个宝箱已经打开过了。')); return; }
+  if(!S.isOwner){ toast(T('Preview only: chests open for ' + firstName() + '.', '预览模式。')); return; }
+  const now = new Date();
+  if(await save(() => db.collection('sessions').add({mode: 'chest', node: key, lessonId: l.id, passed: true, total: 0, correct: 0, xp: 5, date: ymd(now), startedAt: now.toISOString(), endedAt: now.toISOString()}), T('Chest opened: +5 XP', '宝箱：+5 经验值'))) sfx('done');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if(!el) return;
+  const act = el.dataset.act;
+  if(act === 'tab'){ e.preventDefault(); setTab(el.dataset.tab); return; }
+  if(act === 'display'){ const panel = $('#display-panel'); panel.hidden = !panel.hidden; el.setAttribute('aria-expanded', String(!panel.hidden)); updateVoiceNote(); return; }
+  if(act === 'say'){ say(el.dataset.text, el.dataset.slow === '1'); return; }
+  if(act === 'node'){ openNode(el.dataset.key); return; }
+  if(act === 'start'){ startLesson(el.dataset.mode, el.dataset.id); return; }
+  if(act === 'period'){ S.period = el.dataset.v; render(); return; }
+  if(act === 'wfilter'){ S.wordFilter = el.dataset.v; render(); return; }
+  if(act === 'open-lesson'){ S.openLessons.add(el.dataset.id); S.lessonsTouched = true; setTab('guide'); const d = document.getElementById('lesson-' + el.dataset.id); if(d) d.scrollIntoView({block: 'start'}); return; }
+  if(act === 'hw-toggle'){ hwToggle(el.dataset.id); return; }
+  if(act === 'hw-note'){ hwNote(el.dataset.id); return; }
+  if(act === 'hw-feedback'){ hwFeedback(el.dataset.id); return; }
+  if(act === 'msg-resolve'){ msgResolve(el.dataset.id, el.dataset.v === '1'); return; }
+  if(act === 'msg-del'){ msgDelete(el.dataset.id); return; }
+  if(!P) return;
+  const ex = P.screen ? null : cur();
+  switch(act){
+    case 'p-opt':
+      if(P.state === 'answer'){ P.sel = el.dataset.id; if(['select', 'listen'].includes(ex.type)) say(item(P.sel).hanzi); else sfx('tap'); renderEx(); }
+      break;
+    case 'p-tone': if(P.state === 'answer'){ ex.picks[+el.dataset.k] = +el.dataset.t; sfx('tap'); renderEx(); } break;
+    case 'p-tile': if(P.state === 'answer'){ const k = +el.dataset.k; ex.placed.push(k); if(ex.tiles[k].h) say(ex.tiles[k].h); else sfx('tap'); renderEx(); } break;
+    case 'p-untile': if(P.state === 'answer'){ ex.placed.splice(+el.dataset.pos, 1); renderEx(); } break;
+    case 'p-hint': { const k = +el.dataset.k; ex.hint = ex.hint === k ? null : k; if(ex.hint != null) say(item(ex.id).tokens[k].h); renderEx(); break; }
+    case 'p-m': pMatch(el.dataset.side, el.dataset.id); break;
+    case 'p-check': pCheck(); break;
+    case 'p-next': pNext(); break;
+    case 'p-reveal': ex.revealed = true; say(item(ex.id).hanzi); renderEx(); break;
+    case 'p-self': pSelf(el.dataset.v === '1'); break;
+    case 'p-skip':
+      P.noListen = true;
+      P.queue.slice(P.i + 1).forEach(x => { if(!x.ready && x.type === 'listen') x.type = 'meaning'; if(!x.ready && x.type === 'hear') x.type = 'build-zh'; });
+      P.state = 'checked'; P.lastOk = true; pNext();
+      break;
+    case 'p-skipq': {
+      const it = item(ex.id);
+      P.state = 'checked';
+      record(it, ex.type, false, '(skipped)');
+      afterAnswer(ex, false, true);
+      renderEx();
+      break;
+    }
+    case 'p-quit': if(P.screen){ closeOverlay(); } else { P.confirmQuit = true; renderEx(); } break;
+    case 'p-quit-no': P.confirmQuit = false; renderEx(); break;
+    case 'p-quit-yes': {
+      const run = P;
+      closeOverlay();
+      if(run.total){ run.endedAt = new Date(); run.passed = false; run.xp = 0; saveRun(run).then(st => toast(st === 'saved' ? T('Your answers were saved', '已保存答题记录') : '')); }
+      break;
+    }
+    case 'p-done': if(P.passed && S.isOwner && P.streakBefore && !P.streakBefore.practicedToday && P.saveState === 'saved'){ P.screen = 'streak'; renderEx(); } else closeOverlay(); break;
+    case 'p-close': closeOverlay(); break;
+    case 'p-retry': { const {mode, arg} = P; closeOverlay(); startLesson(mode, arg); break; }
+  }
+});
+document.addEventListener('input', e => {
+  const t = e.target;
+  if(t.id) dirty.add(t.id);
+  if(t.id === 'w-q'){ S.wordQuery = t.value; schedule(); }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if(t.id === 'pref-hz' || t.id === 'pref-py' || t.id === 'pref-snd'){
+    const hz = $('#pref-hz'), py = $('#pref-py');
+    if(!hz.checked && !py.checked) (t.id === 'pref-hz' ? py : hz).checked = true;
+    S.prefs = {hanzi: hz.checked, pinyin: py.checked, sound: $('#pref-snd').checked};
+    try { localStorage.setItem('tm-prefs', JSON.stringify(S.prefs)); } catch(err){ /* storage blocked */ }
+    render();
+    if(P) renderEx();
+  }
+  if(t.id === 'pref-lang'){
+    S.lang = t.value === 'zh' ? 'zh' : 'en';
+    try { localStorage.setItem('tm-lang', S.lang); } catch(err){ /* storage blocked */ }
+    updateVoiceNote();
+    render();
+    if(P) renderEx();
+  }
+});
+document.addEventListener('submit', e => {
+  e.preventDefault();
+  const id = e.target.id;
+  if(id === 'q-form') addMessage('question', 'q-text');
+  else if(id === 'note-form') addMessage('note', 'note-text');
+  else if(id === 'hw-form') addHomework();
+  else if(id === 'aw-form') addWord();
+});
+document.addEventListener('toggle', e => {
+  const d = e.target;
+  if(d && d.matches && d.matches('details[data-lesson]')){
+    S.lessonsTouched = true;
+    if(d.open) S.openLessons.add(d.dataset.lesson); else S.openLessons.delete(d.dataset.lesson);
+  }
+}, true);
+document.addEventListener('keydown', e => {
+  if(!P || $('#practice').hidden) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(e.key === 'Escape'){ e.preventDefault(); if(P.screen) return; P.confirmQuit = !P.confirmQuit; renderEx(); return; }
+  if(P.confirmQuit) return;
+  if(e.key === 'Enter'){
+    if(tag === 'button' && e.target.dataset.act && !('primary' in e.target.dataset)) return;
+    const b = $('#practice [data-primary]');
+    if(b && !b.disabled){ e.preventDefault(); b.click(); }
+    return;
+  }
+  if(tag === 'input' || tag === 'textarea') return;
+  if(/^[1-9]$/.test(e.key)){ const o = $('#practice [data-key="' + e.key + '"]'); if(o && !o.disabled){ e.preventDefault(); o.click(); } }
+});
+
+/* ---------- boot ---------- */
+// Lessons, words and audio ship with the app (content/*.json, audio/).
+// Practice, homework and notes are kept on this device until the sync server is connected (see HANDOFF.md).
+const LOCAL = ['progress', 'sessions', 'homework', 'messages'];
+const DB = {data: {}, subs: []};
+const lsGet = k => { try { return JSON.parse(localStorage.getItem('tm-' + k) || 'null'); } catch(e){ return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem('tm-' + k, JSON.stringify(v)); return true; } catch(e){ return false; } };
+const coll = name => DB.data[name] || (DB.data[name] = {});
+function notifyColl(name){ for(const s of DB.subs.slice()) if(s.name === name) s.fire(); }
+function snapshotOf(name, o){
+  let docs = Object.entries(coll(name)).map(([id, d]) => ({id, exists: true, data: () => d}));
+  if(o.f) docs.sort((a, b) => { const x = a.data()[o.f], y = b.data()[o.f]; return (x < y ? -1 : x > y ? 1 : 0) * (o.dir === 'desc' ? -1 : 1); });
+  if(o.n) docs = docs.slice(0, o.n);
+  return {docs, size: docs.length, empty: !docs.length};
+}
+function queryOf(name, o){
+  return {
+    orderBy: (f, dir) => queryOf(name, Object.assign({}, o, {f, dir})),
+    limit: n => queryOf(name, Object.assign({}, o, {n})),
+    onSnapshot(next){ const s = {name, fire: () => next(snapshotOf(name, o))}; DB.subs.push(s); setTimeout(s.fire, 0); return () => { DB.subs = DB.subs.filter(x => x !== s); }; },
+    async add(data){ const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8); await persist(name, id, 'set', data); return {id}; },
+  };
+}
+function docRefOf(path){
+  const i = path.lastIndexOf('/'), name = path.slice(0, i), id = path.slice(i + 1);
+  return {set: d => persist(name, id, 'set', d), update: d => persist(name, id, 'update', d), delete: () => persist(name, id, 'delete')};
+}
+async function persist(name, id, op, data){
+  if(!LOCAL.includes(name) && name !== 'items') throw {code: 'invalid_argument'};
+  const c = coll(name);
+  if(op === 'delete') delete c[id];
+  else if(op === 'update'){ if(!c[id]) throw {code: 'invalid_argument'}; c[id] = Object.assign({}, c[id], data); }
+  else c[id] = Object.assign({}, data);
+  const keep = name === 'items' ? Object.fromEntries(Object.entries(c).filter(([, v]) => v.addedBy)) : c;
+  if(!lsSet(name, keep)) throw {code: 'quota_exceeded'};
+  notifyColl(name);
+}
+async function loadContent(){
+  const get = f => fetch('content/' + f, {cache: 'no-cache'}).then(r => { if(!r.ok) throw new Error(f); return r.json(); });
+  const [lessons, items, audio, profile] = await Promise.all([get('lessons.json'), get('items.json'), get('audio.json'), get('profile.json').catch(() => ({}))]);
+  DB.data.lessons = Object.fromEntries(lessons.map(l => [l.id, l]));
+  DB.data.items = Object.assign(Object.fromEntries(items.map(i => [i.id, i])), lsGet('items') || {});
+  DB.data.profile = {student: profile};
+  AUD.map = audio || {};
+  for(const k of LOCAL) DB.data[k] = lsGet(k) || {};
+}
+function syncNotice(){
+  return '<p class="notice">' + T('This is a preview of your tutor’s page. She gets her own link once sync is connected.', '这是老师页面的预览。连接同步后，老师会收到自己的链接。') + '</p>';
+}
+function subscribe(){
+  const on = (key, q, apply) => q.onSnapshot(snap => {
+    const rows = snap.docs.map(d => Object.assign({}, d.data(), {id: d.id}));
+    if(apply) apply(rows); else S[key] = rows;
+    S.loaded[key] = true;
+    schedule();
+  });
+  on('lessons', db.collection('lessons'), rows => { S.lessons = rows.sort((a, b) => String(a.date || '').localeCompare(String(b.date || ''))); });
+  on('items', db.collection('items'), rows => { S.items = rows; S.itemById = Object.fromEntries(rows.map(r => [r.id, r])); });
+  on('progress', db.collection('progress'), rows => { S.progress = Object.fromEntries(rows.map(r => [r.id, r])); });
+  on('sessions', db.collection('sessions').orderBy('endedAt', 'desc').limit(800));
+  on('homework', db.collection('homework'));
+  on('messages', db.collection('messages').orderBy('createdAt', 'desc').limit(300));
+  on('profile', db.collection('profile'), rows => { S.profile = rows.find(r => r.id === 'student') || {}; });
+}
+async function connect(){
+  S.isOwner = true;
+  S.canWrite = true;
+  if(!S.lang) S.lang = 'en';
+  if(!S.tab) S.tab = 'learn';
+  try {
+    await loadContent();
+    db = {collection: name => queryOf(name, {}), doc: docRefOf};
+    S.dbState = 'ok';
+    subscribe();
+  } catch(e){ S.dbState = 'none'; }
+  updateVoiceNote();
+  render();
+}
+function installHint(){
+  const standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+  if(standalone || !/iPhone|iPad|iPod/.test(navigator.userAgent) || lsGet('install-dismissed')) return;
+  const el = document.createElement('div');
+  el.className = 'install';
+  el.setAttribute('role', 'note');
+  el.innerHTML = '<img src="icons/apple-touch-icon.png" alt=""><p><b>' + T('Install the app', '安装应用') + '</b>' + T('Tap Share, then “Add to Home Screen”.', '点击“分享”，再点“添加到主屏幕”。') + '</p><button type="button" aria-label="' + T('Dismiss', '关闭') + '">×</button>';
+  el.querySelector('button').addEventListener('click', () => { lsSet('install-dismissed', true); el.remove(); });
+  document.body.appendChild(el);
+}
+for(const ev of ['pointerdown', 'touchend', 'keydown']) document.addEventListener(ev, unlockAudio, {capture: true, passive: true});
+function start(){
+  try { const p = JSON.parse(localStorage.getItem('tm-prefs') || 'null'); if(p && (p.hanzi || p.pinyin)) S.prefs = {hanzi: !!p.hanzi, pinyin: !!p.pinyin, sound: p.sound !== false}; } catch(e){ /* storage blocked */ }
+  try { const l = localStorage.getItem('tm-lang'); if(l === 'en' || l === 'zh') S.lang = l; } catch(e){ /* storage blocked */ }
+  const lm = $('#logo-mark');
+  if(lm) lm.outerHTML = pandaHead('mark');
+  $('#pref-hz').checked = S.prefs.hanzi;
+  $('#pref-py').checked = S.prefs.pinyin;
+  $('#pref-snd').checked = S.prefs.sound;
+  const h = (location.hash || '').slice(1);
+  S.tab = VIEWS[h] ? h : null;
+  if(TTS.ok){ loadVoices(); try { speechSynthesis.addEventListener('voiceschanged', loadVoices); } catch(e){ speechSynthesis.onvoiceschanged = loadVoices; } }
+  render();
+  connect();
+  installHint();
+  try { if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch(e){ /* not supported */ }
+  if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+start();
+})();
+</script>
+</body>
+</html>
