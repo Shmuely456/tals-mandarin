@@ -5,7 +5,8 @@ Everything a new Claude session needs to continue this project. Written 2026-10-
 ## What this is
 
 A Duolingo-style web app for **Tal Shmuely** (GitHub `Shmuely456`), who is learning to **speak** Mandarin
-with a private tutor (**老师**, Chinese, appears to be in mainland China, UTC+8). They have one class a week,
+with a private tutor (**老师**, Chinese, UTC+8). She uses a VPN, so Google, Supabase, GitHub and Claude all work for her;
+no China-specific workarounds are needed. They have one class a week,
 recorded with **Wispr Flow** (connected to Claude as a connector). After each class Claude turns the recording
 into a new unit of lessons.
 
@@ -80,7 +81,8 @@ Plan:
 4. Add `config.js` with the project URL and the **publishable** key (public by design), and load it from
    `index.html`. In the storage layer (`persist`, `loadContent`, `subscribe`), keep the local copy and add sync:
    - Read the key from `?k=` (then remember it in `localStorage`).
-   - Pull on start, when the app comes back to the foreground, and every 30 seconds.
+   - Pull on start and when the app comes back to the foreground. Use Supabase Realtime for live updates when it's
+     simple to add, otherwise poll every 30 seconds.
    - Push every write, and queue writes made offline.
    - On first sync, upload anything already saved locally.
    - Role `tutor` means Chinese UI by default, the 老师 tab first, and `S.isOwner = false`.
