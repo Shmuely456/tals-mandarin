@@ -1,5 +1,5 @@
 // Offline support. Bump VERSION whenever app files change so phones pick up the new version.
-const VERSION = 'tm-2026-10-24-3';
+const VERSION = 'tm-2026-10-24-4';
 const SHELL = ['./', 'index.html', 'config.js', 'manifest.webmanifest', 'icons/apple-touch-icon.png', 'icons/icon-192.png', 'icons/icon-512.png',
   'fonts/fredoka.woff2', 'fonts/nunito.woff2', 'fonts/noto-serif-sc-500.woff2', 'fonts/noto-serif-sc-700.woff2',
   'content/lessons.json', 'content/items.json', 'content/audio.json', 'content/profile.json'];

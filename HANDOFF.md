@@ -71,8 +71,9 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   the foreground. Writes go into a queue (`tm-queue`) that uploads in order, so offline changes upload later. The first
   sync from a student device uploads anything practiced before the link was used. `config.js` holds the project URL
   and the publishable key (public by design).
-- Unit 1 (class of 2026-10-20, "Reading characters: 你叫什么名字？"): 30 words, 11 sentences and 4 grammar tips
-  in 9 lesson steps, plus 52 audio clips.
+- Unit 1 (class of 2026-10-20, "Reading characters: 你叫什么名字？"): 30 words, 6 phrases, 11 sentences and 5 grammar
+  tips in 10 lesson steps, plus 57 audio clips. Step 10 comes from the class handout Tal sent (the textbook's 生词 page):
+  its word building (中国老师, 美国学生, 中国人…) and 这是什么书？. When a handout arrives, check the unit against it.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 

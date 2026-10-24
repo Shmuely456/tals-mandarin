@@ -999,7 +999,7 @@ function unitNodes(l){
     const chars = list.flatMap(i => Array.from(i.hanzi || '').filter(isHan));
     const icon = chars.find(c => !usedIcons.has(c)) || chars[0] || '学';
     usedIcons.add(icon);
-    const words = list.filter(i => i.type === 'word');
+    const words = list.filter(i => i.type === 'word' || i.type === 'phrase');
     const label = words.length >= list.length / 2
       ? words.slice(0, 4).map(i => i.hanzi).join(' · ')
       : T('Sentences: ', '句子：') + String(list[0].hanzi || '').replace(/[。？！，,.?!]/g, '');
@@ -1118,10 +1118,11 @@ function wordRow(it){
 }
 function itemCounts(its){
   const w = its.filter(i => i.type === 'word').length;
-  const s = its.filter(i => i.type === 'phrase' || i.type === 'sentence').length;
+  const ph = its.filter(i => i.type === 'phrase').length;
+  const s = its.filter(i => i.type === 'sentence').length;
   const g = its.filter(i => i.type === 'grammar').length;
-  if(S.lang === 'zh') return [w && w + '个词', s && s + '个句子', g && g + '个语法点'].filter(Boolean).join(' · ') || '暂无内容';
-  return [w && plural(w, 'word'), s && plural(s, 'sentence'), g && g + ' grammar'].filter(Boolean).join(' · ') || 'Nothing yet';
+  if(S.lang === 'zh') return [w && w + '个词', ph && ph + '个短语', s && s + '个句子', g && g + '个语法点'].filter(Boolean).join(' · ') || '暂无内容';
+  return [w && plural(w, 'word'), ph && plural(ph, 'phrase'), s && plural(s, 'sentence'), g && g + ' grammar'].filter(Boolean).join(' · ') || 'Nothing yet';
 }
 function daysStrip(){
   const today = ymd(new Date());
@@ -1707,7 +1708,7 @@ function renderEx(){
   const ex = cur();
   prepare(ex);
   const it = ex.id ? item(ex.id) : null;
-  const tags = (ex.isNew && ex.type !== 'intro' ? '<span class="tag new">' + (it && isLong(it) ? T('New sentence', '新句子') : T('New word', '新词')) + '</span>' : '') + (ex.mistake ? '<span class="tag mistake">' + T('Previous mistake', '之前的错题') + '</span>' : '');
+  const tags = (ex.isNew && ex.type !== 'intro' ? '<span class="tag new">' + (it && isLong(it) ? T('New sentence', '新句子') : it && it.type === 'phrase' ? T('New phrase', '新短语') : T('New word', '新词')) + '</span>' : '') + (ex.mistake ? '<span class="tag mistake">' + T('Previous mistake', '之前的错题') + '</span>' : '');
   const modal = P.confirmQuit ? '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="quit-h"><h2 id="quit-h">' + T('Wait, don’t go!', '确定要退出吗？') + '</h2><p class="muted">' + T('You’ll lose your progress in this lesson if you quit now. Answers so far still count for review.', '现在退出，本小节不算完成；已经答过的题仍会记录。') + '</p><div class="modal-actions"><button type="button" class="btn primary" data-act="p-quit-no">' + T('Keep learning', '继续学习') + '</button><button type="button" class="btn" data-act="p-quit-yes">' + T('End session', '退出') + '</button></div></div></div>' : '';
   const fx = P.flash === 'good' ? 'ok' : P.flash === 'bad' ? 'no' : '';
   ov.dataset.fx = fx;

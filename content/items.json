@@ -1021,5 +1021,139 @@
    }
   ],
   "type": "grammar"
+ },
+ {
+  "id": "i-20261020-46",
+  "english": "Chinese person",
+  "hanzi": "中国人",
+  "lessonId": "l-20261020",
+  "notes": "Country + 人 = a person from there: 中国人, 美国人. You’re 以色列人 (Yǐsèliè rén).",
+  "order": 46,
+  "pinyin": "Zhōngguó rén",
+  "step": 10,
+  "syl": [
+   "zhong1",
+   "guo2",
+   "ren2"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-47",
+  "english": "American (person)",
+  "hanzi": "美国人",
+  "lessonId": "l-20261020",
+  "notes": "美国 (the US) + 人 (person).",
+  "order": 47,
+  "pinyin": "Měiguó rén",
+  "step": 10,
+  "syl": [
+   "mei3",
+   "guo2",
+   "ren2"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-48",
+  "english": "Chinese teacher (from China)",
+  "hanzi": "中国老师",
+  "lessonId": "l-20261020",
+  "notes": "Country + job: a teacher from China. A teacher of Chinese is 中文老师.",
+  "order": 48,
+  "pinyin": "Zhōngguó lǎoshī",
+  "step": 10,
+  "syl": [
+   "zhong1",
+   "guo2",
+   "lao3",
+   "shi1"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-49",
+  "english": "American teacher",
+  "hanzi": "美国老师",
+  "lessonId": "l-20261020",
+  "order": 49,
+  "pinyin": "Měiguó lǎoshī",
+  "step": 10,
+  "syl": [
+   "mei3",
+   "guo2",
+   "lao3",
+   "shi1"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-50",
+  "english": "Chinese student",
+  "hanzi": "中国学生",
+  "lessonId": "l-20261020",
+  "order": 50,
+  "pinyin": "Zhōngguó xuésheng",
+  "step": 10,
+  "syl": [
+   "zhong1",
+   "guo2",
+   "xue2",
+   "sheng5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-51",
+  "english": "American student",
+  "hanzi": "美国学生",
+  "lessonId": "l-20261020",
+  "order": 51,
+  "pinyin": "Měiguó xuésheng",
+  "step": 10,
+  "syl": [
+   "mei3",
+   "guo2",
+   "xue2",
+   "sheng5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261020-52",
+  "english": "What book is this?",
+  "explain": "Put 什么 right before a noun to ask “what” or “which”: 什么书 (what book), 什么名字 (what name).",
+  "hanzi": "这是什么书？",
+  "lessonId": "l-20261020",
+  "order": 52,
+  "pattern": "什么 + noun",
+  "pinyin": "Zhè shì shénme shū?",
+  "step": 10,
+  "syl": [
+   "zhe4",
+   "shi4",
+   "shen2",
+   "me5",
+   "shu1"
+  ],
+  "tokens": [
+   {
+    "h": "这",
+    "p": "zhè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "什么",
+    "p": "shénme"
+   },
+   {
+    "h": "书",
+    "p": "shū"
+   }
+  ],
+  "type": "grammar"
  }
 ]
