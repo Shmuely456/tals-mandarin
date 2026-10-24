@@ -26,7 +26,9 @@ Two sides:
   payments and anything unrelated. Never link to the full Wispr Flow notes.
 - Every word and sentence needs **recorded audio**. The phone's speech voice was silent on Tal's iPhone, so clips
   play through a media element, which also works in silent mode.
-- Correct answers chime and give a light vibration. Wrong answers buzz, shake the screen and vibrate.
+- Feedback should feel **Apple-designed**: soft sounds in the spirit of iOS, a vibration on every correct answer and
+  spring animations. Right: a rising two-note glass chime, two haptic taps and a check mark that draws itself.
+  Wrong: a soft falling wooden knock, three taps and the wrong choice shakes. Taps on answers tick.
 - It has to be a **real installable app**: full screen with its own icon and no browser or Claude bars.
 
 ## Where things are
@@ -98,7 +100,11 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
 ## Notes
 
 - Speaking practice is self-checked: there is no microphone access.
-- iPhones only allow a light haptic tap from websites (the iOS 18 switch trick). Android vibrates fully.
+- Sound effects are synthesized in `SFX` in `index.html` (no audio files), in A major: right answers rise A5 to E6,
+  mistakes fall E4 to C4. Haptics (`haptic()`) follow Apple's patterns: one tick for a selection, two taps for success,
+  three for an error. iPhones only allow a light tap from websites (the iOS 18 switch trick, and only with System
+  Haptics on); Android vibrates fully. The display panel has switches for both.
+- Animations use springs and run once per event (`#practice[data-fx]`); all of them respect Reduce Motion.
 - Hearts reset every lesson.
 - Practice-session doc fields: `startedAt`, `endedAt`, `date`, `mode`, `node`, `lessonId`, `passed`, `hearts`,
   `maxCombo`, `total`, `correct`, `xp`, `durationSec`, `skills`, `misses`, `tones`, `toneErrors`, `items`.
