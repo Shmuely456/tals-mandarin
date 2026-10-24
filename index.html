@@ -532,6 +532,7 @@ button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border
     <label><input type="checkbox" id="pref-snd" checked> <span id="lbl-snd">Sound effects</span></label>
     <label><span id="lbl-lang">Language</span> <select id="pref-lang"><option value="en">English</option><option value="zh">中文</option></select></label>
     <span class="voice-note" id="voice-note"></span>
+    <span class="voice-note" id="sync-note"></span>
   </div>
 </header>
 <main id="main" class="wrap"></main>
@@ -539,6 +540,7 @@ button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border
 <div id="toast" role="status" aria-live="polite"></div>
 <label id="haptic" aria-hidden="true" style="position:fixed;left:-99px;top:0;width:1px;height:1px;overflow:hidden;opacity:0"><input type="checkbox" switch tabindex="-1"></label>
 
+<script src="config.js"></script>
 <script>
 (function(){
 'use strict';
@@ -1880,6 +1882,7 @@ document.addEventListener('change', e => {
   }
   if(t.id === 'pref-lang'){
     S.lang = t.value === 'zh' ? 'zh' : 'en';
+    try { localStorage.setItem('tm-lang-chosen', 'true'); } catch(err){ /* storage blocked */ }
     try { localStorage.setItem('tm-lang', S.lang); } catch(err){ /* storage blocked */ }
     updateVoiceNote();
     render();
@@ -1917,10 +1920,14 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- boot ---------- */
-// Lessons, words and audio ship with the app (content/*.json, audio/).
-// Practice, homework and notes are kept on this device until the sync server is connected (see HANDOFF.md).
+// Lessons, words and audio ship with the app (content/*.json, audio/). Practice, homework, notes and the private
+// class notes sync through the server's api() function with the private key from a personal ?k= link.
+// A copy of everything stays on the device, so the app also works offline.
+const CFG = window.TM_CONFIG || {};
 const LOCAL = ['progress', 'sessions', 'homework', 'messages'];
+const SYNCED = LOCAL.concat(['items', 'notes', 'profile']);
 const DB = {data: {}, subs: []};
+const SY = {key: null, role: null, since: '', queue: [], busy: false, state: 'off'};
 const lsGet = k => { try { return JSON.parse(localStorage.getItem('tm-' + k) || 'null'); } catch(e){ return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem('tm-' + k, JSON.stringify(v)); return true; } catch(e){ return false; } };
 const coll = name => DB.data[name] || (DB.data[name] = {});
@@ -1943,27 +1950,114 @@ function docRefOf(path){
   const i = path.lastIndexOf('/'), name = path.slice(0, i), id = path.slice(i + 1);
   return {set: d => persist(name, id, 'set', d), update: d => persist(name, id, 'update', d), delete: () => persist(name, id, 'delete')};
 }
-async function persist(name, id, op, data){
-  if(!LOCAL.includes(name) && name !== 'items') throw {code: 'invalid_argument'};
+function applyLocal(name, id, op, data){
   const c = coll(name);
   if(op === 'delete') delete c[id];
-  else if(op === 'update'){ if(!c[id]) throw {code: 'invalid_argument'}; c[id] = Object.assign({}, c[id], data); }
+  else if(op === 'update') c[id] = Object.assign({}, c[id] || {}, data);
   else c[id] = Object.assign({}, data);
+}
+function saveColl(name){
+  const c = coll(name);
   const keep = name === 'items' ? Object.fromEntries(Object.entries(c).filter(([, v]) => v.addedBy)) : c;
-  if(!lsSet(name, keep)) throw {code: 'quota_exceeded'};
+  if(!lsSet(name, keep)) toast(T('Storage on this device is full.', '设备存储空间已满。'));
+}
+async function persist(name, id, op, data){
+  if(!LOCAL.includes(name) && name !== 'items') throw {code: 'invalid_argument'};
+  if(op === 'update' && !coll(name)[id]) throw {code: 'invalid_argument'};
+  applyLocal(name, id, op, data);
+  saveColl(name);
   notifyColl(name);
+  if(SY.key){
+    SY.queue.push({op: op === 'set' ? 'put' : op === 'update' ? 'patch' : 'delete', collection: name, id, data: op === 'delete' ? null : data});
+    lsSet('queue', SY.queue);
+    flush();
+  }
+}
+async function rpc(op, payload){
+  const r = await fetch(CFG.url + '/rest/v1/rpc/api', {method: 'POST', headers: {apikey: CFG.key, 'Content-Type': 'application/json'}, body: JSON.stringify({k: SY.key, op, payload: payload || {}})});
+  if(r.ok) return r.json();
+  const err = new Error('http ' + r.status);
+  err.denied = r.status === 401 || r.status === 403;
+  err.permanent = r.status >= 400 && r.status < 500;
+  throw err;
+}
+function setSync(state){
+  SY.state = state;
+  const el = $('#sync-note');
+  if(!el) return;
+  el.textContent = {
+    off: T('Not syncing. Open your personal link to sync with your tutor.', '未同步。请打开您的专属链接。'),
+    ok: SY.role === 'tutor' ? '已同步：老师账号' : T('Synced with your tutor.', '已同步。'),
+    offline: T('Offline. Your changes are saved and sync when you’re back online.', '离线。更改已保存，联网后会同步。'),
+    denied: T('This link no longer works. Ask Claude for a new one.', '此链接已失效。'),
+  }[state] || '';
+}
+async function flush(){
+  if(SY.busy || !SY.key || !CFG.url) return;
+  SY.busy = true;
+  try {
+    while(SY.queue.length){
+      const q = SY.queue[0];
+      try { await rpc(q.op, {collection: q.collection, id: q.id, data: q.data}); }
+      catch(e){ if(!e.permanent) throw e; }
+      SY.queue.shift();
+      lsSet('queue', SY.queue);
+    }
+    setSync('ok');
+  } catch(e){ setSync('offline'); }
+  SY.busy = false;
+}
+function applyRole(role, first){
+  if(!role) return;
+  SY.role = role;
+  S.isOwner = role === 'student';
+  if(role === 'tutor' && first){
+    if(!lsGet('lang-chosen') && S.lang !== 'zh'){ S.lang = 'zh'; updateVoiceNote(); }
+    if(!VIEWS[(location.hash || '').slice(1)]) S.tab = 'teacher';
+  }
+}
+async function pull(){
+  if(!SY.key || !CFG.url) return;
+  try {
+    const r = await rpc('pull', {since: SY.since});
+    const firstRole = !SY.role;
+    applyRole(r.role, firstRole);
+    lsSet('role', r.role);
+    const touched = new Set();
+    for(const d of r.docs || []){
+      if(!SYNCED.includes(d.c)) continue;
+      if(d.deleted) delete coll(d.c)[d.id]; else coll(d.c)[d.id] = d.data;
+      touched.add(d.c);
+    }
+    for(const q of SY.queue){ applyLocal(q.collection, q.id, q.op === 'put' ? 'set' : q.op === 'patch' ? 'update' : 'delete', q.data); touched.add(q.collection); }
+    SY.since = new Date(new Date(r.now).getTime() - 10000).toISOString();
+    lsSet('since', SY.since);
+    for(const name of touched){ if(name === 'notes' || name === 'profile') lsSet(name, coll(name)); else saveColl(name); notifyColl(name); }
+    if(SY.role === 'student' && !lsGet('uploaded')){
+      // first time this device syncs: send what was practiced before the link was used
+      for(const name of LOCAL) for(const [id, d] of Object.entries(coll(name))) SY.queue.push({op: 'put', collection: name, id, data: d});
+      for(const [id, d] of Object.entries(coll('items'))) if(d.addedBy) SY.queue.push({op: 'put', collection: 'items', id, data: d});
+      lsSet('queue', SY.queue);
+      lsSet('uploaded', true);
+    }
+    setSync('ok');
+    if(firstRole) render();
+    flush();
+  } catch(e){ setSync(e.denied ? 'denied' : 'offline'); }
 }
 async function loadContent(){
   const get = f => fetch('content/' + f, {cache: 'no-cache'}).then(r => { if(!r.ok) throw new Error(f); return r.json(); });
   const [lessons, items, audio, profile] = await Promise.all([get('lessons.json'), get('items.json'), get('audio.json'), get('profile.json').catch(() => ({}))]);
   DB.data.lessons = Object.fromEntries(lessons.map(l => [l.id, l]));
   DB.data.items = Object.assign(Object.fromEntries(items.map(i => [i.id, i])), lsGet('items') || {});
-  DB.data.profile = {student: profile};
+  DB.data.profile = Object.assign({student: profile}, lsGet('profile') || {});
+  DB.data.notes = lsGet('notes') || {};
   AUD.map = audio || {};
   for(const k of LOCAL) DB.data[k] = lsGet(k) || {};
 }
 function syncNotice(){
-  return '<p class="notice">' + T('This is a preview of your tutor’s page. She gets her own link once sync is connected.', '这是老师页面的预览。连接同步后，老师会收到自己的链接。') + '</p>';
+  if(SY.key) return '';
+  return '<p class="notice">' + T('This is a preview of your tutor’s page. She sees it live from her own link once you open your personal link.', '这是老师页面的预览。') + '</p>';
 }
 function subscribe(){
   const on = (key, q, apply) => q.onSnapshot(snap => {
@@ -1972,7 +2066,10 @@ function subscribe(){
     S.loaded[key] = true;
     schedule();
   });
-  on('lessons', db.collection('lessons'), rows => { S.lessons = rows.sort((a, b) => String(a.date || '').localeCompare(String(b.date || ''))); });
+  let lessonsRaw = [], notesById = {};
+  const merge = () => { S.lessons = lessonsRaw.map(l => Object.assign({}, l, notesById[l.id] || {})).sort((a, b) => String(a.date || '').localeCompare(String(b.date || ''))); };
+  on('lessons', db.collection('lessons'), rows => { lessonsRaw = rows; merge(); });
+  on('notes', db.collection('notes'), rows => { notesById = Object.fromEntries(rows.map(r => [r.id, r])); merge(); });
   on('items', db.collection('items'), rows => { S.items = rows; S.itemById = Object.fromEntries(rows.map(r => [r.id, r])); });
   on('progress', db.collection('progress'), rows => { S.progress = Object.fromEntries(rows.map(r => [r.id, r])); });
   on('sessions', db.collection('sessions').orderBy('endedAt', 'desc').limit(800));
@@ -1981,10 +2078,15 @@ function subscribe(){
   on('profile', db.collection('profile'), rows => { S.profile = rows.find(r => r.id === 'student') || {}; });
 }
 async function connect(){
-  S.isOwner = true;
   S.canWrite = true;
+  try { const k = new URL(location.href).searchParams.get('k'); if(k) lsSet('key', k); } catch(e){ /* no URL API */ }
+  SY.key = CFG.url ? lsGet('key') : null;
+  SY.queue = lsGet('queue') || [];
+  SY.since = lsGet('since') || '';
+  S.isOwner = true;
+  applyRole(SY.key ? lsGet('role') : null, true);
   if(!S.lang) S.lang = 'en';
-  if(!S.tab) S.tab = 'learn';
+  if(!S.tab) S.tab = S.isOwner ? 'learn' : 'teacher';
   try {
     await loadContent();
     db = {collection: name => queryOf(name, {}), doc: docRefOf};
@@ -1992,7 +2094,14 @@ async function connect(){
     subscribe();
   } catch(e){ S.dbState = 'none'; }
   updateVoiceNote();
+  setSync(SY.key ? 'offline' : 'off');
   render();
+  if(SY.key){
+    pull();
+    setInterval(() => { if(document.visibilityState === 'visible') pull(); }, 20000);
+    document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') pull(); });
+    window.addEventListener('online', () => { flush(); pull(); });
+  }
 }
 function installHint(){
   const standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone;

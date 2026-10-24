@@ -50,50 +50,31 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
 
 ## Current state
 
-- The app works fully **on one device**: progress, sessions, homework and messages are saved in `localStorage`
-  (`tm-progress`, `tm-sessions`, `tm-homework`, `tm-messages`, `tm-items`).
-- The 老师 tab is a preview on Tal's phone. The tutor doesn't have her own link yet.
+- **Live and syncing.** The app runs at the GitHub Pages address. Practice, homework, notes and messages sync through
+  Supabase project `tals-mandarin` (ref `giuumcebqctbkrccxepn`, Frankfurt), and a copy stays on each device for offline use.
+- **Personal links:** the access key in `?k=` decides the role. `student` is Tal: English UI and the Learn tab first.
+  `tutor` is 老师: Chinese UI and the 老师 tab first. She can write notes, homework, feedback and words, but not
+  practice. **Never commit the keys.** Read them with SQL (`select role, key from access_keys`) through the Management
+  API using `SUPABASE_ACCESS_TOKEN`, and rotate one by updating that table.
+- **Server:** `supabase/schema.sql` has the tables (`docs`, `access_keys`) and the `api(k, op, payload)` function.
+  RLS is on with no policies, so the public key can only call `api()`.
+  - `docs` collections: `progress`, `sessions`, `homework`, `messages`, `items` (words added in the app), plus two
+    private ones: `notes` (class notes for each lesson id: `summary`, `strengths`, `struggles`, and `_zh`) and
+    `profile` (`student`: full name, goal, cadence, focus, wants_zh).
+  - The app merges `notes` into the lessons, and the server `profile` over `content/profile.json`.
+- **App sync** (`index.html`, boot section): pulls on start, every 20 seconds while open, and when the app returns to
+  the foreground. Writes go into a queue (`tm-queue`) that uploads in order, so offline changes upload later. The first
+  sync from a student device uploads anything practiced before the link was used. `config.js` holds the project URL
+  and the publishable key (public by design).
 - Unit 1 (class of 2026-10-20, "Reading characters: 你叫什么名字？"): 30 words, 11 sentences and 4 grammar tips
   in 9 lesson steps, plus 52 audio clips.
+- The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
+  been copied over.
 
-## Next step: connect the sync server (Supabase)
+### Adding a lesson's private class notes
 
-Tal created a Supabase project named **tals-mandarin** (region Central EU, Frankfurt). The session environment has:
-
-- `SUPABASE_ACCESS_TOKEN`: a personal access token for the Supabase Management API.
-- Network access to `api.supabase.com` and `*.supabase.co`.
-
-Plan:
-
-1. `GET https://api.supabase.com/v1/projects` with `Authorization: Bearer $SUPABASE_ACCESS_TOKEN` to find the
-   project ref, then `GET /v1/projects/{ref}/api-keys` for the publishable (anon) and secret (service_role) keys.
-2. Create the schema with `POST /v1/projects/{ref}/database/query` (`{"query": "..."}`):
-   - `docs(collection text, id text, data jsonb, updated_at timestamptz default now(), primary key (collection, id))`
-   - `access_keys(key text primary key, role text check (role in ('student','tutor')), label text)`
-   - RLS **on** for both, with **no** policies, so the anon key can't touch the tables directly.
-   - A `security definer` function `api(k text, op text, payload jsonb) returns jsonb`. It looks up the role for
-     `k` and does `pull` (everything changed since a timestamp), `put`, `patch` and `delete`.
-     - Student writes: `progress`, `sessions`, `homework` (status, studentNote), `messages`.
-     - Tutor writes: `messages`, `homework` (tutorFeedback, status, new tasks), `items` (words she adds).
-     - Both read everything, including `notes` (private class notes) and `profile`.
-     - Grant execute to `anon`.
-3. Create two random keys (32+ bytes, base64url): one for Tal (student) and one for the tutor.
-4. Add `config.js` with the project URL and the **publishable** key (public by design), and load it from
-   `index.html`. In the storage layer (`persist`, `loadContent`, `subscribe`), keep the local copy and add sync:
-   - Read the key from `?k=` (then remember it in `localStorage`).
-   - Pull on start and when the app comes back to the foreground. Use Supabase Realtime for live updates when it's
-     simple to add, otherwise poll every 30 seconds.
-   - Push every write, and queue writes made offline.
-   - On first sync, upload anything already saved locally.
-   - Role `tutor` means Chinese UI by default, the 老师 tab first, and `S.isOwner = false`.
-5. Move the private data from the old artifact into `docs` (the `notes` collection and `profile/student`), and show
-   class notes in the Guidebook and the 老师 tab again (`summary`, `strengths`, `struggles` and the `_zh` versions).
-6. Give Tal two links:
-   - His: `https://shmuely456.github.io/tals-mandarin/?k=STUDENT_KEY`. He opens it in Safari, then
-     Share › Add to Home Screen. If his old local progress is in the installed app, it uploads on first sync.
-   - The tutor's: `https://shmuely456.github.io/tals-mandarin/?k=TUTOR_KEY#teacher`, sent over WeChat. Also
-     give him a short Chinese message to send with it.
-7. Remove the "preview of your tutor's page" notice (`syncNotice()`) once sync works.
+Use the Management API SQL endpoint, upserting into `docs` with collection `notes` and the lesson id as the id. Use
+dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so devices pull it.
 
 ## Weekly lesson import
 
