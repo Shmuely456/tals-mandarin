@@ -337,7 +337,7 @@
    "中国",
    "美国"
   ],
-  "notes": "Every country ends in the big box 国.",
+  "notes": "Many country names end in the big box 国: 中国, 美国, 韩国. Not all of them: 以色列 (Israel) doesn’t.",
   "order": 21,
   "pinyin": "Hánguó",
   "step": 4,
@@ -598,7 +598,7 @@
   "step": 7,
   "syl": [
    "wo3",
-   "bu4",
+   "bu2",
    "shi4",
    "lao3",
    "shi1",
@@ -755,7 +755,7 @@
   "step": 8,
   "syl": [
    "wo3",
-   "bu4",
+   "bu2",
    "shi4",
    "zhong1",
    "guo2",
@@ -992,7 +992,7 @@
  {
   "id": "i-20261020-45",
   "english": "This is good.",
-  "explain": "Adjectives take 很, not 是: 这个很好. Before a noun you need 是: 我是好学生. In class you said 这是很好 and 我很好学生 (Claude's note from the recording).",
+  "explain": "Adjectives take 很, not 是: 这个很好. Before a noun you need 是: 我是好学生. In class you said 这是很好 and 我很好学生.",
   "focus": true,
   "hanzi": "这个很好。",
   "lessonId": "l-20261020",

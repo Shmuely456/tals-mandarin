@@ -26,6 +26,9 @@ Two sides:
   payments and anything unrelated. Never link to the full Wispr Flow notes.
 - Every word and sentence needs **recorded audio**. The phone's speech voice was silent on Tal's iPhone, so clips
   play through a media element, which also works in silent mode.
+- The Mandarin must be **exactly standard modern Mandarin from reliable sources** (asked 2026-10-24, after the old
+  voice said "ooh" before words). Check characters, pinyin, tones and meanings against CC-CEDICT and the HSK textbook
+  conventions, and keep the audio on a standard Putonghua voice that reads the app's own pinyin (see step 5 below).
 - Feedback should feel **Apple-designed**: soft sounds in the spirit of iOS, a vibration on every correct answer and
   spring animations. Right: a rising two-note glass chime, two haptic taps and a check mark that draws itself.
   Wrong: a soft falling wooden knock, three taps and the wrong choice shakes. Taps on answers tick.
@@ -88,11 +91,20 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    Chinese) are **private**, so they go to the sync server.
 4. Items go in `content/items.json`. Each one has `lessonId`, `step` (about 5 items per lesson circle, with sentences
    in later steps), `order`, `type` (word, phrase, sentence or grammar), `hanzi`, `pinyin`, `syl` (numbered
-   citation tones, e.g. `["ni3","hao3"]`), `english`, `notes` (the tutor's memory tricks), `lookalikes`
+   tones, e.g. `["ni3","hao3"]`), `english`, `notes` (the tutor's memory tricks), `lookalikes`
    (characters Tal confuses), `focus: true` if he struggled with it in class, and `tokens` (`[{h, p}]`) for
    sentences. Grammar items also have `pattern` and `explain`.
-5. Audio: `python3 tools/gen_audio.py <models dir>` (Kokoro v1.1 voice 55 through sherpa-onnx; download link in
-   the script). GitHub release downloads work from the session, but Hugging Face is blocked.
+   Pinyin follows the textbook (HSK Standard Course) and CC-CEDICT: simplified characters; neutral tone as `5`
+   (学生 xuésheng `xue2 sheng5`); 不 and 一 written with their changed tone (不是 bú shì `bu2 shi4`, 一个 yí gè);
+   3rd + 3rd written as two 3rd tones (你好 nǐ hǎo), because that's how it's printed. The tone exercise explains
+   the 3rd + 3rd change, and the audio applies it.
+5. Audio: `python3 tools/gen_audio.py <models dir>` (download links in the script). The voice is Matcha-TTS trained
+   on the Baker corpus (a professional female speaker reading standard Putonghua; licensed for non-commercial use),
+   chosen because its tones follow the textbook shapes; the Kokoro voice used before blurred 1st/4th and 2nd/3rd
+   tones and hummed an "ooh" before short words. Every take is transcribed by two speech recognizers (SenseVoice,
+   Paraformer) and single syllables also have their pitch shape checked; listen to any clip printed with
+   "check by ear". A lone particle like 吗 always gets flagged: without a sentence it can't show its neutral tone.
+   GitHub release downloads work from the session, but Hugging Face is blocked.
 6. Fonts: `python3 tools/subset_fonts.py <folder with source ttf>`. Sources come from the Google Fonts css2 API:
    Fredoka wght 500..700, Nunito wght 500..800, Noto Serif SC 500 and 700.
 7. Bump `VERSION` in `sw.js`, commit and push to `main`. GitHub Pages redeploys in about a minute.
