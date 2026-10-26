@@ -1155,5 +1155,891 @@
    }
   ],
   "type": "grammar"
+ },
+ {
+  "id": "i-20261026-01",
+  "english": "she, her",
+  "hanzi": "她",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "他"
+  ],
+  "notes": "女 (woman) on the left: she. 他 has 亻 (person): he.",
+  "order": 1,
+  "pinyin": "tā",
+  "step": 1,
+  "syl": [
+   "ta1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-02",
+  "english": "they, them (all women)",
+  "hanzi": "她们",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "他们"
+  ],
+  "notes": "她 + 们. For men or a mixed group it’s 他们; both are said tāmen.",
+  "order": 2,
+  "pinyin": "tāmen",
+  "step": 1,
+  "syl": [
+   "ta1",
+   "men5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-03",
+  "english": "we, us",
+  "hanzi": "我们",
+  "lessonId": "l-20261026",
+  "notes": "我 + 们, the plural ending for people: 我们是同学.",
+  "order": 3,
+  "pinyin": "wǒmen",
+  "step": 1,
+  "syl": [
+   "wo3",
+   "men5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-04",
+  "english": "’s (shows whose: 我的 my, 你的 your)",
+  "focus": true,
+  "hanzi": "的",
+  "lessonId": "l-20261026",
+  "notes": "Like ’s: 唐的家 = Táng’s house. 我的 = my, 你的 = your. Your own trick: the two boxes.",
+  "order": 4,
+  "pinyin": "de",
+  "step": 1,
+  "syl": [
+   "de5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-05",
+  "english": "who",
+  "focus": true,
+  "hanzi": "谁",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "哪"
+  ],
+  "notes": "讠 (speech) + a building with floors: someone asking who lives on each floor. Also said shéi; both are right. Not 水 shuǐ (water).",
+  "order": 5,
+  "pinyin": "shuí",
+  "step": 1,
+  "syl": [
+   "shui2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-06",
+  "english": "which",
+  "focus": true,
+  "hanzi": "哪",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "哪里",
+   "呢"
+  ],
+  "notes": "口 (mouth) on the left: you ask with your mouth. One character: 哪 = which. 哪里 (two characters) = where.",
+  "order": 6,
+  "pinyin": "nǎ",
+  "step": 2,
+  "syl": [
+   "na3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-07",
+  "english": "and you? (asks the same question back)",
+  "hanzi": "呢",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "吗",
+   "哪"
+  ],
+  "notes": "口 (mouth) on the left again. 你呢？ = And you? How about you?",
+  "order": 7,
+  "pinyin": "ne",
+  "step": 2,
+  "syl": [
+   "ne5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-08",
+  "english": "Chinese (the language)",
+  "focus": true,
+  "hanzi": "汉语",
+  "lessonId": "l-20261026",
+  "notes": "汉 is from the Han dynasty; 氵 (three dots) is water, like China’s rivers. 语 has 讠 (speech): language. 中文 means the same. Say yǔ, not wǔ.",
+  "order": 8,
+  "pinyin": "Hànyǔ",
+  "step": 2,
+  "syl": [
+   "han4",
+   "yu3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-09",
+  "english": "classmate",
+  "hanzi": "同学",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "学生",
+   "学校"
+  ],
+  "notes": "同 looks like a classroom: the blackboard and the teacher’s desk. Classroom + 学 (study) = classmate.",
+  "order": 9,
+  "pinyin": "tóngxué",
+  "step": 2,
+  "syl": [
+   "tong2",
+   "xue2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-10",
+  "english": "friend",
+  "focus": true,
+  "hanzi": "朋友",
+  "lessonId": "l-20261026",
+  "notes": "朋 is two moons (月月): one moon alone is lonely, so it has a friend.",
+  "order": 10,
+  "pinyin": "péngyou",
+  "step": 2,
+  "syl": [
+   "peng2",
+   "you5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-11",
+  "english": "thank you",
+  "hanzi": "谢谢",
+  "lessonId": "l-20261026",
+  "notes": "The answer is 不客气 (you’re welcome).",
+  "order": 11,
+  "pinyin": "xièxie",
+  "step": 3,
+  "syl": [
+   "xie4",
+   "xie5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-12",
+  "english": "you’re welcome",
+  "hanzi": "不客气",
+  "lessonId": "l-20261026",
+  "notes": "The answer to 谢谢. In class you said 没关系 (méi guānxi): that means “it doesn’t matter” and answers 对不起 (sorry).",
+  "order": 12,
+  "pinyin": "bú kèqi",
+  "step": 3,
+  "syl": [
+   "bu2",
+   "ke4",
+   "qi5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261026-13",
+  "english": "to like",
+  "hanzi": "喜欢",
+  "lessonId": "l-20261026",
+  "notes": "我喜欢咖啡 = I like coffee.",
+  "order": 13,
+  "pinyin": "xǐhuan",
+  "step": 3,
+  "syl": [
+   "xi3",
+   "huan5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-14",
+  "english": "also, too",
+  "hanzi": "也",
+  "lessonId": "l-20261026",
+  "notes": "Goes right before the verb: 我也喜欢咖啡 = I like coffee too.",
+  "order": 14,
+  "pinyin": "yě",
+  "step": 3,
+  "syl": [
+   "ye3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-15",
+  "english": "coffee",
+  "hanzi": "咖啡",
+  "lessonId": "l-20261026",
+  "notes": "Sounds like the English word. Both characters have 口 (mouth): something you drink.",
+  "order": 15,
+  "pinyin": "kāfēi",
+  "step": 3,
+  "syl": [
+   "ka1",
+   "fei1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-16",
+  "english": "Chinese teacher (teaches Chinese)",
+  "hanzi": "汉语老师",
+  "lessonId": "l-20261026",
+  "lookalikes": [
+   "中国老师"
+  ],
+  "notes": "A teacher of Chinese. 中国老师 is a teacher from China.",
+  "order": 16,
+  "pinyin": "Hànyǔ lǎoshī",
+  "step": 4,
+  "syl": [
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261026-17",
+  "english": "Chinese friend",
+  "hanzi": "中国朋友",
+  "lessonId": "l-20261026",
+  "order": 17,
+  "pinyin": "Zhōngguó péngyou",
+  "step": 4,
+  "syl": [
+   "zhong1",
+   "guo2",
+   "peng2",
+   "you5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261026-18",
+  "english": "American friend",
+  "hanzi": "美国朋友",
+  "lessonId": "l-20261026",
+  "order": 18,
+  "pinyin": "Měiguó péngyou",
+  "step": 4,
+  "syl": [
+   "mei3",
+   "guo2",
+   "peng2",
+   "you5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261026-19",
+  "english": "girlfriend",
+  "hanzi": "女朋友",
+  "lessonId": "l-20261026",
+  "notes": "女 (woman) + 朋友. 男朋友 (nánpéngyou) = boyfriend.",
+  "order": 19,
+  "pinyin": "nǚpéngyou",
+  "step": 4,
+  "syl": [
+   "nü3",
+   "peng2",
+   "you5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261026-20",
+  "english": "measure word for books",
+  "hanzi": "本",
+  "lessonId": "l-20261026",
+  "notes": "Chinese puts a measure word between 哪 or 这 and the noun: 哪本书 = which book.",
+  "order": 20,
+  "pinyin": "běn",
+  "step": 4,
+  "syl": [
+   "ben3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261026-21",
+  "english": "She is my Chinese teacher.",
+  "hanzi": "她是我的汉语老师。",
+  "lessonId": "l-20261026",
+  "order": 21,
+  "pinyin": "Tā shì wǒ de Hànyǔ lǎoshī.",
+  "step": 5,
+  "syl": [
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "汉语",
+    "p": "Hànyǔ"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-22",
+  "english": "Li Yue is a Chinese teacher.",
+  "hanzi": "李月是汉语老师。",
+  "lessonId": "l-20261026",
+  "order": 22,
+  "pinyin": "Lǐ Yuè shì Hànyǔ lǎoshī.",
+  "step": 5,
+  "syl": [
+   "li3",
+   "yue4",
+   "shi4",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "李月",
+    "p": "Lǐ Yuè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "汉语",
+    "p": "Hànyǔ"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-23",
+  "english": "They (the women) are Chinese.",
+  "hanzi": "她们是中国人。",
+  "lessonId": "l-20261026",
+  "order": 23,
+  "pinyin": "Tāmen shì Zhōngguó rén.",
+  "step": 5,
+  "syl": [
+   "ta1",
+   "men5",
+   "shi4",
+   "zhong1",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "她们",
+    "p": "tāmen"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "中国人",
+    "p": "Zhōngguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-24",
+  "english": "They are American.",
+  "hanzi": "他们是美国人。",
+  "lessonId": "l-20261026",
+  "order": 24,
+  "pinyin": "Tāmen shì Měiguó rén.",
+  "step": 5,
+  "syl": [
+   "ta1",
+   "men5",
+   "shi4",
+   "mei3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "他们",
+    "p": "tāmen"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "美国人",
+    "p": "Měiguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-25",
+  "english": "We are classmates.",
+  "hanzi": "我们是同学。",
+  "lessonId": "l-20261026",
+  "order": 25,
+  "pinyin": "Wǒmen shì tóngxué.",
+  "step": 5,
+  "syl": [
+   "wo3",
+   "men5",
+   "shi4",
+   "tong2",
+   "xue2"
+  ],
+  "tokens": [
+   {
+    "h": "我们",
+    "p": "wǒmen"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "同学",
+    "p": "tóngxué"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-26",
+  "english": "Who is Li Yue?",
+  "explain": "谁 (who) goes where the answer goes: 谁是李月？ → 她是李月。",
+  "hanzi": "谁是李月？",
+  "lessonId": "l-20261026",
+  "order": 26,
+  "pattern": "谁 + verb + object？",
+  "pinyin": "Shuí shì Lǐ Yuè?",
+  "step": 6,
+  "syl": [
+   "shui2",
+   "shi4",
+   "li3",
+   "yue4"
+  ],
+  "tokens": [
+   {
+    "h": "谁",
+    "p": "shuí"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "李月",
+    "p": "Lǐ Yuè"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261026-27",
+  "english": "Who is she?",
+  "explain": "Chinese keeps the answer’s word order and puts 谁 where the answer will be: 她是谁？ → 她是李月。 Unlike English, “who” doesn’t move to the front.",
+  "hanzi": "她是谁？",
+  "lessonId": "l-20261026",
+  "order": 27,
+  "pattern": "subject + 是 + 谁？",
+  "pinyin": "Tā shì shuí?",
+  "step": 6,
+  "syl": [
+   "ta1",
+   "shi4",
+   "shui2"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "谁",
+    "p": "shuí"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261026-28",
+  "english": "What country are you from?",
+  "explain": "Answer with the country + 人: 我是以色列人。 In class you asked 你是在哪里, which means “where are you?”.",
+  "hanzi": "你是哪国人？",
+  "lessonId": "l-20261026",
+  "order": 28,
+  "pattern": "哪国人？ → country + 人",
+  "pinyin": "Nǐ shì nǎ guó rén?",
+  "step": 6,
+  "syl": [
+   "ni3",
+   "shi4",
+   "na3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "哪国",
+    "p": "nǎ guó"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261026-29",
+  "english": "My friend is Israeli.",
+  "hanzi": "我的朋友是以色列人。",
+  "lessonId": "l-20261026",
+  "notes": "In class you left out 人. Someone from a country is country + 人: 以色列人.",
+  "order": 29,
+  "pinyin": "Wǒ de péngyou shì Yǐsèliè rén.",
+  "step": 6,
+  "syl": [
+   "wo3",
+   "de5",
+   "peng2",
+   "you5",
+   "shi4",
+   "yi3",
+   "se4",
+   "lie4",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "以色列",
+    "p": "Yǐsèliè"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-30",
+  "english": "They are Korean.",
+  "hanzi": "他们是韩国人。",
+  "lessonId": "l-20261026",
+  "notes": "More than one person is 他们 (they). In class you first said 她 (she).",
+  "order": 30,
+  "pinyin": "Tāmen shì Hánguó rén.",
+  "step": 6,
+  "syl": [
+   "ta1",
+   "men5",
+   "shi4",
+   "han2",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "他们",
+    "p": "tāmen"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "韩国人",
+    "p": "Hánguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-31",
+  "english": "I like coffee. And you?",
+  "explain": "呢 asks the same question back: “…, and you?”. 我喜欢咖啡，你呢？ → 我也喜欢咖啡。",
+  "hanzi": "我喜欢咖啡，你呢？",
+  "lessonId": "l-20261026",
+  "order": 31,
+  "pattern": "……，你呢？",
+  "pinyin": "Wǒ xǐhuan kāfēi, nǐ ne?",
+  "step": 7,
+  "syl": [
+   "wo3",
+   "xi3",
+   "huan5",
+   "ka1",
+   "fei1",
+   "ni3",
+   "ne5"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "喜欢",
+    "p": "xǐhuan"
+   },
+   {
+    "h": "咖啡",
+    "p": "kāfēi"
+   },
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "呢",
+    "p": "ne"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261026-32",
+  "english": "I like coffee too.",
+  "hanzi": "我也喜欢咖啡。",
+  "lessonId": "l-20261026",
+  "order": 32,
+  "pinyin": "Wǒ yě xǐhuan kāfēi.",
+  "step": 7,
+  "syl": [
+   "wo3",
+   "ye3",
+   "xi3",
+   "huan5",
+   "ka1",
+   "fei1"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "也",
+    "p": "yě"
+   },
+   {
+    "h": "喜欢",
+    "p": "xǐhuan"
+   },
+   {
+    "h": "咖啡",
+    "p": "kāfēi"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-33",
+  "english": "Which book do you like?",
+  "explain": "Before a noun, 哪 needs a measure word: 本 for books (哪本书), 个 for people (哪个人).",
+  "hanzi": "你喜欢哪本书？",
+  "lessonId": "l-20261026",
+  "order": 33,
+  "pattern": "哪 + measure word + noun",
+  "pinyin": "Nǐ xǐhuan nǎ běn shū?",
+  "step": 7,
+  "syl": [
+   "ni3",
+   "xi3",
+   "huan5",
+   "na3",
+   "ben3",
+   "shu1"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "喜欢",
+    "p": "xǐhuan"
+   },
+   {
+    "h": "哪",
+    "p": "nǎ"
+   },
+   {
+    "h": "本",
+    "p": "běn"
+   },
+   {
+    "h": "书",
+    "p": "shū"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261026-34",
+  "english": "Which person is American?",
+  "hanzi": "哪个人是美国人？",
+  "lessonId": "l-20261026",
+  "order": 34,
+  "pinyin": "Nǎge rén shì Měiguó rén?",
+  "step": 7,
+  "syl": [
+   "na3",
+   "ge5",
+   "ren2",
+   "shi4",
+   "mei3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "哪个",
+    "p": "nǎge"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "美国人",
+    "p": "Měiguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261026-35",
+  "english": "Who is your girlfriend?",
+  "hanzi": "你的女朋友是谁？",
+  "lessonId": "l-20261026",
+  "order": 35,
+  "pinyin": "Nǐ de nǚpéngyou shì shuí?",
+  "step": 7,
+  "syl": [
+   "ni3",
+   "de5",
+   "nü3",
+   "peng2",
+   "you5",
+   "shi4",
+   "shui2"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "女朋友",
+    "p": "nǚpéngyou"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "谁",
+    "p": "shuí"
+   }
+  ],
+  "type": "sentence"
  }
 ]

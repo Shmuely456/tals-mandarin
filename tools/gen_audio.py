@@ -3,6 +3,7 @@
 Usage (from the repo root):
     python3 tools/gen_audio.py <models folder>          clips for new words and sentences only
     python3 tools/gen_audio.py <models folder> --all    every clip again (new file names; old files are removed)
+    python3 tools/gen_audio.py <models folder> --redo 的 李月是汉语老师。    just these clips again
 Needs:  pip install onnxruntime sherpa-onnx pypinyin numpy soundfile, and ffmpeg.
 Models (into <models folder>; unpack the .tar.bz2 files):
     https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/matcha-icefall-zh-baker.tar.bz2
@@ -21,7 +22,7 @@ Why this voice and method:
   (one with two readings), the app's pinyin wins. Then the tone changes of spoken Mandarin: 3rd + 3rd tone (很好 hén hǎo)
   and 不 before a 4th tone (不是 bú shì), as the dictionary itself does (你好 ni2 hao3).
 - The voice varies a little from take to take. Each take is transcribed by two recognizers and kept once both hear
-  the right syllables and tones; after 8 takes the best one is kept and flagged to check by ear.
+  the right syllables and tones; after 12 takes the best one is kept and flagged to check by ear.
 """
 import json, os, subprocess, sys
 import numpy as np
@@ -33,7 +34,8 @@ from pypinyin import lazy_pinyin, Style
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODELS = sys.argv[1]
 EVERY = '--all' in sys.argv[2:]
-RATE, TAKES = 22050, 8
+REDO = sys.argv[sys.argv.index('--redo') + 1:] if '--redo' in sys.argv else []
+RATE, TAKES = 22050, 12
 PUNCT = {'，': ',', '、': ',', '；': ',', '。': '.', '？': '?', '！': '!', '：': ':', ',': ',', '.': '.', '?': '?', '!': '!'}
 is_han = lambda c: '一' <= c <= '鿿'
 tone = lambda s: int(s[-1]) if s[-1].isdigit() else 5
@@ -42,6 +44,7 @@ base = lambda s: s.rstrip('012345').replace('ü', 'v')
 items = json.load(open(os.path.join(root, 'content', 'items.json'), encoding='utf-8'))
 amap_path = os.path.join(root, 'content', 'audio.json')
 amap = {} if EVERY or not os.path.exists(amap_path) else json.load(open(amap_path, encoding='utf-8'))
+replaced = [amap.pop(t) for t in REDO if t in amap]
 
 # Each text with its syllables, from the item that teaches it; a word's own item wins over its use in a sentence.
 reading = {}
@@ -198,23 +201,39 @@ def heard(x):
     return out
 
 
+# A lone particle can't be recognized on its own (吗 sounds like 妈), so it's checked the way it's used: right after a
+# short word (你好吗, 你呢, 我的). Only the particle is saved.
+CARRIER = {'吗': '你好', '吧': '走', '了': '对', '啊': '是', '呢': '你', '的': '我'}
+carriers = {}
+
+
+def carrier(c):
+    if c not in carriers:
+        carriers[c] = clean(synth(symbols(c, toned(c)), 1.15))
+    return carriers[c]
+
+
 audio_dir = os.path.join(root, 'audio')
 used = {int(f[2:5]) for f in os.listdir(audio_dir) if f.startswith('zh') and f.endswith('.m4a')}
 n = max(used or {0})
 for text in texts:
     seq = symbols(text, reading[text])
-    want = toned(text)
+    n_han = sum(map(is_han, text))
+    particle = n_han == 1 and tone(seq[0]) == 5
+    lead = CARRIER.get(text, '你') if particle else ''
+    want = toned(lead + text)
     # A one-syllable word also has to show its tone's shape; how it ends (。！，) changes the shape, so takes try each.
-    single = sum(map(is_han, text)) == 1 and tone(seq[0]) in SHAPES
+    single = n_han == 1 and tone(seq[0]) in SHAPES
     full = 2 * len(recognizers) + 2 * single
     best = (-1, None, None, None)
     for take in range(TAKES):
         if single:
             seq = seq[:-1] + ['.!,'[take % 3]]
-        x = clean(synth(seq, 1.15 if sum(map(is_han, text)) <= 2 else 1.2))
-        got = heard(x)
+        # A particle is light and short, but read too short its first sound gets lost: takes try both lengths.
+        x = clean(synth(seq, (0.95, 1.15)[take % 2] if particle else 1.15 if n_han <= 2 else 1.2))
+        got = heard(np.concatenate([carrier(lead), x]) if lead else x)
         # 2 per recognizer that hears the same syllables and tones (so homophones count: 李悦 = 李月), 1 for the right
-        # syllables in another tone; a lone particle like 吗 can't be told from 妈 without a sentence around it.
+        # syllables in another tone.
         score = sum(2 if toned(g) == want else [s.rstrip('12345') for s in toned(g)] == [s.rstrip('12345') for s in want] for g in got)
         shape = tone_heard(x) if single else None
         score += 2 * (single and shape == tone(seq[0]))
@@ -234,7 +253,7 @@ for text in texts:
     print(name, text, ' '.join(seq), '' if score == full else '  <- check by ear: recognizers heard %s%s' % (
         ' / '.join(g or '(nothing)' for g in got), ', tone shape %s' % shape if single else ''))
 json.dump(amap, open(amap_path, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-if EVERY:
+if EVERY or replaced:
     keep = {os.path.basename(f) for f in amap.values()}
     for f in os.listdir(audio_dir):
         if f.startswith('zh') and f.endswith('.m4a') and f not in keep:

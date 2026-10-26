@@ -22,5 +22,31 @@
   ],
   "next": "Monday, 3:00 pm your time (to confirm after the clocks change)",
   "next_zh": "下周一，Tal时间下午3点（换时后再确认）"
+ },
+ {
+  "id": "l-20261026",
+  "n": 2,
+  "date": "2026-10-26T14:02:12.909Z",
+  "endAt": "2026-10-26T14:53:35.505Z",
+  "title": "She’s my Chinese teacher: 谁 · 哪 · 的",
+  "title_zh": "她是我的汉语老师：谁、哪、的",
+  "topics": [
+   "New words: 她 · 谁 · 的 · 汉语 · 哪 · 呢 · 同学 · 朋友",
+   "Questions with 谁 (who) and 哪 (which)",
+   "Whose: 我的 · 你的",
+   "Asking back: 你呢？",
+   "Measure words: 哪本书 · 哪个人",
+   "Review of Unit 1 characters in the app"
+  ],
+  "topics_zh": [
+   "生词：她 · 谁 · 的 · 汉语 · 哪 · 呢 · 同学 · 朋友",
+   "疑问代词“谁”“哪”",
+   "“的”：我的 · 你的",
+   "用“呢”反问：你呢？",
+   "量词：哪本书 · 哪个人",
+   "用应用复习第1课的汉字"
+  ],
+  "next": "Monday, Nov 2, 3:00 pm your time",
+  "next_zh": "11月2日（周一），Tal时间下午3点"
  }
 ]

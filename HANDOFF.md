@@ -4,7 +4,7 @@ Everything a new Claude session needs to continue this project. Written 2026-10-
 
 ## What this is
 
-A Duolingo-style web app for **Tal Shmuely** (GitHub `Shmuely456`), who is learning to **speak** Mandarin
+A Duolingo-style web app for **Tal** (GitHub `Shmuely456`), who is learning to **speak** Mandarin
 with a private tutor (**老师**, Chinese, UTC+8). She uses a VPN, so Google, Supabase, GitHub and Claude all work for her;
 no China-specific workarounds are needed. They have one class a week,
 recorded with **Wispr Flow** (connected to Claude as a connector). After each class Claude turns the recording
@@ -74,6 +74,10 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
 - Unit 1 (class of 2026-10-20, "Reading characters: 你叫什么名字？"): 30 words, 6 phrases, 11 sentences and 5 grammar
   tips in 10 lesson steps, plus 57 audio clips. Step 10 comes from the class handout Tal sent (the textbook's 生词 page):
   its word building (中国老师, 美国学生, 中国人…) and 这是什么书？. When a handout arrives, check the unit against it.
+- Unit 2 (class of 2026-10-26, "She's my Chinese teacher: 谁 · 哪 · 的", textbook Lesson 4): 15 words, 5 phrases,
+  10 sentences and 5 grammar tips in 7 steps, from the handout (生词 page and the 谁/哪 notes) plus what was practiced
+  in class (不客气, 喜欢, 也, 咖啡, 女朋友, 本/个, and Tal's corrected sentences). Private notes are in `notes/l-20261026`.
+  老师 tested Tal with the app in class and liked that it drills tones and the lesson's own words.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
@@ -104,7 +108,9 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    chosen because its tones follow the textbook shapes; the Kokoro voice used before blurred 1st/4th and 2nd/3rd
    tones and hummed an "ooh" before short words. Every take is transcribed by two speech recognizers (SenseVoice,
    Paraformer) and single syllables also have their pitch shape checked; listen to any clip printed with
-   "check by ear". A lone particle like 吗 always gets flagged: without a sentence it can't show its neutral tone.
+   "check by ear" and redo it with `--redo <text>`. A lone particle (的, 吗, 呢) is checked in a short phrase (我的, 你好吗,
+   你呢), because recognizers can't tell it apart alone. Some misses are fine: 她 and 他 sound the same (tā), and a lone
+   哪 is often written 那 by recognizers even though its tone is checked as 3rd.
    GitHub release downloads work from the session, but Hugging Face is blocked.
 6. Fonts: `python3 tools/subset_fonts.py <folder with source ttf>`. Sources come from the Google Fonts css2 API:
    Fredoka wght 500..700, Nunito wght 500..800, Noto Serif SC 500 and 700.
