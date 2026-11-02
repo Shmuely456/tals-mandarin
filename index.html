@@ -140,6 +140,7 @@ main{padding-block:22px 72px}
 .btn.small{padding:6px 11px;font-size:13px;border-bottom-width:3px;border-radius:10px}
 .btn.block{width:100%}
 .link{background:none;border:0;padding:2px 0;color:var(--cobalt);font-weight:650;font-size:13px}
+a.link{text-decoration:none}
 .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:13px;background:var(--card);color:var(--ink-2);font-weight:650}
 button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .pill{display:inline-flex;align-items:center;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;white-space:nowrap;background:var(--sunk);color:var(--ink-2)}
@@ -203,6 +204,7 @@ button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border
 .practice-btns{display:grid;gap:10px}
 .practice-btns .btn{justify-content:flex-start;text-transform:none;letter-spacing:0}
 .practice-btns small{font-weight:500;color:var(--ink-2);margin-left:auto}
+.notes-top{margin-bottom:18px}
 .note-card{border-left:3px solid var(--bad);padding:2px 0 2px 14px;display:grid;gap:6px}
 .note-card+.note-card{margin-top:14px}
 .note-card p{white-space:pre-wrap}
@@ -1191,14 +1193,16 @@ function viewLearn(){
     '<button type="button" class="btn" data-act="start" data-mode="mistakes"' + (st.weak ? '' : ' disabled') + '>' + ICON.target.replace('<svg ', '<svg width="20" height="20" ') + T('Your mistakes', '错题练习') + '<small>' + st.weak + '</small></button>' +
     '<button type="button" class="btn" data-act="start" data-mode="due"' + (st.practiced ? '' : ' disabled') + '>' + ICON.bolt.replace('<svg ', '<svg width="20" height="20" ') + T('Review words', '复习单词') + '<small>' + T(st.due + ' due', st.due + '个待复习') + '</small></button></div>' +
     (S.isOwner ? '' : '<p class="muted" style="font-size:13px;margin-top:10px">' + T('Preview only: practice here isn’t saved to ' + firstName() + '’s progress.', '预览模式：在这里练习不会计入' + firstName() + '的进度。') + '</p>') + '</section>';
-  return readOnlyNotice() + '<div class="cols learn"><div class="stack-v"><div>' + stats + units + '</div></div><div class="stack-v">' + goal + practice + tutorNotesPanel() + homeworkPanel('student') + questionsPanel('student') + '</div></div>';
+  return readOnlyNotice() + '<div class="cols learn"><div class="stack-v"><div>' + tutorNotesPanel() + stats + units + '</div></div><div class="stack-v">' + goal + practice + homeworkPanel('student') + questionsPanel('student') + '</div></div>';
 }
 
 function tutorNotesPanel(){
   const notes = S.messages.filter(m => m.kind === 'note' && m.from === 'tutor' && !m.resolved);
   if(!notes.length) return '';
-  return '<section class="panel" aria-labelledby="h-notes"><div class="panel-h"><h2 id="h-notes">' + T('From ', '来自') + TEACHER + '</h2></div>' +
-    notes.map(m => '<div class="note-card"><p>' + esc(m.text) + '</p><div class="note-meta"><span>' + esc(fmtDate(m.createdAt)) + '</span>' +
+  // Tal's side is in English, so a note written in Chinese gets a link that opens it in Google Translate.
+  const translate = t => S.lang !== 'zh' && /[\u4e00-\u9fff]/.test(t) ? '<a class="link" href="https://translate.google.com/?sl=zh-CN&tl=en&op=translate&text=' + encodeURIComponent(t) + '" target="_blank" rel="noopener">' + T('Translate', '翻译') + '</a>' : '';
+  return '<section class="panel notes-top" aria-labelledby="h-notes"><div class="panel-h"><h2 id="h-notes">' + T('From ', '来自') + TEACHER + '</h2></div>' +
+    notes.map(m => '<div class="note-card"><p>' + esc(m.text) + '</p><div class="note-meta"><span>' + esc(fmtDate(m.createdAt)) + '</span>' + translate(m.text) +
       (S.isOwner ? '<button type="button" class="link" data-act="msg-resolve" data-id="' + esc(m.id) + '" data-v="1">' + T('Got it', '知道了') + '</button>' : '') + '</div></div>').join('') + '</section>';
 }
 function hwStatus(st){
