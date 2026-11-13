@@ -364,6 +364,11 @@ button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border
 .opt.is-right{border-color:var(--good);background:var(--good-soft)}
 .opt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
 .opt.is-right .key{border-color:var(--good);color:var(--good)}
+.fill-q{font:500 28px/1.5 var(--font-zh)}
+.blank{display:inline-block;min-width:2.4em;margin:0 .15em;padding:0 .2em;border-bottom:3px solid var(--grid);text-align:center;color:var(--cobalt);line-height:1.2}
+.blank.ok{color:var(--good);border-color:var(--good)}
+.opt-zh{font:500 24px var(--font-zh)}
+.opt-sub{display:block;font-size:13px;color:var(--ink-2)}
 .opt.is-wrong .key{border-color:var(--bad);color:var(--bad)}
 .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
 .copt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:12px}
@@ -631,6 +636,7 @@ const SKILLS = [
   ['tones', 'Tones', '声调'],
   ['build', 'Building sentences', '组句'],
   ['speak', 'Speaking (self-check)', '口语（自评）'],
+  ['fill', 'Filling in the blank', '选词填空'],
 ];
 const TONE_EN = {1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: 'neutral'};
 const TONE_ZH = {1: '一声', 2: '二声', 3: '三声', 4: '四声', 5: '轻声'};
@@ -974,7 +980,10 @@ const reduced = () => { try { return matchMedia('(prefers-reduced-motion: reduce
 function item(id){ return S.itemById[id]; }
 function lessonIndex(){ const m = {}; S.lessons.forEach((l, k) => { m[l.id] = k; }); return m; }
 function lessonNo(l){ return l.n || (S.lessons.indexOf(l) + 1); }
-function latestLesson(){ return S.lessons[S.lessons.length - 1] || null; }
+// A worksheet from 老师 gets its own unit but isn't a class: no class day, and "since last class" ignores it.
+const isClass = l => l.kind !== 'worksheet';
+function latestLesson(){ return S.lessons.filter(isClass).pop() || null; }
+const unitTag = l => isClass(l) ? '第' + lessonNo(l) + '课' : '练习';
 function itemsInOrder(){
   const li = lessonIndex();
   const pos = x => (li[x.lessonId] == null ? 1e6 : li[x.lessonId]);
@@ -1116,7 +1125,7 @@ function wordRow(it){
     '<div class="w-zh">' + ruby(it, 'md') + '</div>' +
     '<div class="w-en"><span>' + esc(it.english) + '</span>' + (it.notes && S.lang !== 'zh' ? '<small>' + esc(it.notes) + '</small>' : '') + '</div>' +
     '<div class="w-meta">' + (it.focus ? '<span class="pill warn">' + T('Tricky in class', '课上易错') + '</span>' : '') + dots(p) +
-    (l ? '<span class="lsn">第' + lessonNo(l) + '课</span>' : '') + '</div></li>';
+    (l ? '<span class="lsn">' + unitTag(l) + '</span>' : '') + '</div></li>';
 }
 function itemCounts(its){
   const w = its.filter(i => i.type === 'word').length;
@@ -1134,7 +1143,7 @@ function daysStrip(){
   const n = Math.max(dayDiff(start, today) + 1, 8);
   const byDay = {};
   for(const s of S.sessions){ const e = byDay[s.date] || (byDay[s.date] = {xp: 0}); e.xp += s.xp || 0; }
-  const classDays = new Set(S.lessons.map(x => ymd(new Date(x.date))));
+  const classDays = new Set(S.lessons.filter(isClass).map(x => ymd(new Date(x.date))));
   let h = '';
   for(let i = 0; i < n; i++){
     const day = addDays(start, i);
@@ -1181,7 +1190,8 @@ function viewLearn(){
   const units = S.lessons.map((l, ui) => {
     const nodes = unitNodes(l);
     if(!nodes.length) return '';
-    return '<section class="unit"' + unitStyle(ui) + ' aria-label="' + esc(T('Unit ', '第') + lessonNo(l) + T('', '单元')) + '"><div class="unit-banner"><div><span class="eyebrow">' + T('Unit ' + lessonNo(l), '第' + lessonNo(l) + '单元') + ' · ' + esc(fmtDate(l.date)) + '</span><h2>' + esc(Lz(l, 'title') || '') + '</h2></div>' +
+    const name = isClass(l) ? T('Unit ' + lessonNo(l), '第' + lessonNo(l) + '单元') : T('Worksheet from ' + TEACHER, TEACHER + '的练习');
+    return '<section class="unit"' + unitStyle(ui) + ' aria-label="' + esc(name) + '"><div class="unit-banner"><div><span class="eyebrow">' + name + ' · ' + esc(fmtDate(l.date)) + '</span><h2>' + esc(Lz(l, 'title') || '') + '</h2></div>' +
       '<button type="button" class="btn small" data-act="open-lesson" data-id="' + esc(l.id) + '">' + ICON.book.replace('<svg ', '<svg width="16" height="16" ') + T('Guidebook', '课程笔记') + '</button></div>' +
       '<div class="path">' + nodes.map(nodeHTML).join('') + '</div></section>';
   }).join('');
@@ -1262,7 +1272,7 @@ function viewGuide(){
     const strengths = Lz(l, 'strengths') || [], struggles = Lz(l, 'struggles') || [], topics = Lz(l, 'topics') || [];
     const link = typeof l.shareLink === 'string' && /^https:\/\//.test(l.shareLink) ? l.shareLink : '';
     return '<details class="lesson" id="lesson-' + esc(l.id) + '" data-lesson="' + esc(l.id) + '"' + (S.openLessons.has(l.id) ? ' open' : '') + '>' +
-      '<summary>' + ringHTML(lessonMastery(its), '第' + lessonNo(l) + '课') + '<div><h2>' + esc(Lz(l, 'title') || '') + '</h2><p>' + esc(fmtDate(l.date)) + ' · ' + esc(itemCounts(its)) + '</p></div><span class="chev" aria-hidden="true"></span></summary>' +
+      '<summary>' + ringHTML(lessonMastery(its), unitTag(l)) + '<div><h2>' + esc(Lz(l, 'title') || '') + '</h2><p>' + esc(fmtDate(l.date)) + ' · ' + esc(itemCounts(its)) + '</p></div><span class="chev" aria-hidden="true"></span></summary>' +
       '<div class="ls-body">' +
         (Lz(l, 'summary') ? '<p class="lead">' + esc(Lz(l, 'summary')) + '</p>' : '') +
         (Lz(l, 'next') ? '<p><span class="pill cobalt">' + T('Next class', '下节课') + '</span> ' + esc(Lz(l, 'next')) + '</p>' : '') +
@@ -1293,7 +1303,7 @@ function viewWords(){
   const labels = [['all', T('All', '全部')], ['new', T('New', '未练习')], ['learning', T('Learning', '学习中')], ['known', T('Known', '已掌握')], ['weak', T('Needs work', '需加强')]];
   const list = all.filter(tests[S.wordFilter] || tests.all).filter(i => !q || [i.hanzi, i.pinyin, i.english, letters(i.pinyin)].some(v => String(v || '').toLowerCase().includes(q)));
   const writable = S.isOwner || canWriteShared();
-  const opts = S.lessons.slice().reverse().map(l => '<option value="' + esc(l.id) + '">第' + lessonNo(l) + '课 · ' + esc(Lz(l, 'title') || '') + '</option>').join('');
+  const opts = S.lessons.slice().reverse().map(l => '<option value="' + esc(l.id) + '">' + unitTag(l) + ' · ' + esc(Lz(l, 'title') || '') + '</option>').join('');
   const addForm = writable && S.lessons.length ? '<details class="add-word panel"><summary>' + T('Add a word', '添加生词') + '</summary><form id="aw-form"><div class="aw-grid">' +
     '<label for="aw-h">' + T('Characters', '汉字') + '<input class="field" id="aw-h" required autocomplete="off" placeholder="谢谢" lang="zh-CN"></label>' +
     '<label for="aw-p">' + T('Pinyin', '拼音') + '<input class="field" id="aw-p" required autocomplete="off" placeholder="xie4 xie5 / xiè xie"></label>' +
@@ -1366,7 +1376,7 @@ function viewTeacher(){
     '<div class="stack-v">' + questionsPanel('tutor') + notePanel() + homeworkPanel('tutor') + classNotesPanel(last) + '</div></div>';
 }
 function pathPanel(){
-  const l = latestLesson();
+  const l = S.lessons[S.lessons.length - 1];
   if(!l) return '';
   const nodes = unitNodes(l).filter(n => n.kind !== 'chest');
   const done = nodes.filter(n => n.done).length;
@@ -1483,7 +1493,9 @@ function typesFor(it, stage){
   const toks = Array.isArray(it.tokens) && it.tokens.length >= 2;
   if(isLong(it)){
     if(stage === 'first') return [toks ? 'build-en' : 'meaning'];
-    return [toks && 'build-zh', toks && voice && 'hear', 'speak', toks && 'build-en'].filter(Boolean);
+    // A sentence with blanks (`fill`: [{blank, choices}], from 老师's worksheets) gets fill-in-the-blank twice as often.
+    const fills = toks && Array.isArray(it.fill) && it.fill.length ? ['fill', 'fill'] : [];
+    return [toks && 'build-zh', toks && voice && 'hear', 'speak', toks && 'build-en'].filter(Boolean).concat(fills);
   }
   const short = hanCount(it.hanzi) <= 4;
   if(stage === 'first') return [mc && 'meaning', mc && hz && short && 'select', mc && hz && short && 'read'].filter(Boolean);
@@ -1597,11 +1609,19 @@ function prepare(ex){
     ex.placed = [];
   }
   if(ex.type === 'tones') ex.picks = it.syl.map(() => null);
+  if(ex.type === 'fill'){
+    const f = pick(it.fill);
+    ex.at = it.tokens.findIndex(t => t.h === f.blank);
+    ex.answer = f.blank;
+    ex.choices = shuffle(f.choices.slice());
+    if(ex.at < 0) ex.type = 'speak';
+  }
   if(ex.type === 'match'){ ex.left = shuffle(ex.ids); ex.right = shuffle(ex.ids); ex.done = []; ex.missed = []; ex.selL = null; ex.selR = null; ex.flash = null; }
 }
 function optBtn(ex, id, k, inner, cls){
   const checked = P.state === 'checked';
-  const st = checked ? (id === ex.id ? ' is-right' : id === P.sel ? ' is-wrong' : '') : '';
+  const right = ex.answer != null ? ex.answer : ex.id;
+  const st = checked ? (id === right ? ' is-right' : id === P.sel ? ' is-wrong' : '') : '';
   return '<button type="button" class="' + (cls || 'opt') + st + '" data-act="p-opt" data-id="' + esc(id) + '" data-key="' + (k + 1) + '" aria-pressed="' + (P.sel === id) + '"' + (checked ? ' disabled' : '') + '>' + (cls ? inner + '<span class="key">' + (k + 1) + '</span>' : '<span class="key" aria-hidden="true">' + (k + 1) + '</span><span class="opt-t">' + inner + '</span>') + '</button>';
 }
 function zhCard(o){ return S.prefs.hanzi ? '<span class="big" lang="zh-CN">' + esc(o.hanzi) + '</span>' : '<span class="opt-py">' + esc(o.pinyin) + '</span>'; }
@@ -1621,6 +1641,20 @@ function answerLine(ex){
   const bank = ex.tiles.map((t, k) => ex.placed.includes(k) ? '<span class="tile-b ghost' + (t.e != null ? ' en' : '') + '" aria-hidden="true">' + (t.e != null ? esc(t.e) : '<span class="py">' + esc(t.p) + '</span><span class="hz">' + esc(t.h) + '</span>') + '</span>' : tileBtn(t, k, 'p-tile', 'data-k')).join('');
   return '<div class="answer-line" aria-label="Your answer">' + (placed || '<span class="ph">' + T('Tap the words below', '点击下面的词') + '</span>') + '</div><div class="bank">' + bank + '</div>';
 }
+// The sentence with one word replaced by a blank (filled with the pick, or the answer once checked).
+function blankSentence(it, ex){
+  const shown = P.state === 'checked' ? ex.answer : P.sel;
+  const gap = '<span class="blank' + (shown ? ' filled' : '') + (P.state === 'checked' ? ' ok' : '') + '">' + (shown ? esc(shown) : '') + '</span>';
+  let out = '', pos = 0;
+  it.tokens.forEach((t, k) => {
+    const i = it.hanzi.indexOf(t.h, pos);
+    if(i < 0) return;
+    out += esc(it.hanzi.slice(pos, i)) + (k === ex.at ? gap : esc(t.h));
+    pos = i + t.h.length;
+  });
+  return out + esc(it.hanzi.slice(pos));
+}
+const pinyinOf = h => (S.items.find(o => o.hanzi === h) || {}).pinyin || ((S.items.flatMap(o => o.tokens || []).find(t => t.h === h)) || {}).p || '';
 const BODY = {
   intro(ex, it){
     return '<div class="mascot-row">' + panda('wave') + '<p class="speech">' + (it.type === 'grammar' ? T('New grammar tip!', '新语法！') : T('New ' + (KIND_EN[it.type] || 'word') + '!', '新词！')) + '</p></div><div class="intro">' + bigZh(it) +
@@ -1634,6 +1668,10 @@ const BODY = {
     return '<p class="p-kicker">' + T('Select the correct character' + (hanCount(it.hanzi) > 1 ? 's' : '') + ' for ', '选出正确的汉字：') + '<span class="en-prompt" style="display:inline">' + prompt + '</span></p><div class="cards">' + ex.opts.map((id, k) => optBtn(ex, id, k, zhCard(item(id)), 'copt')).join('') + '</div>';
   },
   read(ex, it){ return '<p class="p-kicker">' + T('How do you read this?', '怎么读？') + '<span class="zh-q" lang="zh-CN">这个' + (hanCount(it.hanzi) > 1 ? '词' : '字') + '怎么读？</span></p><div class="read-zh" lang="zh-CN">' + esc(it.hanzi) + '</div><div class="opts">' + ex.opts.map((id, k) => optBtn(ex, id, k, '<span class="opt-py">' + esc(item(id).pinyin) + '</span>')).join('') + '</div>'; },
+  fill(ex, it){
+    return '<p class="p-kicker">' + T('Fill in the blank', '选词填空') + '</p><div class="prompt"><div class="bubble fill-q" lang="zh-CN">' + blankSentence(it, ex) + '</div></div>' +
+      '<div class="opts">' + ex.choices.map((c, k) => optBtn(ex, c, k, '<span class="opt-zh" lang="zh-CN">' + esc(c) + '</span>' + (S.prefs.pinyin && pinyinOf(c) ? '<span class="opt-sub">' + esc(pinyinOf(c)) + '</span>' : ''))).join('') + '</div>';
+  },
   listen(ex, it){ return '<p class="p-kicker">' + T('Select what you hear', '选出你听到的') + '</p><div class="prompt" style="justify-content:center">' + audioPair(it) + '</div><div class="cards">' + ex.opts.map((id, k) => optBtn(ex, id, k, zhCard(item(id)), 'copt')).join('') + '</div>'; },
   tones(ex, it){
     const cs = Array.from(it.hanzi || '').filter(isHan);
@@ -1663,7 +1701,7 @@ const BODY = {
   },
 };
 function isReady(ex){
-  if(['meaning', 'select', 'read', 'listen'].includes(ex.type)) return P.sel != null;
+  if(['meaning', 'select', 'read', 'listen', 'fill'].includes(ex.type)) return P.sel != null;
   if(ex.type === 'tones') return ex.picks.every(t => t != null);
   if(ex.type === 'build-en' || ex.type === 'build-zh' || ex.type === 'hear') return ex.placed.length > 0;
   return true;
@@ -1834,6 +1872,7 @@ function pCheck(){
     });
     ans = it.syl.map((s, k) => markSyl(sylBase(s) + ex.picks[k])).join(' ');
   }
+  else if(ex.type === 'fill'){ ok = P.sel === ex.answer; ans = P.sel; }
   else if(ex.type === 'build-en'){ const got = ex.placed.map(k => ex.tiles[k].e).join(' '); ok = normEn(got) === normEn(it.english); ans = got; }
   else { const got = ex.placed.map(k => ex.tiles[k].h).join(''); ok = got === it.tokens.map(t => t.h).join(''); ans = ex.placed.map(k => ex.tiles[k].h).join(' '); }
   P.state = 'checked';

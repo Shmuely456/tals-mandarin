@@ -78,6 +78,12 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   10 sentences and 5 grammar tips in 7 steps, from the handout (生词 page and the 谁/哪 notes) plus what was practiced
   in class (不客气, 喜欢, 也, 咖啡, 女朋友, 本/个, and Tal's corrected sentences). Private notes are in `notes/l-20261026`.
   老师 tested Tal with the app in class and liked that it drills tones and the lesson's own words.
+- Unit 3 (老师's worksheet of 2026-11-12, "Worksheet: introduce yourself", `kind: "worksheet"`): 7 words, 5 phrases,
+  22 sentences and 2 grammar tips in 7 steps, plus 36 audio clips. It turns her fill-in-the-blank questions into the
+  fill exercise (with her own answer choices where she gave them) and adds age (你今年几岁？), 有 (我有一个中国朋友。),
+  polite words and 很高兴认识你！. Names in her examples were changed to the textbook's 李月. The parts where Tal writes
+  about himself (his own sentences, his self-introduction) stay on paper. Fill-in-the-blank was also added to
+  你叫什么名字？ and 你是学生吗？ in Unit 1.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
@@ -99,6 +105,10 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    tones, e.g. `["ni3","hao3"]`), `english`, `notes` (the tutor's memory tricks), `lookalikes`
    (characters Tal confuses), `focus: true` if he struggled with it in class, and `tokens` (`[{h, p}]`) for
    sentences. Grammar items also have `pattern` and `explain`.
+   A sentence can also have `fill` (`[{blank, choices}]`), which adds a fill-in-the-blank exercise. `blank` must be
+   one of its tokens, and `choices` are 3 different words that include it. Use 老师's own choices when she gives
+   them, and make sure no wrong choice also makes a correct sentence (你学谁？ is fine Chinese, so 谁 can't be a wrong
+   choice for 你学什么？).
    Pinyin follows the textbook (HSK Standard Course) and CC-CEDICT: simplified characters; neutral tone as `5`
    (学生 xuésheng `xue2 sheng5`); 不 and 一 written with their changed tone (不是 bú shì `bu2 shi4`, 一个 yí gè);
    3rd + 3rd written as two 3rd tones (你好 nǐ hǎo), because that's how it's printed. The tone exercise explains
@@ -115,6 +125,16 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
 6. Fonts: `python3 tools/subset_fonts.py <folder with source ttf>`. Sources come from the Google Fonts css2 API:
    Fredoka wght 500..700, Nunito wght 500..800, Noto Serif SC 500 and 700.
 7. Bump `VERSION` in `sw.js`, commit and push to `main`. GitHub Pages redeploys in about a minute.
+
+### Worksheets and handouts from 老师
+
+- A **handout** for a class (like 10.20.pdf) adds to that class's unit: check the unit against it and add what's missing.
+- A **worksheet** (like her Google Doc of Nov 12) gets its own unit: a lesson in `content/lessons.json` with
+  `kind: "worksheet"`, `id`, `date`, `title`, `title_zh`, `topics` and `topics_zh`, but no `n`, `endAt` or `next`.
+  It isn't a class, so it has no class day, the next-class card and "since last class" ignore it, and it shows as
+  "Worksheet from 老师" (练习) instead of a unit number. Classes keep their own `n`, so the class after a worksheet is
+  still numbered correctly.
+- Turn her questions into exercises; leave out what Tal should write about himself, and don't fill in his answers.
 
 ## Notes
 

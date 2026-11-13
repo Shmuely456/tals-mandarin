@@ -48,5 +48,26 @@
   ],
   "next": "Monday, Nov 2, 3:00 pm your time",
   "next_zh": "11月2日（周一），Tal时间下午3点"
+ },
+ {
+  "id": "l-20261112",
+  "kind": "worksheet",
+  "date": "2026-11-12T10:26:32.677Z",
+  "title": "Worksheet: introduce yourself",
+  "title_zh": "练习：自我介绍",
+  "topics": [
+   "Fill in the blank: 叫 · 是 · 有 · 吗 · 呢 · 谁 · 哪 · 什么",
+   "Age: 你今年几岁？ 我今年二十岁。",
+   "Having: 我有一个中国朋友。",
+   "Polite words: 你好 · 对不起 · 没关系 · 谢谢 · 不客气",
+   "Meeting someone: 很高兴认识你！ 我也是。"
+  ],
+  "topics_zh": [
+   "选词填空：叫 · 是 · 有 · 吗 · 呢 · 谁 · 哪 · 什么",
+   "年龄：你今年几岁？我今年二十岁。",
+   "“有”：我有一个中国朋友。",
+   "礼貌用语：你好 · 对不起 · 没关系 · 谢谢 · 不客气",
+   "认识新朋友：很高兴认识你！我也是。"
+  ]
  }
 ]
