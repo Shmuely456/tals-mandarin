@@ -369,6 +369,7 @@ button.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border
 .blank.ok{color:var(--good);border-color:var(--good)}
 .opt-zh{font:500 24px var(--font-zh)}
 .opt-sub{display:block;font-size:13px;color:var(--ink-2)}
+.replies .opt-zh{font-size:19px;line-height:1.4}
 .opt.is-wrong .key{border-color:var(--bad);color:var(--bad)}
 .cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
 .copt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;background:var(--card);border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:12px}
@@ -637,6 +638,7 @@ const SKILLS = [
   ['build', 'Building sentences', '组句'],
   ['speak', 'Speaking (self-check)', '口语（自评）'],
   ['fill', 'Filling in the blank', '选词填空'],
+  ['reply', 'Answering questions', '回答问题'],
 ];
 const TONE_EN = {1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: 'neutral'};
 const TONE_ZH = {1: '一声', 2: '二声', 3: '三声', 4: '四声', 5: '轻声'};
@@ -1495,7 +1497,9 @@ function typesFor(it, stage){
     if(stage === 'first') return [toks ? 'build-en' : 'meaning'];
     // A sentence with blanks (`fill`: [{blank, choices}], from 老师's worksheets) gets fill-in-the-blank twice as often.
     const fills = toks && Array.isArray(it.fill) && it.fill.length ? ['fill', 'fill'] : [];
-    return [toks && 'build-zh', toks && voice && 'hear', 'speak', toks && 'build-en'].filter(Boolean).concat(fills);
+    // An answer to a textbook question (`reply`: {to, choices}) also gets "pick the right answer", twice as often.
+    const replies = it.reply && it.reply.to && Array.isArray(it.reply.choices) ? ['reply', 'reply'] : [];
+    return [toks && 'build-zh', toks && voice && 'hear', 'speak', toks && 'build-en'].filter(Boolean).concat(fills, replies);
   }
   const short = hanCount(it.hanzi) <= 4;
   if(stage === 'first') return [mc && 'meaning', mc && hz && short && 'select', mc && hz && short && 'read'].filter(Boolean);
@@ -1616,6 +1620,7 @@ function prepare(ex){
     ex.choices = shuffle(f.choices.slice());
     if(ex.at < 0) ex.type = 'speak';
   }
+  if(ex.type === 'reply'){ ex.q = it.reply.to; ex.answer = it.hanzi; ex.choices = shuffle(it.reply.choices.slice()); }
   if(ex.type === 'match'){ ex.left = shuffle(ex.ids); ex.right = shuffle(ex.ids); ex.done = []; ex.missed = []; ex.selL = null; ex.selR = null; ex.flash = null; }
 }
 function optBtn(ex, id, k, inner, cls){
@@ -1672,6 +1677,11 @@ const BODY = {
     return '<p class="p-kicker">' + T('Fill in the blank', '选词填空') + '</p><div class="prompt"><div class="bubble fill-q" lang="zh-CN">' + blankSentence(it, ex) + '</div></div>' +
       '<div class="opts">' + ex.choices.map((c, k) => optBtn(ex, c, k, '<span class="opt-zh" lang="zh-CN">' + esc(c) + '</span>' + (S.prefs.pinyin && pinyinOf(c) ? '<span class="opt-sub">' + esc(pinyinOf(c)) + '</span>' : ''))).join('') + '</div>';
   },
+  reply(ex, it){
+    const q = S.items.find(o => o.hanzi === ex.q) || {hanzi: ex.q, pinyin: pinyinOf(ex.q)};
+    return '<p class="p-kicker">' + T('Pick the right answer', '选择正确的回答') + '</p><div class="prompt">' + sayBtn(q.hanzi) + '<div class="bubble" lang="zh-CN">' + ruby(q, 'md') + '</div></div>' +
+      '<div class="opts replies">' + ex.choices.map((c, k) => optBtn(ex, c, k, '<span class="opt-zh" lang="zh-CN">' + esc(c) + '</span>' + (S.prefs.pinyin && pinyinOf(c) ? '<span class="opt-sub">' + esc(pinyinOf(c)) + '</span>' : ''))).join('') + '</div>';
+  },
   listen(ex, it){ return '<p class="p-kicker">' + T('Select what you hear', '选出你听到的') + '</p><div class="prompt" style="justify-content:center">' + audioPair(it) + '</div><div class="cards">' + ex.opts.map((id, k) => optBtn(ex, id, k, zhCard(item(id)), 'copt')).join('') + '</div>'; },
   tones(ex, it){
     const cs = Array.from(it.hanzi || '').filter(isHan);
@@ -1701,7 +1711,7 @@ const BODY = {
   },
 };
 function isReady(ex){
-  if(['meaning', 'select', 'read', 'listen', 'fill'].includes(ex.type)) return P.sel != null;
+  if(['meaning', 'select', 'read', 'listen', 'fill', 'reply'].includes(ex.type)) return P.sel != null;
   if(ex.type === 'tones') return ex.picks.every(t => t != null);
   if(ex.type === 'build-en' || ex.type === 'build-zh' || ex.type === 'hear') return ex.placed.length > 0;
   return true;
@@ -1759,9 +1769,10 @@ function renderEx(){
     if(P.i){ const pin = $('#practice .p-in'); if(pin) pin.classList.add('enter'); }
     P.shownI = P.i; P.wasReady = false;
   }
-  if(!ex.spoken && (ex.type === 'intro' || ex.type === 'listen' || ex.type === 'hear')){
+  if(!ex.spoken && (ex.type === 'intro' || ex.type === 'listen' || ex.type === 'hear' || ex.type === 'reply')){
     ex.spoken = true;
-    setTimeout(() => { if(P && !P.screen && cur() === ex) say(it.hanzi, false, $('#practice .say.big')); }, 300);
+    const text = ex.type === 'reply' ? ex.q : it.hanzi;
+    setTimeout(() => { if(P && !P.screen && cur() === ex) say(text, false, $('#practice ' + (ex.type === 'reply' ? '.prompt .say' : '.say.big'))); }, 300);
   }
   growBar();
   if(fx === 'no'){
@@ -1872,7 +1883,7 @@ function pCheck(){
     });
     ans = it.syl.map((s, k) => markSyl(sylBase(s) + ex.picks[k])).join(' ');
   }
-  else if(ex.type === 'fill'){ ok = P.sel === ex.answer; ans = P.sel; }
+  else if(ex.type === 'fill' || ex.type === 'reply'){ ok = P.sel === ex.answer; ans = P.sel; }
   else if(ex.type === 'build-en'){ const got = ex.placed.map(k => ex.tiles[k].e).join(' '); ok = normEn(got) === normEn(it.english); ans = got; }
   else { const got = ex.placed.map(k => ex.tiles[k].h).join(''); ok = got === it.tokens.map(t => t.h).join(''); ans = ex.placed.map(k => ex.tiles[k].h).join(' '); }
   P.state = 'checked';

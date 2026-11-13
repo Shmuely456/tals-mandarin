@@ -3256,5 +3256,1051 @@
    }
   ],
   "type": "sentence"
+ },
+ {
+  "id": "i-20261112-37",
+  "english": "year",
+  "hanzi": "年",
+  "lessonId": "l-20261112",
+  "notes": "今年 = this year. A year is said digit by digit, then 年: 二零二六年 = 2026.",
+  "order": 37,
+  "pinyin": "nián",
+  "step": 8,
+  "syl": [
+   "nian2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-38",
+  "english": "zero",
+  "hanzi": "零",
+  "lessonId": "l-20261112",
+  "notes": "In years: 二零二六年 = 2026.",
+  "order": 38,
+  "pinyin": "líng",
+  "step": 8,
+  "syl": [
+   "ling2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-39",
+  "english": "six",
+  "hanzi": "六",
+  "lessonId": "l-20261112",
+  "order": 39,
+  "pinyin": "liù",
+  "step": 8,
+  "syl": [
+   "liu4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-40",
+  "english": "This year is 2026.",
+  "explain": "Say a year digit by digit, then 年: 二零二六年. Zero is 零.",
+  "hanzi": "今年是二零二六年。",
+  "lessonId": "l-20261112",
+  "order": 40,
+  "pattern": "今年是 + digits + 年",
+  "pinyin": "Jīnnián shì èr líng èr liù nián.",
+  "step": 8,
+  "syl": [
+   "jin1",
+   "nian2",
+   "shi4",
+   "er4",
+   "ling2",
+   "er4",
+   "liu4",
+   "nian2"
+  ],
+  "tokens": [
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "二",
+    "p": "èr"
+   },
+   {
+    "h": "零",
+    "p": "líng"
+   },
+   {
+    "h": "二",
+    "p": "èr"
+   },
+   {
+    "h": "六",
+    "p": "liù"
+   },
+   {
+    "h": "年",
+    "p": "nián"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261112-41",
+  "english": "how much is it?",
+  "hanzi": "多少钱",
+  "lessonId": "l-20261112",
+  "notes": "多少 (how much) + 钱 (money). 少 is said lightly here: duōshao.",
+  "order": 41,
+  "pinyin": "duōshao qián",
+  "step": 9,
+  "syl": [
+   "duo1",
+   "shao5",
+   "qian2"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261112-42",
+  "english": "yuan (Chinese money)",
+  "hanzi": "元",
+  "lessonId": "l-20261112",
+  "notes": "一百元 = 100 yuan.",
+  "order": 42,
+  "pinyin": "yuán",
+  "step": 9,
+  "syl": [
+   "yuan2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-43",
+  "english": "US dollar",
+  "hanzi": "美元",
+  "lessonId": "l-20261112",
+  "notes": "美 (from 美国, America) + 元 (money).",
+  "order": 43,
+  "pinyin": "Měiyuán",
+  "step": 9,
+  "syl": [
+   "mei3",
+   "yuan2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-44",
+  "english": "hundred",
+  "hanzi": "百",
+  "lessonId": "l-20261112",
+  "notes": "一百 = 100.",
+  "order": 44,
+  "pinyin": "bǎi",
+  "step": 9,
+  "syl": [
+   "bai3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-45",
+  "english": "one hundred (100)",
+  "hanzi": "一百",
+  "lessonId": "l-20261112",
+  "notes": "一 is said yì before a 1st, 2nd or 3rd tone, like 百.",
+  "order": 45,
+  "pinyin": "yìbǎi",
+  "step": 9,
+  "syl": [
+   "yi4",
+   "bai3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-46",
+  "english": "How much is it? — 100 US dollars.",
+  "hanzi": "多少钱？——一百美元。",
+  "lessonId": "l-20261112",
+  "order": 46,
+  "pinyin": "Duōshao qián? — Yìbǎi Měiyuán.",
+  "step": 9,
+  "syl": [
+   "duo1",
+   "shao5",
+   "qian2",
+   "yi4",
+   "bai3",
+   "mei3",
+   "yuan2"
+  ],
+  "tokens": [
+   {
+    "h": "多少钱",
+    "p": "duōshao qián"
+   },
+   {
+    "h": "一百",
+    "p": "yìbǎi"
+   },
+   {
+    "h": "美元",
+    "p": "Měiyuán"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-47",
+  "english": "character, word",
+  "hanzi": "字",
+  "lessonId": "l-20261112",
+  "lookalikes": [
+   "学生",
+   "学校"
+  ],
+  "notes": "A roof (宀) over 子. 学 (in 学生, 学校) has three short strokes on top instead. Also in 名字 (name).",
+  "order": 47,
+  "pinyin": "zì",
+  "step": 10,
+  "syl": [
+   "zi4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-48",
+  "english": "mom",
+  "hanzi": "妈妈",
+  "lessonId": "l-20261112",
+  "notes": "女 (woman) + 马 (mǎ, horse) for the sound.",
+  "order": 48,
+  "pinyin": "māma",
+  "step": 10,
+  "syl": [
+   "ma1",
+   "ma5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-49",
+  "english": "you (polite)",
+  "hanzi": "您",
+  "lessonId": "l-20261112",
+  "lookalikes": [
+   "你"
+  ],
+  "notes": "你 with 心 (heart) under it: the polite “you”, for teachers and older people.",
+  "order": 49,
+  "pinyin": "nín",
+  "step": 10,
+  "syl": [
+   "nin2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-50",
+  "english": "What’s your mom’s name?",
+  "fill": [
+   {
+    "blank": "叫",
+    "choices": [
+     "叫",
+     "哪",
+     "呢"
+    ]
+   }
+  ],
+  "hanzi": "你妈妈叫什么？",
+  "lessonId": "l-20261112",
+  "order": 50,
+  "pinyin": "Nǐ māma jiào shénme?",
+  "step": 10,
+  "syl": [
+   "ni3",
+   "ma1",
+   "ma5",
+   "jiao4",
+   "shen2",
+   "me5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "妈妈",
+    "p": "māma"
+   },
+   {
+    "h": "叫",
+    "p": "jiào"
+   },
+   {
+    "h": "什么",
+    "p": "shénme"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-51",
+  "english": "What country are you from? (polite)",
+  "fill": [
+   {
+    "blank": "哪",
+    "choices": [
+     "哪",
+     "叫",
+     "呢"
+    ]
+   }
+  ],
+  "hanzi": "您是哪国人？",
+  "lessonId": "l-20261112",
+  "order": 51,
+  "pinyin": "Nín shì nǎ guó rén?",
+  "step": 10,
+  "syl": [
+   "nin2",
+   "shi4",
+   "na3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "您",
+    "p": "nín"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "哪",
+    "p": "nǎ"
+   },
+   {
+    "h": "国",
+    "p": "guó"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-52",
+  "english": "to drink",
+  "hanzi": "喝",
+  "lessonId": "l-20261112",
+  "notes": "口 (mouth) on the left: to drink.",
+  "order": 52,
+  "pinyin": "hē",
+  "step": 11,
+  "syl": [
+   "he1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-53",
+  "english": "water",
+  "hanzi": "水",
+  "lessonId": "l-20261112",
+  "lookalikes": [
+   "谁"
+  ],
+  "notes": "Not 谁 shuí (who): water is shuǐ, 3rd tone.",
+  "order": 53,
+  "pinyin": "shuǐ",
+  "step": 11,
+  "syl": [
+   "shui3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261112-54",
+  "english": "Would you like some water?",
+  "hanzi": "你喝水吗？",
+  "lessonId": "l-20261112",
+  "order": 54,
+  "pinyin": "Nǐ hē shuǐ ma?",
+  "step": 11,
+  "syl": [
+   "ni3",
+   "he1",
+   "shui3",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "喝",
+    "p": "hē"
+   },
+   {
+    "h": "水",
+    "p": "shuǐ"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-55",
+  "english": "OK, thanks!",
+  "hanzi": "好的，谢谢！",
+  "lessonId": "l-20261112",
+  "notes": "好的 = OK, sure.",
+  "order": 55,
+  "pinyin": "Hǎo de, xièxie!",
+  "reply": {
+   "to": "你喝水吗？",
+   "choices": [
+    "好的，谢谢！",
+    "我是美国人。",
+    "他是我同学，他叫大卫。"
+   ]
+  },
+  "step": 11,
+  "syl": [
+   "hao3",
+   "de5",
+   "xie4",
+   "xie5"
+  ],
+  "tokens": [
+   {
+    "h": "好的",
+    "p": "hǎo de"
+   },
+   {
+    "h": "谢谢",
+    "p": "xièxie"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-56",
+  "english": "I’m American.",
+  "hanzi": "我是美国人。",
+  "lessonId": "l-20261112",
+  "order": 56,
+  "pinyin": "Wǒ shì Měiguó rén.",
+  "reply": {
+   "to": "你是哪国人？",
+   "choices": [
+    "我是美国人。",
+    "好的，谢谢！",
+    "不是，她是我的汉语老师。"
+   ]
+  },
+  "step": 11,
+  "syl": [
+   "wo3",
+   "shi4",
+   "mei3",
+   "guo2",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "美国人",
+    "p": "Měiguó rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-57",
+  "english": "He’s my classmate. His name is David.",
+  "hanzi": "他是我同学，他叫大卫。",
+  "lessonId": "l-20261112",
+  "notes": "我同学 = my classmate: 的 is often left out before close people, like 我同学, 我妈妈.",
+  "order": 57,
+  "pinyin": "Tā shì wǒ tóngxué, tā jiào Dàwèi.",
+  "reply": {
+   "to": "他是谁？",
+   "choices": [
+    "他是我同学，他叫大卫。",
+    "我是美国人。",
+    "不是，她是我的汉语老师。"
+   ]
+  },
+  "step": 11,
+  "syl": [
+   "ta1",
+   "shi4",
+   "wo3",
+   "tong2",
+   "xue2",
+   "ta1",
+   "jiao4",
+   "da4",
+   "wei4"
+  ],
+  "tokens": [
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "同学",
+    "p": "tóngxué"
+   },
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "叫",
+    "p": "jiào"
+   },
+   {
+    "h": "大卫",
+    "p": "Dàwèi"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-58",
+  "english": "Is she your classmate?",
+  "hanzi": "她是你同学吗？",
+  "lessonId": "l-20261112",
+  "order": 58,
+  "pinyin": "Tā shì nǐ tóngxué ma?",
+  "step": 12,
+  "syl": [
+   "ta1",
+   "shi4",
+   "ni3",
+   "tong2",
+   "xue2",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "同学",
+    "p": "tóngxué"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-59",
+  "english": "No, she’s my Chinese teacher.",
+  "hanzi": "不是，她是我的汉语老师。",
+  "lessonId": "l-20261112",
+  "order": 59,
+  "pinyin": "Bú shì, tā shì wǒ de Hànyǔ lǎoshī.",
+  "reply": {
+   "to": "她是你同学吗？",
+   "choices": [
+    "不是，她是我的汉语老师。",
+    "我是美国人。",
+    "好的，谢谢！"
+   ]
+  },
+  "step": 12,
+  "syl": [
+   "bu2",
+   "shi4",
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "不是",
+    "p": "bú shì"
+   },
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "汉语",
+    "p": "Hànyǔ"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-60",
+  "english": "Is he your friend?",
+  "hanzi": "他是你的朋友吗？",
+  "lessonId": "l-20261112",
+  "order": 60,
+  "pinyin": "Tā shì nǐ de péngyou ma?",
+  "step": 12,
+  "syl": [
+   "ta1",
+   "shi4",
+   "ni3",
+   "de5",
+   "peng2",
+   "you5",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-61",
+  "english": "Yes, he’s my American friend.",
+  "hanzi": "是，他是我的美国朋友。",
+  "lessonId": "l-20261112",
+  "order": 61,
+  "pinyin": "Shì, tā shì wǒ de Měiguó péngyou.",
+  "reply": {
+   "to": "他是你的朋友吗？",
+   "choices": [
+    "是，他是我的美国朋友。",
+    "我是美国人。",
+    "好的，谢谢！"
+   ]
+  },
+  "step": 12,
+  "syl": [
+   "shi4",
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "mei3",
+   "guo2",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "美国",
+    "p": "Měiguó"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-62",
+  "english": "She’s Li Yue. She’s my Chinese friend.",
+  "hanzi": "她是李月，她是我的中国朋友。",
+  "lessonId": "l-20261112",
+  "order": 62,
+  "pinyin": "Tā shì Lǐ Yuè, tā shì wǒ de Zhōngguó péngyou.",
+  "reply": {
+   "to": "谁是李月？",
+   "choices": [
+    "她是李月，她是我的中国朋友。",
+    "他是我同学，他叫大卫。",
+    "好的，谢谢！"
+   ]
+  },
+  "step": 12,
+  "syl": [
+   "ta1",
+   "shi4",
+   "li3",
+   "yue4",
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "zhong1",
+   "guo2",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "李月",
+    "p": "Lǐ Yuè"
+   },
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "中国",
+    "p": "Zhōngguó"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-63",
+  "english": "good friend",
+  "hanzi": "好朋友",
+  "lessonId": "l-20261112",
+  "notes": "好 (good) + 朋友 (friend).",
+  "order": 63,
+  "pinyin": "hǎo péngyou",
+  "step": 13,
+  "syl": [
+   "hao3",
+   "peng2",
+   "you5"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261112-64",
+  "english": "He isn’t my classmate. He’s my Chinese friend.",
+  "fill": [
+   {
+    "blank": "的",
+    "choices": [
+     "的",
+     "哪",
+     "叫"
+    ]
+   }
+  ],
+  "hanzi": "他不是我同学，他是我的中国朋友。",
+  "lessonId": "l-20261112",
+  "order": 64,
+  "pinyin": "Tā bú shì wǒ tóngxué, tā shì wǒ de Zhōngguó péngyou.",
+  "step": 13,
+  "syl": [
+   "ta1",
+   "bu2",
+   "shi4",
+   "wo3",
+   "tong2",
+   "xue2",
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "zhong1",
+   "guo2",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "不是",
+    "p": "bú shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "同学",
+    "p": "tóngxué"
+   },
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "中国",
+    "p": "Zhōngguó"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-65",
+  "english": "Is he your Chinese teacher?",
+  "fill": [
+   {
+    "blank": "吗",
+    "choices": [
+     "吗",
+     "是",
+     "谁"
+    ]
+   }
+  ],
+  "hanzi": "他是你的汉语老师吗？",
+  "lessonId": "l-20261112",
+  "order": 65,
+  "pinyin": "Tā shì nǐ de Hànyǔ lǎoshī ma?",
+  "step": 13,
+  "syl": [
+   "ta1",
+   "shi4",
+   "ni3",
+   "de5",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1",
+   "ma5"
+  ],
+  "tokens": [
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "汉语",
+    "p": "Hànyǔ"
+   },
+   {
+    "h": "老师",
+    "p": "lǎoshī"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261112-66",
+  "english": "He isn’t my classmate. He’s my good friend.",
+  "fill": [
+   {
+    "blank": "是",
+    "choices": [
+     "是",
+     "吗",
+     "谁"
+    ]
+   }
+  ],
+  "hanzi": "他不是我同学，他是我的好朋友。",
+  "lessonId": "l-20261112",
+  "order": 66,
+  "pinyin": "Tā bú shì wǒ tóngxué, tā shì wǒ de hǎo péngyou.",
+  "step": 13,
+  "syl": [
+   "ta1",
+   "bu2",
+   "shi4",
+   "wo3",
+   "tong2",
+   "xue2",
+   "ta1",
+   "shi4",
+   "wo3",
+   "de5",
+   "hao3",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "不是",
+    "p": "bú shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "同学",
+    "p": "tóngxué"
+   },
+   {
+    "h": "他",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "好朋友",
+    "p": "hǎo péngyou"
+   }
+  ],
+  "type": "sentence"
  }
 ]

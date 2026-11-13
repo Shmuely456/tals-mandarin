@@ -78,12 +78,16 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   10 sentences and 5 grammar tips in 7 steps, from the handout (生词 page and the 谁/哪 notes) plus what was practiced
   in class (不客气, 喜欢, 也, 咖啡, 女朋友, 本/个, and Tal's corrected sentences). Private notes are in `notes/l-20261026`.
   老师 tested Tal with the app in class and liked that it drills tones and the lesson's own words.
-- Unit 3 (老师's worksheet of 2026-11-12, "Worksheet: introduce yourself", `kind: "worksheet"`): 7 words, 5 phrases,
-  22 sentences and 2 grammar tips in 7 steps, plus 36 audio clips. It turns her fill-in-the-blank questions into the
-  fill exercise (with her own answer choices where she gave them) and adds age (你今年几岁？), 有 (我有一个中国朋友。),
-  polite words and 很高兴认识你！. Names in her examples were changed to the textbook's 李月. The parts where Tal writes
-  about himself (his own sentences, his self-introduction) stay on paper. Fill-in-the-blank was also added to
-  你叫什么名字？ and 你是学生吗？ in Unit 1.
+- Unit 3 (class of 2026-11-12, "Introduce yourself: 几岁 · 有 · 多少钱"; not recorded in Wispr Flow): 19 words,
+  7 phrases, 37 sentences and 3 grammar tips in 13 steps, plus 66 audio clips. Steps 1–7 come from 老师's worksheet
+  (her Google Doc "Tal Chinese"): her fill-in-the-blank questions (with her own answer choices where she gave them), age
+  (你今年几岁？), 有 (我有一个中国朋友。), polite words and 很高兴认识你！. Names in her examples were changed to
+  the textbook's 李月. The parts where Tal writes about himself (his own sentences, his self-introduction) stay on
+  paper. Steps 8–13 come from the class handout 11.12.pdf: her notes (年 and 今年是二零二六年, 多少钱, 元, 美元,
+  一百, 字 vs 学) and Tal's corrected workbook pages for textbook Lesson 4 (picture words, question-and-answer
+  matching, fill-in-the-blank with the book's word banks). Fill-in-the-blank was also added to 你叫什么名字？ and
+  你是学生吗？ in Unit 1. 谁 stays shuí as on 老师's 10.26 slides, although the workbook prints shéi (both are right;
+  the 谁 note says so).
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
@@ -109,6 +113,10 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    one of its tokens, and `choices` are 3 different words that include it. Use 老师's own choices when she gives
    them, and make sure no wrong choice also makes a correct sentence (你学谁？ is fine Chinese, so 谁 can't be a wrong
    choice for 你学什么？).
+   An answer can have `reply` (`{to, choices}`), which adds "pick the right answer": the app plays and shows the
+   question `to` and offers 3 `choices`, one of them the item itself. The question and every choice must be items
+   (for their pinyin and audio). Pick wrong choices that can't answer the question, even loosely: 她 and 他 sound the
+   same, so "不是，她是…" also answers 他是你的朋友吗？ out loud.
    Pinyin follows the textbook (HSK Standard Course) and CC-CEDICT: simplified characters; neutral tone as `5`
    (学生 xuésheng `xue2 sheng5`); 不 and 一 written with their changed tone (不是 bú shì `bu2 shi4`, 一个 yí gè);
    3rd + 3rd written as two 3rd tones (你好 nǐ hǎo), because that's how it's printed. The tone exercise explains
@@ -129,7 +137,10 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
 ### Worksheets and handouts from 老师
 
 - A **handout** for a class (like 10.20.pdf) adds to that class's unit: check the unit against it and add what's missing.
-- A **worksheet** (like her Google Doc of Nov 12) gets its own unit: a lesson in `content/lessons.json` with
+  Handouts are named by class date (10.20, 10.26, 11.12), so a handout for a day with no unit means there was a class
+  that day, even if Wispr Flow didn't record it: make it a class unit with the next `n`.
+- A **worksheet** that comes with a class goes into that class's unit (her Nov 12 Google Doc came with 11.12.pdf, so
+  both are Unit 3). A worksheet on its own gets its own unit: a lesson in `content/lessons.json` with
   `kind: "worksheet"`, `id`, `date`, `title`, `title_zh`, `topics` and `topics_zh`, but no `n`, `endAt` or `next`.
   It isn't a class, so it has no class day, the next-class card and "since last class" ignore it, and it shows as
   "Worksheet from 老师" (练习) instead of a unit number. Classes keep their own `n`, so the class after a worksheet is

@@ -229,8 +229,10 @@ for text in texts:
     for take in range(TAKES):
         if single:
             seq = seq[:-1] + ['.!,'[take % 3]]
-        # A particle is light and short, but read too short its first sound gets lost: takes try both lengths.
-        x = clean(synth(seq, (0.95, 1.15)[take % 2] if particle else 1.15 if n_han <= 2 else 1.2))
+        # A particle is light and short, but read too short its first sound gets lost: takes try both lengths. A lone
+        # syllable read slowly can sprout a second one (零 heard as 李玲), so it also tries normal speed.
+        length = (0.95, 1.15)[take % 2] if particle else (1.15, 1.0)[take // 3 % 2] if single else 1.15 if n_han <= 2 else 1.2
+        x = clean(synth(seq, length))
         got = heard(np.concatenate([carrier(lead), x]) if lead else x)
         # 2 per recognizer that hears the same syllables and tones (so homophones count: 李悦 = 李月), 1 for the right
         # syllables in another tone.
