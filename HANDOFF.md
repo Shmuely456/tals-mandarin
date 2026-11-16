@@ -60,7 +60,14 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
 - **Personal links:** the access key in `?k=` decides the role. `student` is Tal: English UI and the Learn tab first.
   `tutor` is 老师: Chinese UI and the 老师 tab first. She can write notes, homework, feedback and words, but not
   practice. **Never commit the keys.** Read them with SQL (`select role, key from access_keys`) through the Management
-  API using `SUPABASE_ACCESS_TOKEN`, and rotate one by updating that table.
+  API, and rotate one by updating that table.
+- **Management API access:** Tal's Supabase personal access token is saved on the cloud environment as a network
+  secret for `api.supabase.com`, and the session's proxy adds it to every request. So call
+  `https://api.supabase.com/v1/projects/giuumcebqctbkrccxepn/database/query` (POST `{"query": "..."}`) with no
+  Authorization header of your own; the old `SUPABASE_ACCESS_TOKEN` variable is stale and not needed. Tokens expire
+  (Supabase's default is 30 days). On 401 "Invalid access token", Tal makes a new one (supabase.com, Account →
+  Access Tokens → Generate new token, Database read and write, a long expiry) and saves it through the
+  credential form. Never ask him to paste it in chat.
 - **Server:** `supabase/schema.sql` has the tables (`docs`, `access_keys`) and the `api(k, op, payload)` function.
   RLS is on with no policies, so the public key can only call `api()`.
   - `docs` collections: `progress`, `sessions`, `homework`, `messages`, `items` (words added in the app), plus two
@@ -87,14 +94,14 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   一百, 字 vs 学) and Tal's corrected workbook pages for textbook Lesson 4 (picture words, question-and-answer
   matching, fill-in-the-blank with the book's word banks). Fill-in-the-blank was also added to 你叫什么名字？ and
   你是学生吗？ in Unit 1. 谁 stays shuí as on 老师's 10.26 slides, although the workbook prints shéi (both are right;
-  the 谁 note says so).
+  the 谁 note says so). Private notes (from the handout) are in `notes/l-20261112`.
 - Unit 4 (class of 2026-11-16, "My family: 几口人 · 两 · 多 · 大", textbook Lesson 5 她女儿今年二十岁): 12 words,
   2 phrases, 13 sentences and 4 grammar tips in 6 steps, plus 34 audio clips. 老师 went through the lesson's
   character cards (家, 有, 口, 女儿, 几, 岁, 了, 今年, 多, 大) with memory tricks, then practiced describing pictures and
   families: 她今年多大？ (no 是 before an age), 你的家有几口人？ (口 counts family members), 两 before a measure word,
   几 with a measure word and no 吗, 很多, 在 for where, and adjectives without 是 (你的家大吗？不大). Tricks for words
   already in the app went into their notes (有, 几, 今年, 字). Real ages and the talk that wasn't the lesson are left
-  out. Its private class notes aren't saved yet, because the server login is broken.
+  out. Private notes are in `notes/l-20261116`.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
