@@ -1015,7 +1015,7 @@ function unitNodes(l){
     const words = list.filter(i => i.type === 'word' || i.type === 'phrase');
     const label = words.length >= list.length / 2
       ? words.slice(0, 4).map(i => i.hanzi).join(' · ')
-      : T('Sentences: ', '句子：') + String(list[0].hanzi || '').replace(/[。？！，,.?!]/g, '');
+      : T('Sentences: ', '句子：') + String((list.find(isLong) || list[0]).hanzi || '').split(/[，,]|——/)[0].replace(/[。？！，,.?!]/g, '');
     nodes.push({kind: 'lesson', key: l.id + ':' + n, step: n, items: list, icon, label});
     if((k + 1) % 3 === 0 && k < nums.length - 1) nodes.push({kind: 'chest', key: l.id + ':chest' + (k + 1)});
   });

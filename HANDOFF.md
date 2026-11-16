@@ -88,6 +88,13 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   matching, fill-in-the-blank with the book's word banks). Fill-in-the-blank was also added to 你叫什么名字？ and
   你是学生吗？ in Unit 1. 谁 stays shuí as on 老师's 10.26 slides, although the workbook prints shéi (both are right;
   the 谁 note says so).
+- Unit 4 (class of 2026-11-16, "My family: 几口人 · 两 · 多 · 大", textbook Lesson 5 她女儿今年二十岁): 12 words,
+  2 phrases, 13 sentences and 4 grammar tips in 6 steps, plus 34 audio clips. 老师 went through the lesson's
+  character cards (家, 有, 口, 女儿, 几, 岁, 了, 今年, 多, 大) with memory tricks, then practiced describing pictures and
+  families: 她今年多大？ (no 是 before an age), 你的家有几口人？ (口 counts family members), 两 before a measure word,
+  几 with a measure word and no 吗, 很多, 在 for where, and adjectives without 是 (你的家大吗？不大). Tricks for words
+  already in the app went into their notes (有, 几, 今年, 字). Real ages and the talk that wasn't the lesson are left
+  out. Its private class notes aren't saved yet, because the server login is broken.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
@@ -128,7 +135,10 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    Paraformer) and single syllables also have their pitch shape checked; listen to any clip printed with
    "check by ear" and redo it with `--redo <text>`. A lone particle (的, 吗, 呢) is checked in a short phrase (我的, 你好吗,
    你呢), because recognizers can't tell it apart alone. Some misses are fine: 她 and 他 sound the same (tā), and a lone
-   哪 is often written 那 by recognizers even though its tone is checked as 3rd.
+   哪 is often written 那 by recognizers even though its tone is checked as 3rd. A run of 3rd tones turns all but the
+   last into 2nd tones, except a subject 我/你 in front of two more (你有几个 nǐ yóu jǐ gè), which otherwise sounds
+   like 您. Recognizers also tend to hear a lone 3rd tone as 2nd (百 as 白) and a lone 字 as 四, so trust the pitch shape
+   there.
    GitHub release downloads work from the session, but Hugging Face is blocked.
 6. Fonts: `python3 tools/subset_fonts.py <folder with source ttf>`. Sources come from the Google Fonts css2 API:
    Fredoka wght 500..700, Nunito wght 500..800, Noto Serif SC 500 and 700.

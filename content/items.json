@@ -2162,7 +2162,7 @@
   "english": "to have",
   "hanzi": "有",
   "lessonId": "l-20261112",
-  "notes": "我有一个中国朋友 = I have a Chinese friend. “Don’t have” is 没有 (méiyǒu), never 不有.",
+  "notes": "我有一个中国朋友 = I have a Chinese friend. “Don’t have” is 没有 (méiyǒu), never 不有. Your own trick from class: a moon (月) under a roof.",
   "order": 6,
   "pinyin": "yǒu",
   "step": 2,
@@ -2212,14 +2212,15 @@
    "jin1",
    "nian2"
   ],
-  "type": "word"
+  "type": "word",
+  "notes": "今 looks like an umbrella."
  },
  {
   "id": "i-20261112-10",
   "english": "how many (a small number)",
   "hanzi": "几",
   "lessonId": "l-20261112",
-  "notes": "Asks for a small number. 你今年几岁？ is how you ask a child; with adults people usually say 你多大？",
+  "notes": "Asks for a small number. 你今年几岁？ is how you ask a child; with adults people usually say 你多大？ It looks like 儿 (in 女儿) with a lid on top, and it always takes a measure word: 几个朋友, 几口人.",
   "order": 10,
   "pinyin": "jǐ",
   "step": 2,
@@ -3466,7 +3467,7 @@
    "学生",
    "学校"
   ],
-  "notes": "A roof (宀) over 子. 学 (in 学生, 学校) has three short strokes on top instead. Also in 名字 (name).",
+  "notes": "A roof (宀) over 子. 学 (in 学生, 学校) has three short strokes on top instead. Also in 名字 (name). Without the roof it’s 子 (儿子); 了 is 子 without its cross stroke.",
   "order": 47,
   "pinyin": "zì",
   "step": 10,
@@ -4299,6 +4300,1051 @@
    {
     "h": "好朋友",
     "p": "hǎo péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-01",
+  "english": "home, family",
+  "hanzi": "家",
+  "lessonId": "l-20261116",
+  "notes": "A roof (宀) on top: a house, so home and family. 我的家 = my home, my family.",
+  "order": 1,
+  "pinyin": "jiā",
+  "step": 1,
+  "syl": [
+   "jia1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-02",
+  "english": "daughter",
+  "hanzi": "女儿",
+  "lessonId": "l-20261116",
+  "notes": "女 (woman) + 儿 (child).",
+  "order": 2,
+  "pinyin": "nǚ'ér",
+  "step": 1,
+  "syl": [
+   "nü3",
+   "er2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-03",
+  "english": "son",
+  "hanzi": "儿子",
+  "lessonId": "l-20261116",
+  "notes": "儿 (child) + 子.",
+  "order": 3,
+  "pinyin": "érzi",
+  "step": 1,
+  "syl": [
+   "er2",
+   "zi5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-04",
+  "english": "mouth; counts the people in a family",
+  "focus": true,
+  "hanzi": "口",
+  "lessonId": "l-20261116",
+  "lookalikes": [
+   "国"
+  ],
+  "notes": "A square: a mouth. 三口人 = three people in a family. Not 国 (country): 三口人, not 三国人. The same 口 sits on the left of 吗 and 呢.",
+  "order": 4,
+  "pinyin": "kǒu",
+  "step": 1,
+  "syl": [
+   "kou3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-05",
+  "english": "(shows something is done or has changed)",
+  "hanzi": "了",
+  "lessonId": "l-20261116",
+  "notes": "好了 = done, ready. It looks like 子 without its cross stroke.",
+  "order": 5,
+  "pinyin": "le",
+  "step": 1,
+  "syl": [
+   "le5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-06",
+  "english": "nine",
+  "hanzi": "九",
+  "lessonId": "l-20261116",
+  "notes": "十九 = 19, 九十 = 90.",
+  "order": 6,
+  "pinyin": "jiǔ",
+  "step": 2,
+  "syl": [
+   "jiu3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-07",
+  "english": "how old (for grown-ups)",
+  "hanzi": "多大",
+  "lessonId": "l-20261116",
+  "notes": "多 + 大 (big): “how big”, so how old. Children are asked 几岁.",
+  "order": 7,
+  "pinyin": "duō dà",
+  "step": 2,
+  "syl": [
+   "duo1",
+   "da4"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261116-08",
+  "english": "How old is she this year?",
+  "explain": "多大 asks a grown-up’s age; 几岁 is for children. Answer with the number and 岁, and no 是: 她今年二十五岁, not 她是今年二十五岁.",
+  "hanzi": "她今年多大？",
+  "lessonId": "l-20261116",
+  "order": 8,
+  "pattern": "今年 + 多大？ → 今年 + number + 岁",
+  "pinyin": "Tā jīnnián duō dà?",
+  "step": 2,
+  "syl": [
+   "ta1",
+   "jin1",
+   "nian2",
+   "duo1",
+   "da4"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "多大",
+    "p": "duō dà"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261116-09",
+  "english": "She’s 25 this year.",
+  "fill": [
+   {
+    "blank": "岁",
+    "choices": [
+     "岁",
+     "是",
+     "口"
+    ]
+   }
+  ],
+  "hanzi": "她今年二十五岁。",
+  "lessonId": "l-20261116",
+  "order": 9,
+  "pinyin": "Tā jīnnián èrshíwǔ suì.",
+  "reply": {
+   "to": "她今年多大？",
+   "choices": [
+    "她今年二十五岁。",
+    "我的家有三口人。",
+    "我有两个手机。"
+   ]
+  },
+  "step": 2,
+  "syl": [
+   "ta1",
+   "jin1",
+   "nian2",
+   "er4",
+   "shi2",
+   "wu3",
+   "sui4"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "二十五",
+    "p": "èrshíwǔ"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-10",
+  "english": "Her daughter is six this year.",
+  "hanzi": "她女儿今年六岁。",
+  "lessonId": "l-20261116",
+  "notes": "她女儿 = her daughter: 的 is often left out before family.",
+  "order": 10,
+  "pinyin": "Tā nǚ'ér jīnnián liù suì.",
+  "step": 2,
+  "syl": [
+   "ta1",
+   "nü3",
+   "er2",
+   "jin1",
+   "nian2",
+   "liu4",
+   "sui4"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "女儿",
+    "p": "nǚ'ér"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "六",
+    "p": "liù"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-11",
+  "english": "She has a son.",
+  "hanzi": "她有一个儿子。",
+  "lessonId": "l-20261116",
+  "order": 11,
+  "pinyin": "Tā yǒu yí gè érzi.",
+  "step": 2,
+  "syl": [
+   "ta1",
+   "you3",
+   "yi2",
+   "ge4",
+   "er2",
+   "zi5"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "一个",
+    "p": "yí gè"
+   },
+   {
+    "h": "儿子",
+    "p": "érzi"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-12",
+  "english": "How many people are in your family?",
+  "explain": "口 (mouth) counts the people in a family: 三口人. 几 already asks the question, so there’s no 吗. People often drop 的 here: 你家有几口人？",
+  "fill": [
+   {
+    "blank": "几",
+    "choices": [
+     "几",
+     "吗",
+     "谁"
+    ]
+   }
+  ],
+  "hanzi": "你的家有几口人？",
+  "lessonId": "l-20261116",
+  "order": 12,
+  "pattern": "家 + 有 + 几口人？ → 有 + number + 口人",
+  "pinyin": "Nǐ de jiā yǒu jǐ kǒu rén?",
+  "step": 3,
+  "syl": [
+   "ni3",
+   "de5",
+   "jia1",
+   "you3",
+   "ji3",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261116-13",
+  "english": "There are three people in my family.",
+  "fill": [
+   {
+    "blank": "口",
+    "choices": [
+     "口",
+     "国",
+     "岁"
+    ]
+   }
+  ],
+  "focus": true,
+  "hanzi": "我的家有三口人。",
+  "lessonId": "l-20261116",
+  "order": 13,
+  "pinyin": "Wǒ de jiā yǒu sān kǒu rén.",
+  "reply": {
+   "to": "你的家有几口人？",
+   "choices": [
+    "我的家有三口人。",
+    "我的家在以色列。",
+    "她今年二十五岁。"
+   ]
+  },
+  "step": 3,
+  "syl": [
+   "wo3",
+   "de5",
+   "jia1",
+   "you3",
+   "san1",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "三",
+    "p": "sān"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-14",
+  "english": "There are six people in her family.",
+  "hanzi": "她的家有六口人。",
+  "lessonId": "l-20261116",
+  "order": 14,
+  "pinyin": "Tā de jiā yǒu liù kǒu rén.",
+  "step": 3,
+  "syl": [
+   "ta1",
+   "de5",
+   "jia1",
+   "you3",
+   "liu4",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "六",
+    "p": "liù"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-15",
+  "english": "Whose home is this?",
+  "fill": [
+   {
+    "blank": "谁",
+    "choices": [
+     "谁",
+     "几",
+     "吗"
+    ]
+   }
+  ],
+  "hanzi": "这是谁的家？",
+  "lessonId": "l-20261116",
+  "order": 15,
+  "pinyin": "Zhè shì shuí de jiā?",
+  "step": 3,
+  "syl": [
+   "zhe4",
+   "shi4",
+   "shui2",
+   "de5",
+   "jia1"
+  ],
+  "tokens": [
+   {
+    "h": "这",
+    "p": "zhè"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "谁",
+    "p": "shuí"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-16",
+  "english": "two (before a measure word)",
+  "focus": true,
+  "hanzi": "两",
+  "lessonId": "l-20261116",
+  "notes": "两个人 = two people. Counting, or inside longer numbers, it’s 二: 一、二、三, 二十.",
+  "order": 16,
+  "pinyin": "liǎng",
+  "step": 4,
+  "syl": [
+   "liang3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-17",
+  "english": "mobile phone",
+  "hanzi": "手机",
+  "lessonId": "l-20261116",
+  "notes": "手 (hand) + 机 (machine).",
+  "order": 17,
+  "pinyin": "shǒujī",
+  "step": 4,
+  "syl": [
+   "shou3",
+   "ji1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-18",
+  "english": "steak",
+  "hanzi": "牛排",
+  "lessonId": "l-20261116",
+  "notes": "牛 (cow, beef) + 排 (a big cut of meat).",
+  "order": 18,
+  "pinyin": "niúpái",
+  "step": 4,
+  "syl": [
+   "niu2",
+   "pai2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-19",
+  "english": "I have two phones.",
+  "explain": "Before a measure word, two is 两, not 二: 两个人, 两个家. 二 is for counting (一、二、三) and inside longer numbers (二十).",
+  "fill": [
+   {
+    "blank": "两",
+    "choices": [
+     "两",
+     "二",
+     "口"
+    ]
+   }
+  ],
+  "hanzi": "我有两个手机。",
+  "lessonId": "l-20261116",
+  "order": 19,
+  "pattern": "两 + measure word + noun",
+  "pinyin": "Wǒ yǒu liǎng gè shǒujī.",
+  "reply": {
+   "to": "你有几个手机？",
+   "choices": [
+    "我有两个手机。",
+    "我的家有三口人。",
+    "我的家在以色列。"
+   ]
+  },
+  "step": 4,
+  "syl": [
+   "wo3",
+   "you3",
+   "liang3",
+   "ge4",
+   "shou3",
+   "ji1"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "两",
+    "p": "liǎng"
+   },
+   {
+    "h": "个",
+    "p": "gè"
+   },
+   {
+    "h": "手机",
+    "p": "shǒujī"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261116-20",
+  "english": "How many phones do you have?",
+  "fill": [
+   {
+    "blank": "几",
+    "choices": [
+     "几",
+     "吗",
+     "谁"
+    ]
+   }
+  ],
+  "hanzi": "你有几个手机？",
+  "lessonId": "l-20261116",
+  "order": 20,
+  "pinyin": "Nǐ yǒu jǐ gè shǒujī?",
+  "step": 4,
+  "syl": [
+   "ni3",
+   "you3",
+   "ji3",
+   "ge4",
+   "shou3",
+   "ji1"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "个",
+    "p": "gè"
+   },
+   {
+    "h": "手机",
+    "p": "shǒujī"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-21",
+  "english": "many, a lot",
+  "hanzi": "多",
+  "lessonId": "l-20261116",
+  "notes": "The same part twice, one on top of the other: a lot.",
+  "order": 21,
+  "pinyin": "duō",
+  "step": 5,
+  "syl": [
+   "duo1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-22",
+  "english": "a lot of, many",
+  "focus": true,
+  "hanzi": "很多",
+  "lessonId": "l-20261116",
+  "lookalikes": [
+   "大"
+  ],
+  "notes": "很多朋友 = a lot of friends. Not 很大 (very big).",
+  "order": 22,
+  "pinyin": "hěn duō",
+  "step": 5,
+  "syl": [
+   "hen3",
+   "duo1"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261116-23",
+  "english": "How many friends do you have?",
+  "hanzi": "你有几个朋友？",
+  "lessonId": "l-20261116",
+  "order": 23,
+  "pinyin": "Nǐ yǒu jǐ gè péngyou?",
+  "step": 5,
+  "syl": [
+   "ni3",
+   "you3",
+   "ji3",
+   "ge4",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "个",
+    "p": "gè"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-24",
+  "english": "I have a lot of friends.",
+  "fill": [
+   {
+    "blank": "多",
+    "choices": [
+     "多",
+     "大",
+     "美"
+    ]
+   }
+  ],
+  "focus": true,
+  "hanzi": "我有很多朋友。",
+  "lessonId": "l-20261116",
+  "order": 24,
+  "pinyin": "Wǒ yǒu hěn duō péngyou.",
+  "reply": {
+   "to": "你有几个朋友？",
+   "choices": [
+    "我有很多朋友。",
+    "我有两个手机。",
+    "她今年二十五岁。"
+   ]
+  },
+  "step": 5,
+  "syl": [
+   "wo3",
+   "you3",
+   "hen3",
+   "duo1",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "很",
+    "p": "hěn"
+   },
+   {
+    "h": "多",
+    "p": "duō"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-25",
+  "english": "They’re good friends.",
+  "hanzi": "她们是好朋友。",
+  "lessonId": "l-20261116",
+  "notes": "With 很, add 的: 她们是很好的朋友.",
+  "order": 25,
+  "pinyin": "Tāmen shì hǎo péngyou.",
+  "step": 5,
+  "syl": [
+   "ta1",
+   "men5",
+   "shi4",
+   "hao3",
+   "peng2",
+   "you5"
+  ],
+  "tokens": [
+   {
+    "h": "她们",
+    "p": "tāmen"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "好朋友",
+    "p": "hǎo péngyou"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-26",
+  "english": "big",
+  "hanzi": "大",
+  "lessonId": "l-20261116",
+  "lookalikes": [
+   "多"
+  ],
+  "notes": "人 (a person) with arms stretched wide: big.",
+  "order": 26,
+  "pinyin": "dà",
+  "step": 6,
+  "syl": [
+   "da4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-27",
+  "english": "pretty",
+  "hanzi": "漂亮",
+  "lessonId": "l-20261116",
+  "notes": "她很漂亮 = she’s pretty. 美 is beautiful.",
+  "order": 27,
+  "pinyin": "piàoliang",
+  "step": 6,
+  "syl": [
+   "piao4",
+   "liang5"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261116-28",
+  "english": "Is your home big? — Not big.",
+  "explain": "Words like 大 (big) and 美 (beautiful) don’t take 是: 我的家很大. 很 usually goes in front, even when it doesn’t mean “very”. To answer, just say 大 or 不大.",
+  "hanzi": "你的家大吗？——不大。",
+  "lessonId": "l-20261116",
+  "order": 28,
+  "pattern": "家 + 大吗？ → 很大 / 不大",
+  "pinyin": "Nǐ de jiā dà ma? — Bú dà.",
+  "step": 6,
+  "syl": [
+   "ni3",
+   "de5",
+   "jia1",
+   "da4",
+   "ma5",
+   "bu2",
+   "da4"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "大",
+    "p": "dà"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   },
+   {
+    "h": "不大",
+    "p": "bú dà"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261116-29",
+  "english": "Is your home beautiful? — Very beautiful.",
+  "hanzi": "你的家美吗？——很美。",
+  "lessonId": "l-20261116",
+  "order": 29,
+  "pinyin": "Nǐ de jiā měi ma? — Hěn měi.",
+  "step": 6,
+  "syl": [
+   "ni3",
+   "de5",
+   "jia1",
+   "mei3",
+   "ma5",
+   "hen3",
+   "mei3"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "美",
+    "p": "měi"
+   },
+   {
+    "h": "吗",
+    "p": "ma"
+   },
+   {
+    "h": "很",
+    "p": "hěn"
+   },
+   {
+    "h": "美",
+    "p": "měi"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-30",
+  "english": "Where is your home?",
+  "hanzi": "你的家在哪里？",
+  "lessonId": "l-20261116",
+  "order": 30,
+  "pinyin": "Nǐ de jiā zài nǎlǐ?",
+  "step": 6,
+  "syl": [
+   "ni3",
+   "de5",
+   "jia1",
+   "zai4",
+   "na3",
+   "li3"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "在",
+    "p": "zài"
+   },
+   {
+    "h": "哪里",
+    "p": "nǎlǐ"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261116-31",
+  "english": "My home is in Israel.",
+  "fill": [
+   {
+    "blank": "在",
+    "choices": [
+     "在",
+     "有",
+     "哪"
+    ]
+   }
+  ],
+  "hanzi": "我的家在以色列。",
+  "lessonId": "l-20261116",
+  "order": 31,
+  "pinyin": "Wǒ de jiā zài Yǐsèliè.",
+  "reply": {
+   "to": "你的家在哪里？",
+   "choices": [
+    "我的家在以色列。",
+    "我的家有三口人。",
+    "我有很多朋友。"
+   ]
+  },
+  "step": 6,
+  "syl": [
+   "wo3",
+   "de5",
+   "jia1",
+   "zai4",
+   "yi3",
+   "se4",
+   "lie4"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "在",
+    "p": "zài"
+   },
+   {
+    "h": "以色列",
+    "p": "Yǐsèliè"
    }
   ],
   "type": "sentence"

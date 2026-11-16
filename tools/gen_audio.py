@@ -20,7 +20,8 @@ Why this voice and method:
 - The voice was trained on its own dictionary's readings (lexicon.txt, e.g. 学生 xue2 sheng1 for the natural xuésheng),
   so it gets those, matched longest word first. Where the app's pinyin names a different syllable for a character
   (one with two readings), the app's pinyin wins. Then the tone changes of spoken Mandarin: 3rd + 3rd tone (很好 hén hǎo)
-  and 不 before a 4th tone (不是 bú shì), as the dictionary itself does (你好 ni2 hao3).
+  and 不 before a 4th tone (不是 bú shì), as the dictionary itself does (你好 ni2 hao3). A subject 我/你 in front of two
+  more 3rd tones stays low (你有几个 nǐ yóu jǐ gè; said ní it sounds like 您).
 - The voice varies a little from take to take. Each take is transcribed by two recognizers and kept once both hear
   the right syllables and tones; after 12 takes the best one is kept and flagged to check by ear.
 """
@@ -98,11 +99,15 @@ def symbols(text, syls):
             chars.append(c)
         syls = syls[max(n, 1):]
         i += max(n, 1)
+    # A subject 我/你 in front of two more 3rd tones is its own word and stays low: 你有几个 nǐ yóu jǐ gè. Said ní yóu jǐ
+    # it sounds like 您有几个.
+    keep = {k for k in range(len(seq)) if chars[k] in '我你' and (k == 0 or not seq[k - 1][-1].isdigit())
+            and all(k + j < len(seq) and seq[k + j][-1] == '3' for j in range(3))}
     for k in range(len(seq) - 1):
         a, b = seq[k], seq[k + 1]
         if not a[-1].isdigit() or not b[-1].isdigit():
             continue
-        if tone(a) == 3 and tone(b) == 3:  # in a run of 3rd tones, all but the last are said as 2nd tones
+        if tone(a) == 3 and tone(b) == 3 and k not in keep:  # in a run of 3rd tones, all but the last are said as 2nd
             seq[k] = a[:-1] + '2'
         elif chars[k] == '不' and tone(a) == 4 and tone(b) == 4:
             seq[k] = a[:-1] + '2'
@@ -179,6 +184,9 @@ def tone_heard(x):
     if p is None:
         return None
     p = 1 + 4 * (p - low) / (high - low)
+    # The first fifth is the glide out of the consonant (多 starts a little low), so a level tone is judged after it.
+    if abs(p[-1] - p[1]) < 0.8 and p[1:].mean() >= 3.5 and p[0] >= 3:
+        return 1
     slope = p[-1] - p[0]
     if slope <= -1 and p[0] >= 4:
         return 4
