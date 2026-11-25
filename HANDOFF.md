@@ -71,7 +71,8 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
 - **Server:** `supabase/schema.sql` has the tables (`docs`, `access_keys`) and the `api(k, op, payload)` function.
   RLS is on with no policies, so the public key can only call `api()`.
   - `docs` collections: `progress`, `sessions`, `homework`, `messages`, `items` (words added in the app), plus two
-    private ones: `notes` (class notes for each lesson id: `summary`, `strengths`, `struggles`, and `_zh`) and
+    private ones: `notes` (class notes for each lesson id: `summary` as text, `strengths` and `struggles` as lists
+    of short strings, and the same with `_zh`; the app also splits a text at semicolons) and
     `profile` (`student`: full name, goal, cadence, focus, wants_zh).
   - The app merges `notes` into the lessons, and the server `profile` over `content/profile.json`.
 - **App sync** (`index.html`, boot section): pulls on start, every 20 seconds while open, and when the app returns to
@@ -102,6 +103,11 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   几 with a measure word and no 吗, 很多, 在 for where, and adjectives without 是 (你的家大吗？不大). Tricks for words
   already in the app went into their notes (有, 几, 今年, 字). Real ages and the talk that wasn't the lesson are left
   out. Private notes are in `notes/l-20261116`.
+- Unit 5 (class of 2026-11-24, "Ages and counting: 几岁了 · 多大了 · 几口人"; not recorded in Wispr Flow): 4 words,
+  2 phrases, 14 sentences and 2 grammar tips in 5 steps, from the handout 11.24.pdf: the textbook Lesson 5 生词 page
+  examples (我家有五口人, 她是谁的女儿？), its notes on 几 + measure word, 了 for a change (李老师今年五十岁了) and
+  多大了, and 老师's typed notes (你今年多大了？, 个 and 口, 你的学校有几个学生？, 在 in/on/at). Her example age
+  (28) is replaced with 二十. "Pick the right answer" pairs each question with its answer.
 - The old Claude-artifact version (https://claude.ai/artifact/XW1ccyfvBHyjUZc6MypL3S) is retired. Its data has
   been copied over.
 
@@ -111,6 +117,9 @@ Use the Management API SQL endpoint, upserting into `docs` with collection `note
 dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so devices pull it.
 
 ## Weekly lesson import
+
+A fresh container has none of the tools: first run `bash tools/setup_tools.sh <scratch folder>`, which installs the
+Python packages and downloads the voice, the two recognizers, CC-CEDICT and the font sources (about 1.3 GB).
 
 1. Wispr Flow: `search_meetings`, then `get_meeting` with `view_transcript`. Read the **whole** transcript.
 2. Keep only learning content (see the rules above). The tutor calls Tal 糖 (Táng). The textbook appears to be
@@ -135,7 +144,7 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    (学生 xuésheng `xue2 sheng5`); 不 and 一 written with their changed tone (不是 bú shì `bu2 shi4`, 一个 yí gè);
    3rd + 3rd written as two 3rd tones (你好 nǐ hǎo), because that's how it's printed. The tone exercise explains
    the 3rd + 3rd change, and the audio applies it.
-5. Audio: `python3 tools/gen_audio.py <models dir>` (download links in the script). The voice is Matcha-TTS trained
+5. Audio: `python3 tools/gen_audio.py <folder>/models` (download links in the script). The voice is Matcha-TTS trained
    on the Baker corpus (a professional female speaker reading standard Putonghua; licensed for non-commercial use),
    chosen because its tones follow the textbook shapes; the Kokoro voice used before blurred 1st/4th and 2nd/3rd
    tones and hummed an "ooh" before short words. Every take is transcribed by two speech recognizers (SenseVoice,
@@ -147,7 +156,7 @@ dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so device
    like 您. Recognizers also tend to hear a lone 3rd tone as 2nd (百 as 白) and a lone 字 as 四, so trust the pitch shape
    there.
    GitHub release downloads work from the session, but Hugging Face is blocked.
-6. Fonts: `python3 tools/subset_fonts.py <folder with source ttf>`. Sources come from the Google Fonts css2 API:
+6. Fonts: `python3 tools/subset_fonts.py <folder>/fonts-src`. Sources come from the Google Fonts css2 API:
    Fredoka wght 500..700, Nunito wght 500..800, Noto Serif SC 500 and 700.
 7. Bump `VERSION` in `sw.js`, commit and push to `main`. GitHub Pages redeploys in about a minute.
 

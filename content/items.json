@@ -409,7 +409,7 @@
  },
  {
   "id": "i-20261020-26",
-  "english": "to be at, in",
+  "english": "in, on, at; to be (somewhere)",
   "hanzi": "在",
   "lessonId": "l-20261020",
   "notes": "他们在学校: they are at school.",
@@ -4371,7 +4371,7 @@
   "english": "(shows something is done or has changed)",
   "hanzi": "了",
   "lessonId": "l-20261116",
-  "notes": "好了 = done, ready. It looks like 子 without its cross stroke.",
+  "notes": "好了 = done, ready. It looks like 子 without its cross stroke. At the end of a sentence it shows a change: 她四岁了 = she’s four now.",
   "order": 5,
   "pinyin": "le",
   "step": 1,
@@ -5345,6 +5345,892 @@
    {
     "h": "以色列",
     "p": "Yǐsèliè"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-01",
+  "english": "three",
+  "hanzi": "三",
+  "lessonId": "l-20261124",
+  "notes": "三口人 = three people in a family.",
+  "order": 1,
+  "pinyin": "sān",
+  "step": 1,
+  "syl": [
+   "san1"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261124-02",
+  "english": "four",
+  "hanzi": "四",
+  "lessonId": "l-20261124",
+  "lookalikes": [
+   "十"
+  ],
+  "notes": "Not 十 shí (ten): 四 is sì, 十 is shí.",
+  "order": 2,
+  "pinyin": "sì",
+  "step": 1,
+  "syl": [
+   "si4"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261124-03",
+  "english": "five",
+  "hanzi": "五",
+  "lessonId": "l-20261124",
+  "notes": "五口人 = five people in a family. 五十 = 50.",
+  "order": 3,
+  "pinyin": "wǔ",
+  "step": 1,
+  "syl": [
+   "wu3"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261124-04",
+  "english": "ten",
+  "hanzi": "十",
+  "lessonId": "l-20261124",
+  "lookalikes": [
+   "四"
+  ],
+  "notes": "十岁 = ten years old. 二十 = 20, 五十 = 50.",
+  "order": 4,
+  "pinyin": "shí",
+  "step": 1,
+  "syl": [
+   "shi2"
+  ],
+  "type": "word"
+ },
+ {
+  "id": "i-20261124-05",
+  "english": "our family, our home",
+  "hanzi": "我们家",
+  "lessonId": "l-20261124",
+  "notes": "我们 (we) + 家. 我家 is my family.",
+  "order": 5,
+  "pinyin": "wǒmen jiā",
+  "step": 1,
+  "syl": [
+   "wo3",
+   "men5",
+   "jia1"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261124-06",
+  "english": "two people",
+  "hanzi": "两个人",
+  "lessonId": "l-20261124",
+  "notes": "两 + 个 + 人. Most things take 个: 一个学生. The people in a family take 口: 三口人.",
+  "order": 6,
+  "pinyin": "liǎng gè rén",
+  "step": 2,
+  "syl": [
+   "liang3",
+   "ge4",
+   "ren2"
+  ],
+  "type": "phrase"
+ },
+ {
+  "id": "i-20261124-07",
+  "english": "How many Chinese teachers do you have?",
+  "explain": "几 asks about a small number, usually under 10, and always takes a measure word: 几个老师, 几口人. Most things take 个; the people in a family take 口.",
+  "fill": [
+   {
+    "blank": "个",
+    "choices": [
+     "个",
+     "口",
+     "岁"
+    ]
+   }
+  ],
+  "hanzi": "你有几个汉语老师？",
+  "lessonId": "l-20261124",
+  "order": 7,
+  "pattern": "几 + measure word + noun",
+  "pinyin": "Nǐ yǒu jǐ gè Hànyǔ lǎoshī?",
+  "step": 2,
+  "syl": [
+   "ni3",
+   "you3",
+   "ji3",
+   "ge4",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "个",
+    "p": "gè"
+   },
+   {
+    "h": "汉语老师",
+    "p": "Hànyǔ lǎoshī"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261124-08",
+  "english": "I have one Chinese teacher.",
+  "hanzi": "我有一个汉语老师。",
+  "lessonId": "l-20261124",
+  "order": 8,
+  "pinyin": "Wǒ yǒu yí gè Hànyǔ lǎoshī.",
+  "reply": {
+   "to": "你有几个汉语老师？",
+   "choices": [
+    "我有一个汉语老师。",
+    "我家有五口人。",
+    "她今年四岁了。"
+   ]
+  },
+  "step": 2,
+  "syl": [
+   "wo3",
+   "you3",
+   "yi2",
+   "ge4",
+   "han4",
+   "yu3",
+   "lao3",
+   "shi1"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "一个",
+    "p": "yí gè"
+   },
+   {
+    "h": "汉语老师",
+    "p": "Hànyǔ lǎoshī"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-09",
+  "english": "How many students are there in your school?",
+  "hanzi": "你的学校有几个学生？",
+  "lessonId": "l-20261124",
+  "notes": "几 expects a small number. For a big one people usually ask 多少: 你的学校有多少学生？",
+  "order": 9,
+  "pinyin": "Nǐ de xuéxiào yǒu jǐ gè xuésheng?",
+  "step": 2,
+  "syl": [
+   "ni3",
+   "de5",
+   "xue2",
+   "xiao4",
+   "you3",
+   "ji3",
+   "ge4",
+   "xue2",
+   "sheng5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "学校",
+    "p": "xuéxiào"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "个",
+    "p": "gè"
+   },
+   {
+    "h": "学生",
+    "p": "xuésheng"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-10",
+  "english": "How many people are in Teacher Li’s family?",
+  "fill": [
+   {
+    "blank": "几",
+    "choices": [
+     "几",
+     "吗",
+     "谁"
+    ]
+   }
+  ],
+  "hanzi": "李老师家有几口人？",
+  "lessonId": "l-20261124",
+  "order": 10,
+  "pinyin": "Lǐ lǎoshī jiā yǒu jǐ kǒu rén?",
+  "step": 3,
+  "syl": [
+   "li3",
+   "lao3",
+   "shi1",
+   "jia1",
+   "you3",
+   "ji3",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "李老师",
+    "p": "Lǐ lǎoshī"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-11",
+  "english": "There are three people in her family.",
+  "hanzi": "她家有三口人。",
+  "lessonId": "l-20261124",
+  "order": 11,
+  "pinyin": "Tā jiā yǒu sān kǒu rén.",
+  "reply": {
+   "to": "李老师家有几口人？",
+   "choices": [
+    "她家有三口人。",
+    "她今年五十岁了。",
+    "我有一个汉语老师。"
+   ]
+  },
+  "step": 3,
+  "syl": [
+   "ta1",
+   "jia1",
+   "you3",
+   "san1",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "三",
+    "p": "sān"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-12",
+  "english": "There are five people in my family.",
+  "fill": [
+   {
+    "blank": "口",
+    "choices": [
+     "口",
+     "国",
+     "岁"
+    ]
+   }
+  ],
+  "hanzi": "我家有五口人。",
+  "lessonId": "l-20261124",
+  "notes": "我家 = my family: 的 is often left out here.",
+  "order": 12,
+  "pinyin": "Wǒ jiā yǒu wǔ kǒu rén.",
+  "step": 3,
+  "syl": [
+   "wo3",
+   "jia1",
+   "you3",
+   "wu3",
+   "kou3",
+   "ren2"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "家",
+    "p": "jiā"
+   },
+   {
+    "h": "有",
+    "p": "yǒu"
+   },
+   {
+    "h": "五",
+    "p": "wǔ"
+   },
+   {
+    "h": "口",
+    "p": "kǒu"
+   },
+   {
+    "h": "人",
+    "p": "rén"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-13",
+  "english": "Whose daughter is she?",
+  "fill": [
+   {
+    "blank": "谁",
+    "choices": [
+     "谁",
+     "几",
+     "多"
+    ]
+   }
+  ],
+  "hanzi": "她是谁的女儿？",
+  "lessonId": "l-20261124",
+  "order": 13,
+  "pinyin": "Tā shì shuí de nǚ'ér?",
+  "step": 3,
+  "syl": [
+   "ta1",
+   "shi4",
+   "shui2",
+   "de5",
+   "nü3",
+   "er2"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "谁",
+    "p": "shuí"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "女儿",
+    "p": "nǚ'ér"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-14",
+  "english": "She’s Teacher Li’s daughter.",
+  "hanzi": "她是李老师的女儿。",
+  "lessonId": "l-20261124",
+  "order": 14,
+  "pinyin": "Tā shì Lǐ lǎoshī de nǚ'ér.",
+  "reply": {
+   "to": "她是谁的女儿？",
+   "choices": [
+    "她是李老师的女儿。",
+    "她今年四岁了。",
+    "她家有三口人。"
+   ]
+  },
+  "step": 3,
+  "syl": [
+   "ta1",
+   "shi4",
+   "li3",
+   "lao3",
+   "shi1",
+   "de5",
+   "nü3",
+   "er2"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "是",
+    "p": "shì"
+   },
+   {
+    "h": "李老师",
+    "p": "Lǐ lǎoshī"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "女儿",
+    "p": "nǚ'ér"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-15",
+  "english": "Teacher Li turned 50 this year.",
+  "explain": "了 at the end of a sentence shows a change or something new: 她今年四岁了 = she’s four now. Questions about age often end in 了 too: 你女儿几岁了？ 你多大了？",
+  "hanzi": "李老师今年五十岁了。",
+  "lessonId": "l-20261124",
+  "order": 15,
+  "pattern": "… 岁了 (了 at the end: something has changed)",
+  "pinyin": "Lǐ lǎoshī jīnnián wǔshí suì le.",
+  "step": 4,
+  "syl": [
+   "li3",
+   "lao3",
+   "shi1",
+   "jin1",
+   "nian2",
+   "wu3",
+   "shi2",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "李老师",
+    "p": "Lǐ lǎoshī"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "五十",
+    "p": "wǔshí"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "grammar"
+ },
+ {
+  "id": "i-20261124-16",
+  "english": "My friend’s daughter turned four this year.",
+  "hanzi": "我朋友的女儿今年四岁了。",
+  "lessonId": "l-20261124",
+  "notes": "我朋友 = my friend: 的 is often left out before close people.",
+  "order": 16,
+  "pinyin": "Wǒ péngyou de nǚ'ér jīnnián sì suì le.",
+  "step": 4,
+  "syl": [
+   "wo3",
+   "peng2",
+   "you5",
+   "de5",
+   "nü3",
+   "er2",
+   "jin1",
+   "nian2",
+   "si4",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "朋友",
+    "p": "péngyou"
+   },
+   {
+    "h": "的",
+    "p": "de"
+   },
+   {
+    "h": "女儿",
+    "p": "nǚ'ér"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "四",
+    "p": "sì"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-17",
+  "english": "How old is your daughter now?",
+  "fill": [
+   {
+    "blank": "几",
+    "choices": [
+     "几",
+     "多",
+     "吗"
+    ]
+   }
+  ],
+  "hanzi": "你女儿几岁了？",
+  "lessonId": "l-20261124",
+  "order": 17,
+  "pinyin": "Nǐ nǚ'ér jǐ suì le?",
+  "step": 4,
+  "syl": [
+   "ni3",
+   "nü3",
+   "er2",
+   "ji3",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "女儿",
+    "p": "nǚ'ér"
+   },
+   {
+    "h": "几",
+    "p": "jǐ"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-18",
+  "english": "She turned four this year.",
+  "hanzi": "她今年四岁了。",
+  "lessonId": "l-20261124",
+  "order": 18,
+  "pinyin": "Tā jīnnián sì suì le.",
+  "reply": {
+   "to": "你女儿几岁了？",
+   "choices": [
+    "她今年四岁了。",
+    "她家有三口人。",
+    "我有一个汉语老师。"
+   ]
+  },
+  "step": 4,
+  "syl": [
+   "ta1",
+   "jin1",
+   "nian2",
+   "si4",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "四",
+    "p": "sì"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-19",
+  "english": "How old are you this year? (to a grown-up)",
+  "fill": [
+   {
+    "blank": "了",
+    "choices": [
+     "了",
+     "吗",
+     "几"
+    ]
+   }
+  ],
+  "hanzi": "你今年多大了？",
+  "lessonId": "l-20261124",
+  "order": 19,
+  "pinyin": "Nǐ jīnnián duō dà le?",
+  "step": 5,
+  "syl": [
+   "ni3",
+   "jin1",
+   "nian2",
+   "duo1",
+   "da4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "你",
+    "p": "nǐ"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "多大",
+    "p": "duō dà"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-20",
+  "english": "I turned twenty this year.",
+  "hanzi": "我今年二十岁了。",
+  "lessonId": "l-20261124",
+  "order": 20,
+  "pinyin": "Wǒ jīnnián èrshí suì le.",
+  "reply": {
+   "to": "你今年多大了？",
+   "choices": [
+    "我今年二十岁了。",
+    "她家有三口人。",
+    "我有一个汉语老师。"
+   ]
+  },
+  "step": 5,
+  "syl": [
+   "wo3",
+   "jin1",
+   "nian2",
+   "er4",
+   "shi2",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "我",
+    "p": "wǒ"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "二十",
+    "p": "èrshí"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-21",
+  "english": "How old is Teacher Li?",
+  "hanzi": "李老师多大了？",
+  "lessonId": "l-20261124",
+  "order": 21,
+  "pinyin": "Lǐ lǎoshī duō dà le?",
+  "step": 5,
+  "syl": [
+   "li3",
+   "lao3",
+   "shi1",
+   "duo1",
+   "da4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "李老师",
+    "p": "Lǐ lǎoshī"
+   },
+   {
+    "h": "多大",
+    "p": "duō dà"
+   },
+   {
+    "h": "了",
+    "p": "le"
+   }
+  ],
+  "type": "sentence"
+ },
+ {
+  "id": "i-20261124-22",
+  "english": "She turned 50 this year.",
+  "hanzi": "她今年五十岁了。",
+  "lessonId": "l-20261124",
+  "order": 22,
+  "pinyin": "Tā jīnnián wǔshí suì le.",
+  "reply": {
+   "to": "李老师多大了？",
+   "choices": [
+    "她今年五十岁了。",
+    "她家有三口人。",
+    "她是李老师的女儿。"
+   ]
+  },
+  "step": 5,
+  "syl": [
+   "ta1",
+   "jin1",
+   "nian2",
+   "wu3",
+   "shi2",
+   "sui4",
+   "le5"
+  ],
+  "tokens": [
+   {
+    "h": "她",
+    "p": "tā"
+   },
+   {
+    "h": "今年",
+    "p": "jīnnián"
+   },
+   {
+    "h": "五十",
+    "p": "wǔshí"
+   },
+   {
+    "h": "岁",
+    "p": "suì"
+   },
+   {
+    "h": "了",
+    "p": "le"
    }
   ],
   "type": "sentence"
