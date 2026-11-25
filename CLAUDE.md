@@ -1,7 +1,7 @@
 # Tal's Mandarin
 
 A Duolingo-style Mandarin app for Tal and his tutor (老师). Read `HANDOFF.md` first: it has the full history,
-Tal's requirements, the data model, the weekly lesson import and how the app syncs through Supabase (including how to reach its Management API).
+Tal's requirements, the data model, the weekly lesson import and how the app syncs through Supabase (including how Claude reaches its data).
 
 Rules that always apply:
 

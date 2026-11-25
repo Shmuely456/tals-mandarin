@@ -61,13 +61,14 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
   `tutor` is 老师: Chinese UI and the 老师 tab first. She can write notes, homework, feedback and words, but not
   practice. **Never commit the keys.** Read them with SQL (`select role, key from access_keys`) through the Management
   API, and rotate one by updating that table.
-- **Management API access:** Tal's Supabase personal access token is saved on the cloud environment as a network
-  secret for `api.supabase.com`, and the session's proxy adds it to every request. So call
-  `https://api.supabase.com/v1/projects/giuumcebqctbkrccxepn/database/query` (POST `{"query": "..."}`) with no
-  Authorization header of your own; the old `SUPABASE_ACCESS_TOKEN` variable is stale and not needed. Tokens expire
-  (Supabase's default is 30 days). On 401 "Invalid access token", Tal makes a new one (supabase.com, Account →
-  Access Tokens → Generate new token, Database read and write, a long expiry) and saves it through the
-  credential form. Never ask him to paste it in chat.
+- **Server access (for Claude):** a project **secret key** (`sb_secret_…`, made in Supabase under Project Settings →
+  API Keys) is saved on the cloud environment as a network secret for `giuumcebqctbkrccxepn.supabase.co` (header
+  `apikey`), and the session's proxy adds it. It doesn't expire and reaches only this project. Use the database API
+  with no key of your own: read `GET https://giuumcebqctbkrccxepn.supabase.co/rest/v1/docs?collection=eq.messages`,
+  write `POST /rest/v1/docs?on_conflict=collection,id` with `Prefer: resolution=merge-duplicates` and rows
+  `{collection, id, data, updated_at}`. Access keys are in `/rest/v1/access_keys`. Only schema changes (SQL DDL) need
+  the Management API, which takes a personal access token that expires; ask for one then, through the credential
+  form, never in chat.
 - **Server:** `supabase/schema.sql` has the tables (`docs`, `access_keys`) and the `api(k, op, payload)` function.
   RLS is on with no policies, so the public key can only call `api()`.
   - `docs` collections: `progress`, `sessions`, `homework`, `messages`, `items` (words added in the app), plus two
@@ -113,8 +114,9 @@ lesson `l-20261020` (fields `summary`, `strengths`, `struggles`, each also with 
 
 ### Adding a lesson's private class notes
 
-Use the Management API SQL endpoint, upserting into `docs` with collection `notes` and the lesson id as the id. Use
-dollar-quoted JSON (`$tm$...$tm$::jsonb`) and set `updated_at = now()` so devices pull it.
+Upsert a row into `docs` through the database API (see "Server access" above): collection `notes`, the lesson id as
+the id, and `updated_at` set to now so devices pull it. `summary` is text; `strengths` and `struggles` (and `_zh`)
+are lists of short strings.
 
 ## Weekly lesson import
 
