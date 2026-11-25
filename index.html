@@ -2456,7 +2456,10 @@ function subscribe(){
   let lessonsRaw = [], notesById = {};
   const merge = () => { S.lessons = lessonsRaw.map(l => Object.assign({}, l, notesById[l.id] || {})).sort((a, b) => String(a.date || '').localeCompare(String(b.date || ''))); };
   on('lessons', db.collection('lessons'), rows => { lessonsRaw = rows; merge(); });
-  on('notes', db.collection('notes'), rows => { notesById = Object.fromEntries(rows.map(r => [r.id, r])); merge(); });
+  // "Went well" and "to work on" are lists; a note saved as one text is split into a list, so it can't break a page.
+  const asList = v => Array.isArray(v) ? v.map(String) : typeof v === 'string' && v.trim() ? v.split(/[;；]\s*|\n+/).map(x => x.trim()).filter(Boolean) : [];
+  const tidy = r => Object.assign({}, r, ...['strengths', 'struggles', 'strengths_zh', 'struggles_zh'].filter(k => k in r).map(k => ({[k]: asList(r[k])})));
+  on('notes', db.collection('notes'), rows => { notesById = Object.fromEntries(rows.map(r => [r.id, tidy(r)])); merge(); });
   on('items', db.collection('items'), rows => { S.items = rows; S.itemById = Object.fromEntries(rows.map(r => [r.id, r])); });
   on('progress', db.collection('progress'), rows => { S.progress = Object.fromEntries(rows.map(r => [r.id, r])); });
   on('sessions', db.collection('sessions').orderBy('endedAt', 'desc').limit(800));
